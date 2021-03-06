@@ -4,7 +4,7 @@ from skimage import exposure
 import pydicom as dicom
 import pylab as pl
 from PIL.Image import fromarray
-from PIL import  Image
+from PIL import Image
 import pylibjpeg
 import scipy.signal as scs
 import sys
@@ -86,6 +86,7 @@ pl.imshow(temp33, cmap='gray')
 pl.imshow(temp44, cmap='gray')
 
 pl.show()
+
 
 #
 # img = cv2.imread('0004.jpg')

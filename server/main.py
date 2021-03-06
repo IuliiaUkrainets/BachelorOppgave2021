@@ -146,29 +146,35 @@ def users():
 @app.route('/user/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def users(id = None):
     if request.method == 'GET':
-        users = User.query.filter(User.id == id).first()
+        user = User.query.filter(User.id == id).first()
         return jsonify({
-                    'name': users.name,
-                    'lastname': users.lastname,
-                    'phone': users.phone,
-                    'fodselsnummer': users.fodselsnummer,
-                    'email': users.email
+                    'name': user.name,
+                    'lastname': user.lastname,
+                    'phone': user.phone,
+                    'fodselsnummer': user.fodselsnummer,
+                    'email': user.email
                     })
     elif request.method == 'PUT':
-        return
+        user = User.query.filter(User.id == id).first()
+        user.name = 'my_new_name'
+        user.phone = 'my_new_phone'
+        user.lastname = 'my_new_lastname'
+        user.fodselsnummer = 'my_new_fodselsnummer'
+        user.email = 'my_new_email@exampel.com'
+        session.add(user)
+        session.commit()
+        return "Du har endret user dataene"
+
     elif request.method == 'DELETE':
-        return
-
-
-
-
-
-
+        user = User.query.filter(User.id == id).delete()
+        session.delete(user)
+        session.commit()
+        return "Brukeren er slettet"
 
 
 
 @app.route('/patient/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def users(id = None):
+def patients(id = None):
     if request.method == 'GET':
         patient = Patient.query.filter(Patient.id == id).first()
         return jsonify({
@@ -179,10 +185,17 @@ def users(id = None):
                     'email': patient.email
                     })
     elif request.method == 'PUT':
-        
-        return "Du har endret dataene"
+        patient = Patient.query.filter(Patient.id == id).first()
+        patient.name = 'my_new_name'
+        patient.phone = 'my_new_phone'
+        patient.lastname = 'my_new_lastname'
+        patient.fodselsnummer = 'my_new_fodselsnummer'
+        patient.email = 'my_new_email@exampel.com'
+        session.add(patient)
+        session.commit()
+        return "Du har endret pasient dataene"
     elif request.method == 'DELETE':
-        patient = Patient.query.filter(Patient.id == 123).delete()
+        patient = Patient.query.filter(Patient.id == id).delete()
         session.delete(patient)
         session.commit()
         return "Pasientet er slettet"
