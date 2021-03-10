@@ -1,5 +1,5 @@
-from flask import Flask, session, request, jsonify
-from flask.json import JSONEncoder
+from flask import Flask, session, request, jsonify, redirect, send_from_directory, url_for
+from flask.json import JSONEncoder, dumps
 from flask_restful import Api, Resource, reqparse, abort
 from DeclarativeSQL import init_db, db_session
 from flask_bcrypt import Bcrypt
@@ -7,8 +7,17 @@ from models import User, Patient, ImageModel
 from flask_sqlalchemy import SQLAlchemy
 import hashlib
 from sqlalchemy import insert
+import os
+
+from werkzeug.utils import secure_filename
+
+
+UPLOAD_FOLDER = './SavedFiles/'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'jpg', 'jpeg', 'dcm'}
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 app.json_encoder = JSONEncoder
 api = Api(app)
 
@@ -87,10 +96,37 @@ api = Api(app)
 #     pass
 
 
-@app.route('/')
-def index():
-    return "hello Word"
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+@app.route('/', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form action="" method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
+
+
+@app.route('/SavedFiles/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -138,15 +174,21 @@ def users():
     if request.method == 'GET':
         users = User.query.all()
         return jsonify(num_results=len(users),
-                       objects=[user.serialize() for user in users])
+                       objects=[{
+                    'name': user.name,
+                    'lastname': user.lastname,
+                    'phone': user.phone,
+                    'fodselsnummer': user.fodselsnummer,
+                    'email': user.email
+                    } for user in users])
 
 
 
 
 @app.route('/user/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def users(id = None):
+def user(id = None):
     if request.method == 'GET':
-        user = User.query.filter(User.id == id).first()
+        user = User.query.filter_by(id=id).first()
         return jsonify({
                     'name': user.name,
                     'lastname': user.lastname,
@@ -155,7 +197,7 @@ def users(id = None):
                     'email': user.email
                     })
     elif request.method == 'PUT':
-        user = User.query.filter(User.id == id).first()
+        user = User.query.filter_by(id=id).first()
         user.name = 'my_new_name'
         user.phone = 'my_new_phone'
         user.lastname = 'my_new_lastname'
@@ -166,9 +208,9 @@ def users(id = None):
         return "Du har endret user dataene"
 
     elif request.method == 'DELETE':
-        user = User.query.filter(User.id == id).delete()
-        session.delete(user)
-        session.commit()
+        user = User.query.filter_by(id=id).delete()
+        #session.delete(user)
+        #session.commit()
         return "Brukeren er slettet"
 
 
@@ -176,7 +218,7 @@ def users(id = None):
 @app.route('/patient/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def patients(id = None):
     if request.method == 'GET':
-        patient = Patient.query.filter(Patient.id == id).first()
+        patient = Patient.query.filter_by(id=id).first()
         return jsonify({
                     'name': patient.name,
                     'lastname': patient.lastname,
@@ -185,7 +227,7 @@ def patients(id = None):
                     'email': patient.email
                     })
     elif request.method == 'PUT':
-        patient = Patient.query.filter(Patient.id == id).first()
+        patient = Patient.query.filter_by(id=id).first()
         patient.name = 'my_new_name'
         patient.phone = 'my_new_phone'
         patient.lastname = 'my_new_lastname'
@@ -195,9 +237,9 @@ def patients(id = None):
         session.commit()
         return "Du har endret pasient dataene"
     elif request.method == 'DELETE':
-        patient = Patient.query.filter(Patient.id == id).delete()
-        session.delete(patient)
-        session.commit()
+        patient = Patient.query.filter_by(id=id).delete()
+        #session.delete(patient)
+        #session.commit()
         return "Pasientet er slettet"
 
 
@@ -228,7 +270,12 @@ def patient():
     if request.method == 'GET':
         patients = Patient.query.all()
         return jsonify(num_results=len(patients),
-                       objects=[patient.serialize() for patient in patients])
+                       objects=[{
+                    'name': patient.name,
+                    'lastname': patient.lastname,
+                    'phone': patient.phone,
+                    'fodselsnummer': patient.fodselsnummer
+                } for patient in patients])
 
 
 if __name__ == '__main__':

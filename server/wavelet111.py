@@ -12,12 +12,14 @@ import matplotlib.path as mplPath
 import scipy.misc
 
 
-d = dicom.read_file('0004.dcm')
+d = dicom.read_file('0012.dcm')
 f = open('test.txt', 'a')
 
 f.write(str(d))
 
 Array = np.zeros((int(d.Rows), int(d.Columns)), dtype=d.pixel_array.dtype)
+
+print(Array.shape)
 
 Array[:,:] = d.pixel_array / 128
 
@@ -194,9 +196,9 @@ img = waveletR(*t)
 
 #t = pl.imshow(gray, cmap='gray' )
 
-#t = wallet(np.int16(t[0]))
-#t = wallet(np.int16(t[0]))
-#t = wallet(np.int16(t[0]))
+#t = wavelet(np.int16(t[0]))
+#t = wavelet(np.int16(t[0]))
+#t = wavelet(np.int16(t[0]))
 
 
 
