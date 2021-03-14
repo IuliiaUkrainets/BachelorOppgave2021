@@ -12,13 +12,13 @@ import matplotlib.path as mplPath
 import scipy.misc
 
 
-d = dicom.read_file('0012.dcm')
+d = dicom.read_file('0004.dcm')
 f = open('test.txt', 'a')
 
 f.write(str(d))
 
 Array = np.zeros((int(d.Rows), int(d.Columns)), dtype=d.pixel_array.dtype)
-
+cv2.imwrite("SavedFiles/original.jpg", d.pixel_array)
 print(Array.shape)
 
 Array[:,:] = d.pixel_array / 128
@@ -29,6 +29,7 @@ Array = Array * 128
 
 
 gray = Array
+
 
 
 #image = cv2.imread('0004.jpg')
@@ -53,7 +54,7 @@ def wavelet(arr):
         for j in range(0, arr.shape[1], 2):
             temp.append((arr[i][j] + arr[i][j + 1]) / 2.)
         WL.append(temp)
-    # print(arr[45])
+
 
     for i in range(arr.shape[0]):
         temp = []
@@ -94,7 +95,7 @@ def wavelet(arr):
     return WLL, WLH, WHL, WHH
 
 
-def waveletR(WLL, WLH, WHL, WHH):
+def waveletR(WLL, WLH, WHL, WHH): # dekomprimering
     # print(WLL[45],WLH[45],WHL[45],WHH[45])
     # WLR = []
     # for i in range(len(WLL)):
@@ -189,22 +190,28 @@ def waveletR(WLL, WLH, WHL, WHH):
 t = wavelet(gray)
 
 img = waveletR(*t)
+cv2.imwrite('SavedFiles/wavelet.jpg', np.int16(t[0])) # lagre bilde på server
+print(img)
+print(gray.shape,img.shape)
 
-# print(img)
-# print(gray.shape,img.shape)
 
+# t = pl.imshow(gray, cmap='gray' )
 
-#t = pl.imshow(gray, cmap='gray' )
-
+# t = wavelet(np.int16(t[1]))
+# t = wavelet(np.int16(t[0]))
 #t = wavelet(np.int16(t[0]))
-#t = wavelet(np.int16(t[0]))
-#t = wavelet(np.int16(t[0]))
 
-
-
-c = pl.imshow(np.int16(t[0]), cmap='gray')
-
+img = np.int16(t[0])
+img = img[20:145, 20:145]
+i = cv2.imread('SavedFiles/wavelet.jpg', 0)
+wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
+j = cv2.imread('SavedFiles/original.jpg', 0)
+original = cv2.calcHist([j],[0],None,[256],[0,256])
+# c = pl.imshow(cv2.bitwise_not(j), cmap='gray') #negativ transformation
+#pl.plot(wav, color='red', label='wavelet') # tegne plot
+#pl.plot(original, color='blue', label='original')
+#pl.legend()
 pl.show()
 
-# # # print()
+
 cv2.waitKey()
