@@ -1,16 +1,36 @@
 from flask import Flask
 from db import db
-from models.patient import PatientModel
+from flask_restful import Api
+from resources.patient import \
+    Patient, \
+    Patients, \
+    PatientById, \
+    PatientByLastName, \
+    PatientByPhoneNumber, \
+    PatientByEmail, \
+    PatientBySsn, \
+    CreatePatient
 
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+api = Api(app)
+
 
 @app.before_first_request
 def create_tables():
-    print("*********************************")
     db.create_all()
+
+
+api.add_resource(Patients, '/patients')
+api.add_resource(Patient, '/patient/<int:id>')
+api.add_resource(PatientById, '/patient/id/<int:id>')
+api.add_resource(PatientBySsn, '/patient/ssn/<string:ssn>')
+api.add_resource(PatientByLastName, '/patient/lastname/<string:lastname>')
+api.add_resource(PatientByPhoneNumber, '/patient/phone/<string:phone>')
+api.add_resource(PatientByEmail, '/patient/email/<string:email>')
+api.add_resource(CreatePatient, '/patient')
 
 
 if __name__ == '__main__':
