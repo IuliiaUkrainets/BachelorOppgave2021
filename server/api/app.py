@@ -1,6 +1,9 @@
 from flask import Flask
 from db import db
 from flask_restful import Api
+from flask_jwt import JWT
+
+from security import authenticate, identity
 from resources.patient import \
     Patient, \
     Patients, \
@@ -15,6 +18,9 @@ app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+app.secret_key = 'ArcticUniversity'
+
+jwt = JWT(app, authenticate, identity)
 api = Api(app)
 
 
@@ -23,6 +29,7 @@ def create_tables():
     db.create_all()
 
 
+# ENDPOINTS #
 api.add_resource(Patients, '/patients')
 api.add_resource(Patient, '/patient/<int:id>')
 api.add_resource(PatientById, '/patient/id/<int:id>')
@@ -31,7 +38,6 @@ api.add_resource(PatientByLastName, '/patient/lastname/<string:lastname>')
 api.add_resource(PatientByPhoneNumber, '/patient/phone/<string:phone>')
 api.add_resource(PatientByEmail, '/patient/email/<string:email>')
 api.add_resource(CreatePatient, '/patient')
-
 
 if __name__ == '__main__':
     db.init_app(app)
