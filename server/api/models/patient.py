@@ -42,6 +42,7 @@ class PatientModel(db.Model):
     @classmethod
     def find_by_phone_number(cls, phone):
         return cls.query.filter_by(phone=phone).first()
+
     @classmethod
     def find_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
