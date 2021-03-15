@@ -13,7 +13,7 @@ A toolkit to automate & enhance your workflow.
 Leverage gulp and the flexibility of JavaScript to automate slow, repetitive workflows and compose them into efficient build pipelines. (https://gulpjs.com/)
 
 ## To run the code in this project
-To run this project use the following commnads which will install the required modules and start live server on port 3000 and sass compiler
+To run this project use the following commands which will install the required modules and start the live server on port 3000 and sass compiler
 
 ```
 npm install
