@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 import hashlib
 from sqlalchemy import insert
 import os
+from  wavelet111 import get_compression_image, get_original_image, get_wavelet
 
 from werkzeug.utils import secure_filename
 
@@ -183,7 +184,13 @@ def users():
                     } for user in users])
 
 
-
+@app.route('/image', methods=['GET'])
+def image():
+    if request.method == 'GET':
+        name = '0004.dcm'
+        return jsonify({
+            'image': get_wavelet(name)
+        })
 
 @app.route('/user/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def user(id = None):
