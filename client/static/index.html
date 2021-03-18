@@ -5,8 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UiT – T Universal Image Transfer Tool</title>
+    <link rel="stylesheet" href="./css/styles.min.css">
 </head>
 <body>
-    
+    <header class="header">
+            <div class="header-wrapper">
+                <form action="#" class="search nav__search">
+                    <input type="text" class="search__input input" placeholder="Søk en pasient...">
+                    <button class="search__button">
+                        <svg class="search__icon">
+                            <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                        </svg>
+                    </button>
+                </form>
+                <a href="#" class="user header__user">
+                    <img src="img/user.jpeg" alt="Avatar: Reidun Nordland" class="user__avatar">
+                    <span class="user__name">Reidun Nordland</span>
+                </a>
+            </div>
+            <!-- /.header-wrapper -->
+    </header>
+    <div class="content">
+        <nav class="sidebar">
+            Sidebar
+        </nav>
+        <main class="main">
+            Main
+        </main>
+    </div>
+    <!-- /.content -->
 </body>
 </html>

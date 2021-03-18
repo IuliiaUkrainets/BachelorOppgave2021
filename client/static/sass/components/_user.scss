@@ -1,0 +1,13 @@
+.user {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.4rem;
+    &__avatar {
+        height: 4rem;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        object-fit: cover;
+    }
+}

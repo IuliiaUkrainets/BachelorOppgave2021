@@ -1,0 +1,16 @@
+.header {
+    background: linear-gradient(rgba($color-grey-tertiary, 0.25), rgba($color-grey-tertiary-dark, 0.25));
+    padding: 1rem;
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__user {
+        margin-right: 5rem;
+    }
+}
+
+.nav__search {
+    margin-left: 15rem;
+}
