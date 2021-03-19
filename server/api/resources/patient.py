@@ -1,6 +1,7 @@
 from flask_restful import Resource
 from models.patient import PatientModel
 from util.parser import parseRequest
+from flask_jwt import jwt_required
 
 
 class Patient(Resource):
@@ -51,8 +52,8 @@ class CreatePatient(Resource):
 
 
 class PatientById(Resource):
-    @staticmethod
-    def get(id):
+    @jwt_required()
+    def get(self, id):
         patient = PatientModel.find_by_id(id)
         if patient:
             return patient.json()
