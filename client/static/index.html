@@ -5,10 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UiT – T Universal Image Transfer Tool</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+          crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/styles.min.css">
 </head>
 <body>
-    <header class="header">
+<div class="content">
+    <nav class="sidebar">
+        <div class="logo sidebar__logo">
+            <img src="./img/logo/logo-light.svg" alt="Logo: Universitetet i Tromdø" class="logo__image">
+        </div>
+        <!-- /.logo -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav__item sidebar-nav__item--active">
+                <a href="#" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-home"></use>
+                    </svg>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="#" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-users"></use>
+                    </svg>
+                    <span>Pasienter</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="#" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-images"></use>
+                    </svg>
+                    <span>Bilder</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="#" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-log-out"></use>
+                    </svg>
+                    <span>Logg ut </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        <header class="header">
             <div class="header-wrapper">
                 <form action="#" class="search nav__search">
                     <input type="text" class="search__input input" placeholder="Søk en pasient...">
@@ -24,15 +71,13 @@
                 </a>
             </div>
             <!-- /.header-wrapper -->
-    </header>
-    <div class="content">
-        <nav class="sidebar">
-            Sidebar
-        </nav>
+        </header>
         <main class="main">
-            Main
         </main>
     </div>
-    <!-- /.content -->
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /.content -->
 </body>
 </html>

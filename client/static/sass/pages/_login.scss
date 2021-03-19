@@ -2,22 +2,24 @@
     position: relative;
     min-width: 100vw;
     min-height: 100vh;
-    background-image: linear-gradient(to right bottom, rgba(0, 134, 223, .91), rgba(16, 169, 226, .91)),
-    url("./../../img/login.jpg");
+    background-image: linear-gradient(to right bottom, rgba(darken($color-primary-dark, 10%), 0.92), rgba(lighten($color-primary-dark, 10%), 0.92)),
+    url("../../img/login.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 }
 
 .login {
-    background-color: rgba($color-white, .96);
+    background-color: rgba($color-white, 0.96);
     display: inline-block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: .79;
+    opacity: .85;
     border-radius: 0.4rem;
-    box-shadow: 0 1.6rem 5rem rgba($color-black, .5);
-    padding: 3rem 4rem 7rem 4rem;
+    box-shadow: 0 1.6rem 5rem rgba($color-black, 0.5);
+    padding: 3rem 5rem 7rem 5rem;
     text-align: center;
 }
 

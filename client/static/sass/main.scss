@@ -7,5 +7,16 @@
 
 @import "components/button";
 @import "components/form";
+@import "components/input";
+@import "components/search";
+@import "components/sidebar-nav";
+@import "components/user";
+
+@import "layout/container";
+@import "layout/content";
+@import "layout/header";
+@import "layout/main";
+@import "layout/sidebar";
+
 
 @import "pages/login";
