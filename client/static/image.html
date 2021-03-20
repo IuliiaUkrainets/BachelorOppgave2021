@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UiT – T Universal Image Transfer Tool</title>
+    <link rel="stylesheet" href="./css/bootstrap-grid.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./css/styles.min.css">
+</head>
+<body>
+<div class="content content-image">
+    <div class="image-toolbar">
+        <div class="image-toolbar__meta">
+            <ul class="image-toolbar__list">
+                <li class="image-toolbar__name">Pasient: Nikolai Andersen</li>
+                <li class="image-toolbar__date">Fødselsdato: 14.03.87</li>
+                <li class="image-toolbar__">Tatt: 21.03.2021</li>
+            </ul>
+        </div>
+        <!-- /.image-toolbar__meta -->
+        <div class="image-toolbar__tools">
+            <a href="./meta/test.txt" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="./img/sprite.svg#icon-info"></use>
+                </svg>
+            </a>
+            <button href="./meta/test.txt" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="./img/sprite.svg#icon-adjust"></use>
+                </svg>
+            </button>
+            <button id="button-shrink" href="./meta/test.txt" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="./img/sprite.svg#icon-resize-100"></use>
+                </svg>
+            </button>
+            <button id="button-grow" href="./meta/test.txt" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="./img/sprite.svg#icon-resize-full-screen"></use>
+                </svg>
+            </button>
+        </div>
+        <!-- /.image-toolbar__tools -->
+    </div>
+    <!-- ./image-toolbar -->
+    <a href="images-list.html" class="close-button">
+        <svg class="image__icon">
+            <use xlink:href="./img/sprite.svg#icon-cross"></use>
+        </svg>
+    </a>
+    <!-- /.close-image -->
+    <div id="image-container" class="image-container">
+        <img src="./img/image-example.jpg" alt="Image: Anna Andersen">
+    </div>
+    <!-- /.image-container -->
+</div>
+<!-- /.content -->
+<script src="./js/main.js"></script>
+</body>
+</html>

@@ -16,7 +16,8 @@ function browsersyncServe(cb) {
     browsersync.init({
         server: {
             baseDir: './'
-        }
+        },
+        online: true
     });
     cb();
 }

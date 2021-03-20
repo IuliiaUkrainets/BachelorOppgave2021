@@ -15,7 +15,7 @@ body {
 .secondary-title {
     display: flex;
     align-items: center;
-    background-color: lighten($color-grey-dark-secondary, 10%);
+    background-color: lighten($color-grey-dark-secondary, 25%);
     padding: 1rem;
 
     &__icon {
