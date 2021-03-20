@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UiT – T Universal Image Transfer Tool</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./css/styles.min.css">
+</head>
+<body>
+<div class="content">
+    <nav class="sidebar">
+        <div class="logo sidebar__logo">
+            <img src="./img/logo/logo-light.svg" alt="Logo: Universitetet i Tromdø" class="logo__image">
+        </div>
+        <!-- /.logo -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav__item">
+                <a href="index.html" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-home"></use>
+                    </svg>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item sidebar-nav__item--active">
+                <a href="patients.html" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-users"></use>
+                    </svg>
+                    <span>Pasienter</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="#" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-images"></use>
+                    </svg>
+                    <span>Bilder</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="login.html" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-log-out"></use>
+                    </svg>
+                    <span>Logg ut</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <form action="#" class="search nav__search">
+                    <input type="text" class="search__input input" placeholder="Søk en pasient...">
+                    <button class="search__button">
+                        <svg class="search__icon">
+                            <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                        </svg>
+                    </button>
+                </form>
+                <a href="#" class="user header__user">
+                    <img src="img/user.jpeg" alt="Avatar: Reidun Nordland" class="user__avatar">
+                    <span class="user__name">Reidun Nordland</span>
+                </a>
+            </div>
+            <!-- /.header-wrapper -->
+        </header>
+        <main class="main">
+            <span class="secondary-title">
+                <svg class="secondary-title__icon">
+                    <use xlink:href="./img/sprite.svg#icon-users"></use>
+                </svg>
+                <svg class="secondary-title__icon">
+                    <use xlink:href="./img/sprite.svg#icon-chevron-thin-right"></use>
+                </svg>
+                <h2 class="secondary-title__text">Pasienter</h2>
+            </span>
+            <table class="table">
+                <thead class="table__head">
+                <tr class="table__row--header">
+                    <th class="table__header">Fødselsnummer</th>
+                    <th class="table__header">Pasientens Navn</th>
+                    <th class="table__header">Lege</th>
+                    <th class="table__header">Fødselsdato</th>
+                    <th class="table__header">Telefonnummer</th>
+                </tr>
+                </thead>
+                <tbody class="table__body">
+                <tr class="table__row">
+                    <td class="table__data">
+                        <form action="#" class="search nav__search">
+                            <input type="text" class="search__input input" placeholder="Fødselsnummer...">
+                            <button class="search__button">
+                                <svg class="search__icon">
+                                    <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="table__data">
+                        <form action="#" class="search nav__search">
+                            <input type="text" class="search__input input" placeholder="Navn...">
+                            <button class="search__button">
+                                <svg class="search__icon">
+                                    <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="table__data">
+                        <form action="#" class="search nav__search">
+                            <input type="text" class="search__input input" placeholder="Lege...">
+                            <button class="search__button">
+                                <svg class="search__icon">
+                                    <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="table__data">
+                        <form action="#" class="search nav__search">
+                            <input type="text" class="search__input input" placeholder="Fødselsdato...">
+                            <button class="search__button">
+                                <svg class="search__icon">
+                                    <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="table__data">
+                        <form action="#" class="search nav__search">
+                            <input type="text" class="search__input input" placeholder="Telefon...">
+                            <button class="search__button">
+                                <svg class="search__icon">
+                                    <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <tr class="table__row">
+                    <td class="table__data"><a href="#" class="table__link">12095623451</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Bente Myreng</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Lisa Andersen</a></td>
+                    <td class="table__data"><a href="#" class="table__link">12 September 1956</a></td>
+                    <td class="table__data"><a href="#" class="table__link">47563421</a></td>
+                </tr>
+                <tr class="table__row">
+                    <td class="table__data"><a href="#" class="table__link">12095623451</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Jostein Dahlberg</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Lisa Andersen</a></td>
+                    <td class="table__data"><a href="#" class="table__link">12 September 1956</a></td>
+                    <td class="table__data"><a href="#" class="table__link">47563421</a></td>
+                </tr>
+                <tr class="table__row">
+                    <td class="table__data"><a href="#" class="table__link">12095623451</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Nelly Asbjørnsen</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Lisa Andersen</a></td>
+                    <td class="table__data"><a href="#" class="table__link">12 September 1956</a></td>
+                    <td class="table__data"><a href="#" class="table__link">47563421</a></td>
+                </tr>
+                <tr class="table__row">
+                    <td class="table__data"><a href="#" class="table__link">12095623451</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Harry Olsen</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Reidun Nordland</a></td>
+                    <td class="table__data"><a href="#" class="table__link">12 September 1956</a></td>
+                    <td class="table__data"><a href="#" class="table__link">47563421</a></td>
+                </tr>
+                <tr class="table__row">
+                    <td class="table__data"><a href="#" class="table__link">12095623451</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Tore Giske</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Reidun Nordland</a></td>
+                    <td class="table__data"><a href="#" class="table__link">12 September 1956</a></td>
+                    <td class="table__data"><a href="#" class="table__link">47563421</a></td>
+                </tr>
+                <tr class="table__row">
+                    <td class="table__data"><a href="#" class="table__link">12095623451</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Odd Søderholm</a></td>
+                    <td class="table__data"><a href="#" class="table__link">Lisa Andersen</a></td>
+                    <td class="table__data"><a href="#" class="table__link">12 September 1956</a></td>
+                    <td class="table__data"><a href="#" class="table__link">47563421</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /.content -->
+</body>
+</html>

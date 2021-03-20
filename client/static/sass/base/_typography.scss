@@ -11,3 +11,21 @@ body {
     font-weight: 700;
     color: $color-primary-dark;
 }
+
+.secondary-title {
+    display: flex;
+    align-items: center;
+    background-color: lighten($color-grey-dark-secondary, 10%);
+    padding: 1rem;
+
+    &__icon {
+        width: 2rem;
+        height: 2rem;
+        fill: currentColor;
+        margin-right: 1rem;
+        &:first-child {
+            margin-left: 2rem;
+        }
+    }
+
+}
