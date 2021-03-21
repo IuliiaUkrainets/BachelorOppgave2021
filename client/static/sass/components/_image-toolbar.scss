@@ -6,7 +6,8 @@
             border-radius: 1px;
             font-size: 1.3rem;
             color: $color-white;
-            background-color: rgba($color-white, 0.6);
+            //background-color: rgba($color-grey-dark, 0.6);
+            background-color: $color-grey-dark-secondary;
             padding: 0.2rem;
         }
 
