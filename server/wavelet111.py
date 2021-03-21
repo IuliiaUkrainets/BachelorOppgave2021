@@ -12,7 +12,7 @@ import matplotlib.path as mplPath
 import scipy.misc
 import random
 import string
-
+import os
 def get_random_string():
     result_str = ''.join(random.choice(string.ascii_letters) for i in range(12))
     return result_str
@@ -20,17 +20,19 @@ def get_random_string():
 
 def get_compression_image(name):
 
-    d = dicom.read_file(name)
-    f = open('test.txt', 'a')
+    d = dicom.dcmread(name)
+    f = open(get_random_string() + '.txt', 'w')
 
+    print(str(d))
     f.write(str(d))
 
     gray = d.pixel_array
     gray[gray < 300] = 0
-    gray = (gray/1024)
+    gray = (gray/3377)
     gray[gray > 1.0] = 1
 
     gray = gray * 255
+    cv2.imshow('ttttt', np.uint8(gray))
     path = 'SavedFiles/' + get_random_string() + '.jpg'
     cv2.imwrite(path, np.uint8(wavelet(gray)[0]))
 
@@ -38,14 +40,14 @@ def get_compression_image(name):
 
 def get_original_image(name):
 
-    d = dicom.read_file(name)
+    d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
     f.write(str(d))
 
     gray = d.pixel_array
     gray[gray < 300] = 0
-    gray = (gray/1024)
+    gray = (gray/3377)
     gray[gray > 1.0] = 1
 
     gray = gray * 255
@@ -56,14 +58,14 @@ def get_original_image(name):
 
 def get_wavelet(name):
 
-    d = dicom.read_file(name)
+    d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
     f.write(str(d))
 
     gray = d.pixel_array
     gray[gray < 300] = 0
-    gray = (gray/1024)
+    gray = (gray/3377)
     gray[gray > 1.0] = 1
 
     gray = gray * 255
@@ -86,10 +88,10 @@ def get_wavelet(name):
 
 
 
-#image = cv2.imread('0004.jpg')
-#gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#
-#print(np.max(gray))
-# t = ycbcr(image)
+# image = cv2.imread('0004.jpg')
+# gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#
+# print(np.max(gray))
+#t = ycbcr(image)
 
 # print(t[0])
 
@@ -184,35 +186,83 @@ def waveletR(WLL, WLH, WHL, WHH): # dekomprimering
         W.append(temp)
 
 
-    return np.int8(W)
+    return W
 
-
-# t = wavelet(gray)
 #
-# img = waveletR(*t)
-# cv2.imwrite('SavedFiles/wavelet.jpg', np.int16(t[0])) # lagre bilde på server
-# print(img)
+#get_compression_image('0135.dcm')
+t1 = get_wavelet('0004.dcm')
+#cv2.imwrite('SavedFiles/c.jpg', np.uint8(t[0]))
+
+#img = waveletR(*t)
+
+#cv2.imwrite('SavedFiles/d.jpg', img)
+
+
+#cv2.imwrite('SavedFiles/wavelet.jpg', np.int16(t[0])) # lagre bilde på server
+#print(img)
 # print(gray.shape,img.shape)
-
-
+#
+#
 # t = pl.imshow(gray, cmap='gray' )
+#
+t2 = wavelet(np.uint8(t1[0]))
+cv2.imwrite('t2.jpg',  np.uint8(t2[0]))
 
-# t = wavelet(np.int16(t[1]))
-# t = wavelet(np.int16(t[0]))
-#t = wavelet(np.int16(t[0]))
+t3 = wavelet(np.uint8(t2[0]))
+cv2.imwrite('t3.jpg',  np.uint8(t3[0]))
 
+t4 = wavelet(np.uint8(t3[0]))
+cv2.imwrite('t4.jpg',  np.uint8(t4[0]))
+
+t5 = wavelet(np.uint8(t4[0]))
+cv2.imwrite('t5.jpg',  np.uint8(t5[0]))
+
+t6 = wavelet(np.uint8(t5[0]))
+cv2.imwrite('t6.jpg',  np.uint8(t6[0]))
+
+t7 = wavelet(np.uint8(t6[0]))
+cv2.imwrite('t7.jpg',  np.uint8(t7[0]))
+
+t8 = wavelet(np.uint8(t7[0]))
+cv2.imwrite('t8.jpg',  np.uint8(t8[0]))
+
+
+
+r = waveletR(*t1)
+
+
+
+
+
+
+
+
+
+cv2.imwrite('SavedFiles/c1.jpg', np.float32(r))
 # pl.imshow(gray, cmap='gray') # original, for å få dekomprimerte bilde endrer jeg til img i steden for gray
-# img = np.int16(t[0])
-# img = img[20:145, 20:145]
-# i = cv2.imread('SavedFiles/wavelet.jpg', 0)
-# wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
-# j = cv2.imread('SavedFiles/original.jpg', 0)
-# original = cv2.calcHist([j],[0],None,[256],[0,256])
-# c = pl.imshow(cv2.bitwise_not(j), cmap='gray') #negativ transformation
-# pl.plot(wav, color='red', label='wavelet') # tegne plot
-# pl.plot(original, color='blue', label='original')
-# pl.legend()
-# pl.show()
+#img = np.int16(t[0])
+#img = img[20:145, 20:145]
 
+i = cv2.imread('SavedFiles/c1.jpg', 0)
+#cv2.imshow('c', np.uint8(t[0]))
+#pl.imshow(r7, cmap='gray')
+#pl.show()
 
-# cv2.waitKey()
+wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
+j = cv2.imread('SavedFiles/d.jpg', 0)
+#cv2.imshow('c', j)
+original = cv2.calcHist([j],[0],None,[256],[0,256])
+c = cv2.bitwise_not(j)
+cv2.imwrite('SavedFiles/negative.jpg', c)
+
+#pl.plot(wav, color='red', label='wavelet') # tegne plot
+#pl.plot(original, color='blue', label='original')
+#pl.legend()
+#pl.show()
+
+print(np.mean((i-j)**2))
+#print(((i-j)**2).mean(axis=None))
+c = os.stat('SavedFiles/c1.jpg').st_size
+o = os.stat('t8.jpg').st_size
+print(c/o) # koefisient komprimering
+cv2.waitKey()

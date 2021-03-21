@@ -40,7 +40,7 @@ class Type:
 
 
     def __repr__(self):
-        return '<Patient %r>' % (self.name)
+        return '<User %r>' % (self.name)
 
 class Patient(Base):
     __tablename__ = 'patient'
@@ -68,13 +68,13 @@ class ImageModel(Base):
     image = Column(String(255))
     createAt = Column(DateTime, default= datetime.utcnow)
 
-    def __init__(self, image=None, id_user=None ):
+    def __init__(self, image=None, id_user=None):
         self.id_user = id_user
         self.image = image
 
 
     def __repr__(self):
-        return '<Patient %r>' % (self.image)
+        return '<Image %r>' % (self.image)
 
 
 
