@@ -20,7 +20,7 @@ class PatientModel(db.Model):
 
     def json(self):
         return {
-            'ssn': self.social_security_number,
+            'social_security_number': self.social_security_number,
             'firstname': self.firstname,
             'lastname': self.lastname,
             'phone': self.phone,

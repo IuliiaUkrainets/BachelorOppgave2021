@@ -13,6 +13,7 @@ from resources.patient import \
     PatientByEmail, \
     PatientBySsn, \
     CreatePatient
+from resources.user import UserRegister
 
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
@@ -38,6 +39,8 @@ api.add_resource(PatientByLastName, '/patient/lastname/<string:lastname>')
 api.add_resource(PatientByPhoneNumber, '/patient/phone/<string:phone>')
 api.add_resource(PatientByEmail, '/patient/email/<string:email>')
 api.add_resource(CreatePatient, '/patient')
+
+api.add_resource(UserRegister, '/register')
 
 if __name__ == '__main__':
     db.init_app(app)
