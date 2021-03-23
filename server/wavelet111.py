@@ -32,7 +32,7 @@ def get_compression_image(name):
     gray[gray > 1.0] = 1
 
     gray = gray * 255
-    cv2.imshow('ttttt', np.uint8(gray))
+    cv2.imshow('ttttt1', np.uint8(gray))
     path = 'SavedFiles/' + get_random_string() + '.jpg'
     cv2.imwrite(path, np.uint8(wavelet(gray)[0]))
 
@@ -41,7 +41,7 @@ def get_compression_image(name):
 def get_original_image(name):
 
     d = dicom.dcmread(name)
-    f = open('test.txt', 'a')
+    f = open('test1.txt', 'a')
 
     f.write(str(d))
 
@@ -59,7 +59,7 @@ def get_original_image(name):
 def get_wavelet(name):
 
     d = dicom.dcmread(name)
-    f = open('test.txt', 'a')
+    f = open('test1.txt', 'a')
 
     f.write(str(d))
 
@@ -222,7 +222,7 @@ cv2.imwrite('t6.jpg',  np.uint8(t6[0]))
 
 t7 = wavelet(np.uint8(t6[0]))
 cv2.imwrite('t7.jpg',  np.uint8(t7[0]))
-
+#
 t8 = wavelet(np.uint8(t7[0]))
 cv2.imwrite('t8.jpg',  np.uint8(t8[0]))
 
@@ -230,8 +230,17 @@ cv2.imwrite('t8.jpg',  np.uint8(t8[0]))
 
 r = waveletR(*t1)
 
+#r1 = waveletR(r, t7[1],t7[2],t7[3] )
+
+#r2 = waveletR(r1, t6[1],t6[2],t6[3])
+#r3 = waveletR(r2, t5[1],t5[2],t5[3])
+#r4 = waveletR(r3, t4[1],t4[2],t4[3])
+#r5 = waveletR(r4, t3[1],t3[2],t3[3])
+#r6 = waveletR(r5, t2[1],t2[2],t2[3])
+#r7 = waveletR(r6, t1[1],t1[2],t1[3])
 
 
+#cv2.imwrite("SavedFiles/c8.jpg", np.float32(r7))
 
 
 
@@ -243,7 +252,8 @@ cv2.imwrite('SavedFiles/c1.jpg', np.float32(r))
 #img = np.int16(t[0])
 #img = img[20:145, 20:145]
 
-i = cv2.imread('SavedFiles/c1.jpg', 0)
+i = cv2.imread('SavedFiles/c8.jpg', 0)
+
 #cv2.imshow('c', np.uint8(t[0]))
 #pl.imshow(r7, cmap='gray')
 #pl.show()
@@ -260,9 +270,16 @@ cv2.imwrite('SavedFiles/negative.jpg', c)
 #pl.legend()
 #pl.show()
 
-print(np.mean((i-j)**2))
-#print(((i-j)**2).mean(axis=None))
-c = os.stat('SavedFiles/c1.jpg').st_size
-o = os.stat('t8.jpg').st_size
-print(c/o) # koefisient komprimering
+
+sum = 0
+
+for m in range(i.shape[0]):
+    for n in range(i.shape[1]):
+        sum+= abs(np.int32(j[m][n]) - np.int32(i[m][n]))
+
+print(sum/(i.shape[0]*i.shape[1]))
+
+c = os.stat('SavedFiles/c7.jpg').st_size
+o = os.stat('SavedFiles/d.jpg').st_size
+print(o/c) # koefisient komprimering
 cv2.waitKey()

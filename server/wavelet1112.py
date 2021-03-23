@@ -259,12 +259,11 @@ def RunLength(r):
 # get_original_image('0004.dcm')
 image = get_image('0004.dcm')
 
-print(image.shape)
 
-resized = cv2.resize(image, (512,512), interpolation = cv2.INTER_NEAREST)
-# concate(waveletT(t, 5))
+
+concate(waveletT(image, 5))
  
-# print(RunLength(np.array(t)).shape)
+print(RunLength(np.array(t)))
 # print(m[0])
 # p = wavelet(np.uint8(t[0]))
 # t1 = np.concatenate([np.uint8(p[0]), np.uint8(p[1])], axis = 1)
@@ -280,7 +279,6 @@ resized = cv2.resize(image, (512,512), interpolation = cv2.INTER_NEAREST)
 
 # print(len(p))
 
-cv2.imwrite('t1.jpg', resized)
 
 # # cv2.imwrite('t.jpg', p3)
 
