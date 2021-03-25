@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="no|">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.min.css">
+    <title>Login - Universal Image Transfer Tool</title>
+</head>
+<body>
+<div class="content">
+    <nav class="sidebar">
+        <div class="logo sidebar__logo">
+            <img src="./img/logo/logo-light.svg" alt="Logo: Universitetet i Tromdø" class="logo__image">
+        </div>
+        <!-- /.logo -->
+        <ul class="sidebar-nav" style="padding-left: 0;">
+            <li class="sidebar-nav__item sidebar-nav__item--active">
+                <a href="#" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-home"></use>
+                    </svg>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="patients.html" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-users"></use>
+                    </svg>
+                    <span>Pasienter</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="images-list.html" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-images"></use>
+                    </svg>
+                    <span>Bilder</span>
+                </a>
+            </li>
+            <li class="sidebar-nav__item">
+                <a href="login.html" class="sidebar-nav__link">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="./img/sprite.svg#icon-log-out"></use>
+                    </svg>
+                    <span>Logg ut </span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        <header class="header">
+            <div class="header-wrapper">
+                <form action="#" class="search nav__search">
+                    <input type="text" class="search__input input" placeholder="Søk...">
+                    <button class="search__button">
+                        <svg class="search__icon">
+                            <use xlink:href="./img/sprite.svg#icon-magnifying-glass"></use>
+                        </svg>
+                    </button>
+                </form>
+                <a href="#" class="user header__user">
+                    <img src="img/user.jpeg" alt="Avatar: Reidun Nordland" class="user__avatar">
+                    <span class="user__name">Reidun Nordland</span>
+                </a>
+            </div>
+            <!-- /.header-wrapper -->
+        </header>
+        <main class="main">
+            <span class="secondary-title">
+                <svg class="secondary-title__icon">
+                    <use xlink:href="./img/sprite.svg#icon-user"></use>
+                </svg>
+                <svg class="secondary-title__icon">
+                    <use xlink:href="./img/sprite.svg#icon-chevron-thin-right"></use>
+                </svg>
+                <h2 class="secondary-title__text" style="margin-bottom: 0">Pasient</h2>
+            </span>
+            <div class="patient-content">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button style="text-transform: uppercase" class="nav-link active patient-tab-heading" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Pasientinfo</button>
+                        <button style="text-transform: uppercase" class="nav-link" id="nav-profile-tab patient-tab-heading" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Anamnese</button>
+                        <button style="text-transform: uppercase" class="nav-link" id="nav-contact-tab patient-tab-heading" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Medisinske Bilder</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3 patient-icon-container">
+                                    <img style="width: 30rem; padding-top: 10rem" class="patient-user" src="./img/user.png" alt="Icon: USer">
+                                </div>
+                                <!-- /.col-md-3 -->
+                                <div class="col-md-9">
+                                    <ul style="list-style: none; font-size: 2rem; margin: 12rem" class="patient-info">
+                                        <li class="patient-info__item">
+                                            <b>Fødselsnummer:</b> 22084456431
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Navn:</b> Matheo Salberg
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Fødselsdato:</b> August 22, 1944
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Telefonnummer:</b> 458 84 461
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Addresse:</b> Blomsterveien 73 1781 HALDEN
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Email:</b> MatheoSalberg@rhyta.com
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Høyde:</b> 163 cm
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Vekt:</b> 61.8 kg
+                                        </li>
+                                        <li class="patient-info__item">
+                                            <b>Blodtype:</b> B+
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- /.col-md-9 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.container -->
+
+
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi corporis culpa enim error facere ipsa iure laborum, natus necessitatibus nobis optio quam quo sapiente totam veniam vero, vitae. Ad dignissimos et modi nulla provident unde vero. Accusantium ad asperiores aspernatur autem beatae commodi consectetur consequatur deleniti doloremque ducimus ea earum eum eveniet explicabo fugiat ipsam, iste magni maxime modi molestiae molestias nam nihil nostrum perspiciatis quas, qui quod repellat rerum sed, sequi sit soluta suscipit vitae. Ad commodi dicta ducimus neque rem repudiandae sed tempora! Architecto corporis eaque eligendi et exercitationem hic incidunt laboriosam necessitatibus, nemo odio optio pariatur quas quia sapiente vero voluptas voluptatem? Aliquam aliquid architecto, asperiores commodi consequuntur cumque distinctio dolore dolorum ea eaque eligendi esse est eum facilis fugit hic illo impedit inventore iure maiores minus nam necessitatibus obcaecati omnis pariatur perferendis perspiciatis provident quam quas quod reiciendis repellendus rerum sed tenetur veniam vitae voluptatem? Accusantium consectetur corporis cumque cupiditate distinctio, doloremque fugit labore minus mollitia, non praesentium quibusdam repellat sequi sunt tempore voluptates voluptatibus. A architecto assumenda at culpa deleniti doloremque doloribus ducimus eaque, et itaque nemo nobis numquam quasi tempore ut veritatis vero. Accusamus aperiam commodi dolorum facere fuga iure nemo qui rem reprehenderit, sed sunt, totam unde veritatis voluptate voluptatem? Aliquam autem dicta doloribus, eaque ipsum minus molestiae nobis quasi veniam. Accusamus amet, consequatur cum delectus deserunt dignissimos, doloremque dolores eligendi enim facilis harum laborum magnam molestiae nam nihil non officiis provident quaerat quam quo repellat rerum sit ullam vel, voluptates. Accusantium aspernatur dicta hic obcaecati porro qui, repellendus ut. Architecto consequuntur eaque excepturi facere non placeat, rerum similique! Cupiditate delectus deleniti distinctio dolore dolores incidunt laboriosam obcaecati quidem similique soluta. Ab, accusamus animi corporis deserunt dolor fugiat illum maxime molestiae molestias odio officia, saepe temporibus totam? Consequuntur eum nesciunt quas quasi temporibus.</div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="container image-list-container">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 20.03.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-2.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 14.03.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-3.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 12.03.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-4.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 12.03.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-5.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 11.03.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-6.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 05.03.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-2.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 27.02.2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-3.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 18 Feb 2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 18 Feb 2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4 col-lg-3 col-xl-2">
+                                    <div class="thumb">
+                                        <a href="image.html" class="thumb__link">
+                                            <img src="./img/image-example-7.jpg" alt="Image: example of a thumb" class="thumb__image">
+                                            <!-- /.thumb__image -->
+                                            <div class="thumb__meta">
+                                                <ul class="thumb__meta-list">
+                                                    <li class="thumb__meta-list-item">Navn: Matheo Salberg</li>
+                                                    <li class="thumb__meta-list-item">Dato: 18 Feb 2021</li>
+                                                    <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.thumb-meta -->
+                                        </a>
+                                    </div>
+                                    <!-- /.thumb -->
+                                </div>
+                                <!-- /.col -->
+
+
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.patient-content -->
+        </main>
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /.content -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
