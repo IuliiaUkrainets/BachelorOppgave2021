@@ -99,4 +99,4 @@ class PatientByPhoneNumber(Resource):
 class Patients(Resource):
     @staticmethod
     def get():
-        return {'patients': [item.json() for item in PatientModel.query.all()]}
+        return {'patients': [item.json() for item in PatientModel.find_all()]}

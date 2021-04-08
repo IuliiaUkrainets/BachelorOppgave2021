@@ -2,8 +2,10 @@ from flask import Flask
 from db import db
 from flask_restful import Api
 from flask_jwt import JWT
-
+from flask_cors import CORS
 from security import authenticate, identity
+
+
 from resources.patient import \
     Patient, \
     Patients, \
@@ -13,13 +15,16 @@ from resources.patient import \
     PatientByEmail, \
     PatientBySsn, \
     CreatePatient
-from resources.user import UserRegister
+from resources.user import UserRegister, Users
 
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 app.secret_key = 'ArcticUniversity'
+
+CORS(app)
 
 jwt = JWT(app, authenticate, identity)
 api = Api(app)
@@ -41,6 +46,7 @@ api.add_resource(PatientByEmail, '/patient/email/<string:email>')
 api.add_resource(CreatePatient, '/patient')
 
 api.add_resource(UserRegister, '/register')
+api.add_resource(Users, '/users')
 
 if __name__ == '__main__':
     db.init_app(app)
