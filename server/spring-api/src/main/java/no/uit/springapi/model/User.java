@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -16,8 +17,13 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User extends Person{
 
+    @NotNull
     private String username;
+
+    @NotNull
     private String displayName;
+
+    @NotNull
     private String password;
 
 }
