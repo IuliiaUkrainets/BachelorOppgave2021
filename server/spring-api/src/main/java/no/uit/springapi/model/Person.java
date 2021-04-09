@@ -30,6 +30,5 @@ public class Person extends BaseEntity {
     private String phoneNumber;
 
     @Column(name="gender")
-    @Enumerated(EnumType.STRING)
     private Gender gender;
 }

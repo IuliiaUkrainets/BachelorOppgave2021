@@ -1,5 +1,6 @@
 package no.uit.springapi.controller;
 
+import no.uit.springapi.exception.UserNotValidException;
 import no.uit.springapi.model.User;
 import no.uit.springapi.model.shared.GenericResponse;
 import no.uit.springapi.service.UserService;
@@ -18,8 +19,10 @@ public class UserController {
 
     @PostMapping("/api/1.0/users")
     GenericResponse createUser(@RequestBody User user) {
+        if (user.getUsername() == null || user.getDisplayName() == null) {
+            throw new UserNotValidException();
+        }
         userService.save(user);
         return new GenericResponse("User saved");
     }
-
 }
