@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
     }
 
     getUsers(): void {
-        this.http.get('http://localhost:5000/users').subscribe(
+        this.http.get('https://localhost:5001/api/users').subscribe(
             (response) => {
                 // @ts-ignore
-                this.users = response.users;
+                this.users = response;
             },
             (error) => {
                 console.log(error);
