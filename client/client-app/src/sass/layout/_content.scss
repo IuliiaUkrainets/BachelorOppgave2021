@@ -1,0 +1,12 @@
+.content {
+    display: flex;
+    &-image {
+        background-color: #000000;
+        min-height: 100vh;
+    }
+}
+
+.content-wrapper {
+    flex: 0 0 88%;
+}
+

@@ -1,0 +1,27 @@
+.image-list-container {
+    margin-top: 1rem;
+}
+
+.thumb {
+    width: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    background-color: $color-white;
+    &__link:link,
+    &__link:visited {
+        font-size: 1.1rem;
+        color: inherit;
+        text-decoration: none;
+    }
+    &__meta {
+        width: 100%;
+        &-list {
+            margin-left: 0.3rem;
+            margin-bottom: 0.3rem;
+            &-item {
+                list-style: none;
+            }
+        }
+    }
+}
