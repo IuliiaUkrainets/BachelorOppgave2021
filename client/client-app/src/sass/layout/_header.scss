@@ -1,21 +1,8 @@
 .header {
-    position: relative;
-    //background: linear-gradient(rgba($color-grey-tertiary, 0.25), rgba($color-grey-tertiary-dark, 0.25));
-    background-image: linear-gradient(to right bottom, rgba(darken($color-primary-dark, 10%), 0.92), rgba(lighten($color-primary-dark, 10%), 0.92)),
-    url("../../img/background.jpg");
+    //position: relative;
+    background-color: darken(#fff, 5%);
     padding: 1rem;
     box-shadow: 0 0.2rem 2rem rgba($color-black, 0.1);
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba($color-white, 0.96);
-    }
     &-wrapper {
         position: relative;
         display: flex;

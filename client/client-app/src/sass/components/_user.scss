@@ -3,11 +3,15 @@
     align-items: center;
     text-decoration: none;
     color: inherit;
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: uppercase;
+        &:hover {
+            color: #999999;
+            text-decoration: none;
+        }
     &__avatar {
         height: 4rem;
-        //border: 2px solid #0553ff;
         border-radius: 50%;
         margin-right: 0.5rem;
         object-fit: cover;

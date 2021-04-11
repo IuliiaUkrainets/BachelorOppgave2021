@@ -3,6 +3,11 @@
         margin-bottom: 1rem;
     }
 
+    &--header {
+        text-transform: uppercase;
+        color: $color-primary-dark;
+    }
+
     &__input {
         font-size: 1.6rem;
         font-family: inherit;
@@ -14,7 +19,7 @@
         border-bottom: 3px solid transparent;
         width: 100%;
         display: block;
-    
+
 
         &:focus {
             outline: none;
