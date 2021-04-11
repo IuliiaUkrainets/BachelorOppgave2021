@@ -1,3 +1,15 @@
-<app-login></app-login>
+<!--<app-login></app-login>-->
+<!--<app-main></app-main>-->
+<div class="content" *ngIf="(accountService.currentUser$ | async)">
+    <app-side-nav></app-side-nav>
+    <div class="content-wrapper">
+        <app-top-nav></app-top-nav>
+        <main class="main"></main>
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+<app-login *ngIf="(accountService.currentUser$ | async) === null"></app-login>
+
+
 
 

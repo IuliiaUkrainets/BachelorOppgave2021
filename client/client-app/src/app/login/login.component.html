@@ -6,21 +6,34 @@
         <div class="u-center-text u-margin-bottom-small">
             <h1 class="heading-primary">Universal Image Transfer Tool</h1>
         </div>
-        <form action="#" class="form" autocomplete="off">
+        <form #loginForm="ngForm" (ngSubmit)="login()" action="#" class="form" autocomplete="off">
             <div class="form__group">
-                <input type="email" class="form__input" placeholder="Email" id="email" required>
+                <input
+                    name="username"
+                    [(ngModel)]="model.username"
+                    type="email"
+                    class="form__input"
+                    placeholder="Email"
+                    id="email"
+                    required>
                 <label for="email" class="form__label">Email</label>
             </div>
             <div class="form__group">
-                <input type="password" class="form__input" placeholder="Password" id="password" required>
+                <input
+                    name="password"
+                    [(ngModel)]="model.password"
+                    type="password"
+                    class="form__input"
+                    placeholder="Password"
+                    id="password"
+                    required>
                 <label for="password" class="form__label">Password</label>
             </div>
             <div class="form__group">
-                <button class="btn btn--dark btn--login">
+                <button type="submit" class="btn btn--dark btn--login">
                 <svg class="btn--login__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-login"></use>
                 </svg>Login</button>
-<!--                <a href="images-list.html" class="btn btn&#45;&#45;dark btn&#45;&#45;login"><i class="fas fa-sign-in-alt"></i>Login</a>-->
             </div>
         </form>
     </div>

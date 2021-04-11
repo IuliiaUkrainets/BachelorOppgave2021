@@ -9,10 +9,29 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-    declarations: [AppComponent, SideNavComponent, TopNavComponent, MainComponent, LoginComponent],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
+    declarations: [
+        AppComponent,
+        SideNavComponent,
+        TopNavComponent,
+        MainComponent,
+        LoginComponent,
+        HomeComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        FormsModule,
+        BsDropdownModule.forRoot(),
+        BrowserAnimationsModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
