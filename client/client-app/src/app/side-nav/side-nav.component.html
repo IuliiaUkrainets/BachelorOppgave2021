@@ -4,32 +4,49 @@
     </div>
     <!-- /.logo -->
     <ul class="sidebar-nav">
-        <li class="sidebar-nav__item <!--sidebar-nav__item&#45;&#45;active-->">
-            <a href="#" class="sidebar-nav__link">
+<!--        <li-->
+<!--            *ngFor="let item of items; let i=index" (click)="select(i)"-->
+<!--            [ngClass]=-->
+<!--                "(selectedIndex === i) ? ['sidebar-nav__item', 'sidebar-nav__item&#45;&#45;active'] : ['sidebar-nav__item']">-->
+<!--            <a href="#" class="sidebar-nav__link">-->
+<!--&lt;!&ndash;                <svg-icon-sprite&ndash;&gt;-->
+<!--&lt;!&ndash;                    [src]="'assets/img/sprites/sprite.svg#' + item.icon",&ndash;&gt;-->
+<!--&lt;!&ndash;                    [classes]="'sidebar-nav__icon'"&ndash;&gt;-->
+<!--&lt;!&ndash;                ></svg-icon-sprite>&ndash;&gt;-->
+<!--                <svg-icon-sprite-->
+<!--                    [src]="'assets/img/sprites/sprite.svg#' + item.icon"-->
+<!--                    [classes]="'sidebar-nav__icon'">-->
+<!--                </svg-icon-sprite>-->
+<!--                <span>{{item.link}}</span>-->
+<!--            </a>-->
+<!--        </li>-->
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active" [routerLinkActiveOptions]="{exact:
+true}">
+            <a routerLink="/" class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-home"></use>
                 </svg>
                 <span>Home</span>
             </a>
         </li>
-        <li class="sidebar-nav__item">
-            <a href="patients.html" class="sidebar-nav__link">
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+            <a routerLink="/messages" class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-users"></use>
                 </svg>
                 <span>Pasienter</span>
             </a>
         </li>
-        <li class="sidebar-nav__item">
-            <a href="images-list.html" class="sidebar-nav__link">
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+            <a routerLink="/register" class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-images"></use>
                 </svg>
                 <span>Bilder</span>
             </a>
         </li>
-        <li class="sidebar-nav__item">
-            <a href="images-list.html" class="sidebar-nav__link">
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+            <a routerLink="/lists"  class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-user-tie"></use>
                 </svg>

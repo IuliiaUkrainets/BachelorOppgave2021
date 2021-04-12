@@ -15,6 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterPasientComponent } from './register-pasient/register-pasient.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { IconSpriteModule } from 'ng-svg-icon-sprite';
 
 @NgModule({
     declarations: [
@@ -26,6 +31,10 @@ import { RegisterPasientComponent } from './register-pasient/register-pasient.co
         HomeComponent,
         RegisterComponent,
         RegisterPasientComponent,
+        UserListComponent,
+        UserDetailComponent,
+        ListsComponent,
+        MessagesComponent,
     ],
     imports: [
         BrowserModule,
@@ -35,6 +44,7 @@ import { RegisterPasientComponent } from './register-pasient/register-pasient.co
         FormsModule,
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
+        IconSpriteModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

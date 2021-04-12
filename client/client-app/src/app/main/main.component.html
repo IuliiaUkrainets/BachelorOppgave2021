@@ -1,11 +1,9 @@
-<div class="content">
+<div class="content" *ngIf="(accountService.currentUser$ | async)">
     <app-side-nav></app-side-nav>
     <div class="content-wrapper">
         <app-top-nav></app-top-nav>
         <main class="main">
-<!--            <ul>-->
-<!--                <li *ngFor="let user of users">{{ user.id }} - {{ user.userName }}</li>-->
-<!--            </ul>-->
+
         </main>
     </div>
     <!-- /.content-wrapper -->

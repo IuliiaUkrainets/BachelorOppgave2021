@@ -11,30 +11,14 @@ import { AccountService } from './_services/account.service';
 export class AppComponent implements OnInit {
     users: any;
 
-    constructor(
-        private http: HttpClient,
-        public accountService: AccountService
-    ) {}
+    constructor(public accountService: AccountService) {}
 
     ngOnInit(): void {
-        this.getUsers();
         this.setCurrentUser();
     }
 
     setCurrentUser(): void {
         const user: User = JSON.parse(localStorage.getItem('user') || '{}');
         this.accountService.setCurrentUser(user);
-    }
-
-    getUsers(): void {
-        this.http.get('https://localhost:5001/api/users').subscribe(
-            (response) => {
-                // @ts-ignore
-                this.users = response;
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
     }
 }
