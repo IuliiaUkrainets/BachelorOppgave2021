@@ -20,6 +20,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,9 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
         BsDropdownModule.forRoot(),
         BrowserAnimationsModule,
         IconSpriteModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-right',
+        }),
     ],
     providers: [],
     bootstrap: [AppComponent],
