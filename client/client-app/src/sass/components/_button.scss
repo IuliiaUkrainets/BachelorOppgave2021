@@ -21,6 +21,24 @@
         box-shadow: 0 1rem 2rem rgba($color-black, .2);
     }
 
+    &-browse {
+        width: 100%;
+        color: #999999;
+        text-transform: uppercase;
+        border: 1px solid #bbbbbb;
+        padding: .7rem;
+        font-weight: 700;
+        border-radius: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: darken(#fff, 5%);
+        &:hover {
+            box-shadow: 0 1rem 2rem rgba($color-black, .05);
+            background-color: darken(#fff, 10%);
+        }
+    }
+
     &:active,
     &:focus {
         outline: none;
