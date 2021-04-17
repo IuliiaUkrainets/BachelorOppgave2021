@@ -21,6 +21,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './_modules/shared.module';
 
 @NgModule({
     declarations: [
@@ -43,12 +44,7 @@ import { ToastrModule } from 'ngx-toastr';
         HttpClientModule,
         NgbModule,
         FormsModule,
-        BsDropdownModule.forRoot(),
-        BrowserAnimationsModule,
-        IconSpriteModule,
-        ToastrModule.forRoot({
-            positionClass: 'toast-bottom-right',
-        }),
+        SharedModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

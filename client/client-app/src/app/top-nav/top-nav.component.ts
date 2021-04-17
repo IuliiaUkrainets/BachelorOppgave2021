@@ -19,6 +19,6 @@ export class TopNavComponent implements OnInit {
 
     logout(): void {
         this.accountService.logout();
-        // this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/');
     }
 }

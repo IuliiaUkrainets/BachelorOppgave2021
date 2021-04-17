@@ -4,22 +4,6 @@
     </div>
     <!-- /.logo -->
     <ul class="sidebar-nav">
-<!--        <li-->
-<!--            *ngFor="let item of items; let i=index" (click)="select(i)"-->
-<!--            [ngClass]=-->
-<!--                "(selectedIndex === i) ? ['sidebar-nav__item', 'sidebar-nav__item&#45;&#45;active'] : ['sidebar-nav__item']">-->
-<!--            <a href="#" class="sidebar-nav__link">-->
-<!--&lt;!&ndash;                <svg-icon-sprite&ndash;&gt;-->
-<!--&lt;!&ndash;                    [src]="'assets/img/sprites/sprite.svg#' + item.icon",&ndash;&gt;-->
-<!--&lt;!&ndash;                    [classes]="'sidebar-nav__icon'"&ndash;&gt;-->
-<!--&lt;!&ndash;                ></svg-icon-sprite>&ndash;&gt;-->
-<!--                <svg-icon-sprite-->
-<!--                    [src]="'assets/img/sprites/sprite.svg#' + item.icon"-->
-<!--                    [classes]="'sidebar-nav__icon'">-->
-<!--                </svg-icon-sprite>-->
-<!--                <span>{{item.link}}</span>-->
-<!--            </a>-->
-<!--        </li>-->
         <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active" [routerLinkActiveOptions]="{exact:
 true}">
             <a routerLink="/" class="sidebar-nav__link">
@@ -30,7 +14,7 @@ true}">
             </a>
         </li>
         <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
-            <a routerLink="/messages" class="sidebar-nav__link">
+            <a routerLink="/users" class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-users"></use>
                 </svg>
@@ -46,7 +30,7 @@ true}">
             </a>
         </li>
         <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
-            <a routerLink="/lists"  class="sidebar-nav__link">
+            <a routerLink="/messages"  class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-user-tie"></use>
                 </svg>
