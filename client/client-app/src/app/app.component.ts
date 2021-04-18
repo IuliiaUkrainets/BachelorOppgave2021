@@ -8,9 +8,15 @@ import { AccountService } from './_services/account.service';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    users: any;
-
     constructor(public accountService: AccountService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.setCurrentUser();
+    }
+
+    setCurrentUser(): void {
+        // @ts-ignore
+        const user: User = JSON.parse(localStorage.getItem('user'));
+        this.accountService.setCurrentUser(user);
+    }
 }

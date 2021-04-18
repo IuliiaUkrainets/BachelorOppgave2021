@@ -5,7 +5,12 @@
     padding: 0;
     box-sizing: inherit;
 }
-
+html{
+    min-height: 100vh;
+}
+body{
+    min-height: 100vh;
+}
 html {
     font-size: 62.5%;
 }

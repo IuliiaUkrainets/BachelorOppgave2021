@@ -1,12 +1,25 @@
 .content {
     display: flex;
+    position: relative;
     &-image {
         background-color: #000000;
-        min-height: 100vh;
+    }
+    .sidebar {
+        position: fixed;
+        width: 18rem;
+        height: 100%;
+    }
+    .content-wrapper {
+        width: 100%;
+        margin-left: 18rem;
     }
 }
 
 .content-wrapper {
-    flex: 0 0 86%;
 }
+
+.text-not-found {
+    text-transform: uppercase;
+}
+
 
