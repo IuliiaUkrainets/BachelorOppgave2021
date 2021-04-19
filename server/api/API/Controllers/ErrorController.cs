@@ -29,7 +29,7 @@ namespace API.Controllers
 
             return Ok(thing);
         }
-ø
+
         [HttpGet("server-error")]
         public ActionResult<string> GetServerError()
         {
