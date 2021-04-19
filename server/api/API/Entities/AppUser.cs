@@ -18,9 +18,9 @@ namespace API.Entities
         public string City { get; set; }
         public ICollection<UserPhoto> Photos { get; set; }
 
-        public int GetAge()
+        /* public int GetAge()
         {
             return DateOfBirth.CalculateAge();
-        }
+        } */
     }
 }
