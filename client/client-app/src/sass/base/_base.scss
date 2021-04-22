@@ -1,0 +1,24 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html{
+    min-height: 100vh;
+}
+body{
+    min-height: 100vh;
+}
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    color: $color-grey-dark;
+    background-color: rgba($color-grey, 0.3);
+}
+
+

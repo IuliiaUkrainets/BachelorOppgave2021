@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    position: relative;
+    &-image {
+        background-color: #000000;
+    }
+    .sidebar {
+        position: fixed;
+        width: 18rem;
+        height: 100%;
+    }
+    .content-wrapper {
+        width: 100%;
+        margin-left: 18rem;
+    }
+}
+
+.content-wrapper {
+}
+
+.text-not-found {
+    text-transform: uppercase;
+}
+
+

@@ -29,7 +29,10 @@ class UserRegister(Resource):
         return {"message": "User created successfully."}, 201
 
 
+<<<<<<< HEAD:server/api/resources/user.py
 
+=======
+>>>>>>> 170113e1f453f145bc74f69350a921ced69516eb:server/python-api/resources/user.py
 class Users(Resource):
     @staticmethod
     def get():

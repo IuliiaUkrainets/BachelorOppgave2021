@@ -1,0 +1,16 @@
+.sidebar {
+    min-height: 100vh;
+    background-image: linear-gradient(to right bottom, rgba(darken($color-primary-dark, 10%), 0.95), rgba(lighten($color-primary-dark, 10%), 0.95)),
+    url("../../assets/img/login.jpg");
+    background-repeat: no-repeat;
+    background-position: right 15% top 40%;
+    background-size: cover;
+    box-shadow: 1.6rem 1.6rem 3rem rgba($color-black, 0.1);
+    &__logo {
+        width: 85%;
+        margin: 2rem auto;
+        img {
+            width: 100%;
+        }
+    }
+}

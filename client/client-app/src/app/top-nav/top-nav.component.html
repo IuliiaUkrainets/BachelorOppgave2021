@@ -1,0 +1,30 @@
+<header class="header">
+    <div class="header-wrapper">
+        <form action="#" class="search nav__search">
+            <input type="text" class="search__input input" placeholder="Søk...">
+            <button class="search__button">
+                <svg class="search__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
+                </svg>
+            </button>
+        </form>
+        <div class="dropdown header--dropdown" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+            <span href="#"  class="user header__user" dropdownToggle>
+
+                <img src="assets/img/user.jpeg" alt="Avatar: Reidun Nordland" class="user__avatar">
+                    <span style="min-width: 6rem" class="user__name">{{user.username}}</span>
+                    <svg class="dropdown__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-arrow_drop_down"></use>
+                    </svg>
+            </span>
+            <div class="dropdown-menu header--dropdown-menu" *dropdownMenu>
+                <a class="dropdown-item">Rediger profil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Logg ut</a>
+            </div>
+            <!-- /.dropdown-menu -->
+        </div>
+        <!-- /.dropdown -->
+    </div>
+    <!-- /.header-wrapper -->
+</header>

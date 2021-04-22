@@ -1,0 +1,15 @@
+.header {
+    //position: relative;
+    background-color: darken(#fff, 5%);
+    padding: 1rem;
+    box-shadow: 0 0.2rem 2rem rgba($color-black, 0.1);
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__user {
+        margin-right: 1rem;
+    }
+}
+
