@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/user';
-import { UsersService } from '../_services/users.service';
+import { User } from '../../../_models/user';
+import { UsersService } from '../../../_services/users.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    selector: 'app-users-list',
+    templateUrl: './users-list.component.html',
+    styleUrls: ['./users-list.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class UsersListComponent implements OnInit {
     users: User[] = [];
 
     constructor(private userService: UsersService) {}

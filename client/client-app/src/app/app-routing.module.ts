@@ -3,13 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { ListsComponent } from './lists/lists.component';
 import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { AdminMainComponent } from './admin/admin-main/admin-main.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -23,10 +22,9 @@ const routes: Routes = [
                 component: UserListComponent,
                 canActivate: [AuthGuard],
             },
-            { path: 'users/:id', component: UserDetailComponent },
-            { path: 'lists', component: ListsComponent },
+            { path: 'users/:username', component: UserDetailComponent },
+            { path: 'admin', component: AdminMainComponent },
             { path: 'messages', component: MessagesComponent },
-            { path: 'register', component: RegisterComponent },
         ],
     },
     { path: 'errors', component: TestErrorsComponent },

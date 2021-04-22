@@ -1,25 +1,5 @@
-.row {
-    margin-left: 3rem;
-    margin-top: 3rem;
-
-}
-.card {
-    font-size: 1.4rem;
-
-    img {
-        width: 80%;
-        margin: auto;
-        margin-top: 3rem;
-    }
-    .nav__icon {
-        width: 1.75rem;
-        height: 1.75rem;
-        fill: currentColor;
-        overflow: visible;
-    }
-}
-
 .nav-tabs {
+    margin-top: .5rem;
     li {
         font-size: 1.3rem;
         a {
@@ -39,6 +19,3 @@
         border-right: 1px solid #ccc;
     }
 }
-
-
-

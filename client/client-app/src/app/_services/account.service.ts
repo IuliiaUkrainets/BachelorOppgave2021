@@ -2,36 +2,39 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../_models/user';
+import { environment } from '../../environments/environment';
+import { AppUser } from '../_models/appuser';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AccountService {
-    baseUrl = 'https://localhost:5001/api/';
-    private currentUserSource = new ReplaySubject<User>(1);
+    baseUrl = environment.apiUrl;
+    private currentUserSource = new ReplaySubject<AppUser>(1);
     currentUser$ = this.currentUserSource.asObservable();
 
     constructor(private http: HttpClient) {}
 
     login(model: any): Observable<any> {
-        return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
-            map((response: User) => {
-                let user: User;
-                user = response;
-                if (user) {
-                    localStorage.setItem('user', JSON.stringify(user));
-                    this.currentUserSource.next(user);
-                }
-            })
-        );
+        return this.http
+            .post<AppUser>(this.baseUrl + 'account/login', model)
+            .pipe(
+                map((response: AppUser) => {
+                    let user: AppUser;
+                    user = response;
+                    if (user) {
+                        localStorage.setItem('user', JSON.stringify(user));
+                        this.currentUserSource.next(user);
+                    }
+                })
+            );
     }
 
     register(model: any): Observable<any> {
         return this.http
-            .post<User>(this.baseUrl + 'account/register', model)
+            .post<AppUser>(this.baseUrl + 'account/register', model)
             .pipe(
-                map((user: User) => {
+                map((user: AppUser) => {
                     if (user) {
                         // localStorage.setItem('user', JSON.stringify(user));
                         // this.currentUserSource.next(user);
@@ -41,7 +44,7 @@ export class AccountService {
             );
     }
 
-    setCurrentUser(user: User): void {
+    setCurrentUser(user: AppUser): void {
         this.currentUserSource.next(user);
     }
 

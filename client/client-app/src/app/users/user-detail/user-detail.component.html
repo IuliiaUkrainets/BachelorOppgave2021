@@ -1,1 +1,95 @@
-<p>user-detail works!</p>
+<div *ngIf="user" class="row ">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{user.photos[0].url || 'assets/img/user.png'}}" alt="{{user.username}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>Sted: </strong>
+                    <p>{{user.city}}</p>
+                </div>
+                <div>
+                    <strong>Kategori: </strong>
+                    <p>Fastlege</p>
+                </div>
+                <div>
+                    <strong>Sist Aktiv: </strong>
+                    <p>{{user.lastActive}}</p>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button style="vertical-align: center" class="btn btn-primary">
+                        <svg style="margin-right: 0; margin-top: -4px" class="sidebar-nav__icon">
+                            <use xlink:href="assets/img/sprite.svg#icon-mail"></use>
+                        </svg>
+                        Send en melding
+                    </button>
+                </div>
+                <!-- /.btn-group d-flex -->
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col-4 -->
+    <div class="col-7">
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+            <li ngbNavItem>
+                <a ngbNavLink>Om {{ user.username }}</a>
+                <ng-template ngbNavContent>
+                    <div class="card">
+                        <div class="card-body">
+                            <div>
+                                <strong>Navn: </strong>
+                                <p>{{user.username | titlecase}}</p>
+                            </div>
+                            <div>
+                                <strong>Etternavn: </strong>
+                                <p>Nordmann</p>
+                            </div>
+                            <div>
+                                <strong>Kjønn: </strong>
+                                <p>{{ user.gender }}</p>
+                            </div>
+                            <div>
+                                <strong>Godkjenning: </strong>
+                                <p>Autorisasjon 2009</p>
+                            </div>
+                            <div>
+                                <strong>Sted: </strong>
+                                <p>{{user.city}}</p>
+                            </div>
+                            <div>
+                                <strong>Alder: </strong>
+                                <p>{{user.age}}</p>
+                            </div>
+                            <div>
+                                <strong>Kategori: </strong>
+                                <p>Fastlege</p>
+                            </div>
+                            <div>
+                                <strong>Praksis: </strong>
+                                <p>
+                                    Slemdal Legesenter
+                                    Stasjonsveien 4
+                                    0776 Oslo
+                                </p>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </ng-template>
+            </li>
+            <li ngbNavItem>
+                <a ngbNavLink>Meldinger</a>
+                <ng-template ngbNavContent><app-register></app-register></ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+    <!-- /.col-8 -->
+</div>
+<!-- /.row -->

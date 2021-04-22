@@ -22,7 +22,7 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
+        public async Task<ActionResult<AppUserDTO>> Register(RegisterDTO registerDTO)
         {
             if (await UserExists(registerDTO.Username)) return BadRequest("Username is taken");
 
@@ -38,15 +38,15 @@ namespace API.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return new UserDTO 
+            return new AppUserDTO 
             {
                 Username = user.UserName,
-                //Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
             };
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDTO)
+        public async Task<ActionResult<AppUserDTO>> Login(LoginDTO loginDTO)
         {
             var user = await _context.Users
                 .SingleOrDefaultAsync(user => user.UserName == loginDTO.Username.ToLower());
@@ -62,10 +62,10 @@ namespace API.Controllers
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password");
             }
 
-            return new UserDTO
+            return new AppUserDTO
             {
                 Username = user.UserName,
-                //Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user)
             };
         }
 
