@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-from util.parser import parseRequest
+from until.parser import parseRequest
 
 
 class UserRegister(Resource):
@@ -27,3 +27,10 @@ class UserRegister(Resource):
         user.save_to_db()
 
         return {"message": "User created successfully."}, 201
+
+
+
+class Users(Resource):
+    @staticmethod
+    def get():
+        return {'users': [x.json() for x in UserModel.query.all()]}

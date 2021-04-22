@@ -1,10 +1,11 @@
 from flask_restful import Resource
 from models.patient import PatientModel
-from util.parser import parseRequest
+from until.parser import parseRequest
 from flask_jwt import jwt_required
 
 
 class Patient(Resource):
+    @jwt_required()
     @staticmethod
     def delete(id):
         patient = PatientModel.find_by_id(id)
@@ -16,6 +17,7 @@ class Patient(Resource):
             return {'error': 'Patient with this id does not exist and hence could not be deleted'}
 
     @staticmethod
+    @jwt_required()
     def put(id):
 
         data = parseRequest().parse_args()
@@ -34,11 +36,12 @@ class Patient(Resource):
 
 
 class CreatePatient(Resource):
+    @jwt_required()
     @staticmethod
     def post():
         data = parseRequest().parse_args()
 
-        if PatientModel.find_by_id(data['social_security_number']):
+        if PatientModel.find_by_ssn(data['social_security_number']):
             return {'error': "A patient with security number '{}' already exists".format(
                 data['social_security_number'])}, 400
 
@@ -61,6 +64,7 @@ class PatientById(Resource):
 
 
 class PatientBySsn(Resource):
+    @jwt_required()
     @staticmethod
     def get(ssn):
         patient = PatientModel.find_by_ssn(ssn)
@@ -70,6 +74,7 @@ class PatientBySsn(Resource):
 
 
 class PatientByLastName(Resource):
+    @jwt_required()
     @staticmethod
     def get(lastname):
         patient = PatientModel.find_by_lastname(lastname)
@@ -79,6 +84,7 @@ class PatientByLastName(Resource):
 
 
 class PatientByEmail(Resource):
+    @jwt_required()
     @staticmethod
     def get(email):
         patient = PatientModel.find_by_email(email)
@@ -88,6 +94,7 @@ class PatientByEmail(Resource):
 
 
 class PatientByPhoneNumber(Resource):
+    @jwt_required()
     @staticmethod
     def get(phone):
         patient = PatientModel.find_by_phone_number(phone)
@@ -97,6 +104,7 @@ class PatientByPhoneNumber(Resource):
 
 
 class Patients(Resource):
+    @jwt_required()
     @staticmethod
     def get():
-        return {'items': [item.json() for item in PatientModel.query.all()]}
+        return {'patients': [item.json() for item in PatientModel.find_all()]}
