@@ -5,8 +5,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SideNavComponent } from './side-nav/side-nav.component';
-import { TopNavComponent } from './top-nav/top-nav.component';
+import { SideNavComponent } from './nav/side-nav/side-nav.component';
+import { TopNavComponent } from './nav/top-nav/top-nav.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
@@ -24,6 +24,10 @@ import { RegisterPasientComponent } from './admin/register-pasient/register-pasi
 import { RegisterComponent } from './admin/register/register.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { UserCardComponent } from './home/user-card/user-card.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { PatientListComponent } from './patients/patient-list/patient-list.component';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
     declarations: [
@@ -43,6 +47,8 @@ import { UserCardComponent } from './home/user-card/user-card.component';
         UsersListComponent,
         AdminMainComponent,
         UserCardComponent,
+        UserEditComponent,
+        PatientListComponent,
     ],
     imports: [
         BrowserModule,
@@ -51,6 +57,7 @@ import { UserCardComponent } from './home/user-card/user-card.component';
         NgbModule,
         FormsModule,
         SharedModule,
+        NgxSpinnerModule,
     ],
     providers: [
         {
@@ -61,6 +68,11 @@ import { UserCardComponent } from './home/user-card/user-card.component';
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoadingInterceptor,
             multi: true,
         },
     ],

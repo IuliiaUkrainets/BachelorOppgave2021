@@ -9,6 +9,9 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { AdminMainComponent } from './admin/admin-main/admin-main.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { PatientListComponent } from './patients/patient-list/patient-list.component';
+import { PreventUnsavedChangedGuard } from './_guards/prevent-unsaved-changed.guard';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -20,9 +23,14 @@ const routes: Routes = [
             {
                 path: 'users',
                 component: UserListComponent,
-                canActivate: [AuthGuard],
             },
             { path: 'users/:username', component: UserDetailComponent },
+            {
+                path: 'user/edit',
+                component: UserEditComponent,
+                canDeactivate: [PreventUnsavedChangedGuard],
+            },
+            { path: 'patients', component: PatientListComponent },
             { path: 'admin', component: AdminMainComponent },
             { path: 'messages', component: MessagesComponent },
         ],

@@ -1,0 +1,146 @@
+<div *ngIf="user" class="row mb-5">
+    <div class="col-4">
+        <h2 class="text-center form--header">Your Profile</h2>
+        <hr>
+    </div>
+    <!-- /.col-4 -->
+    <div class="col-8">
+            <div *ngIf="editForm.dirty"  style="font-size: 1.3rem" class="alert alert-warning col-10">
+                <strong>Information: </strong>You have made changes. Any unsaved changes will be lost
+            </div>
+            <!-- /.alert alert-info -->
+    </div>
+    <!-- /.col-8 -->
+    <div class="col-4">
+        <div class="card">
+            <img src="{{user.photos[0].url || 'assets/img/user.png'}}" alt="{{user.username}}"
+                 class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <button style="vertical-align: center; width: 100%; border: 1px solid;"
+                            class="btn btn-outline-secondary mb-0">
+                        <svg style="margin-right: 0; margin-top: -4px" class="sidebar-nav__icon">
+                            <use xlink:href="assets/img/sprite.svg#icon-image-inverted"></use>
+                        </svg>
+                        Browse
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <div style="display: block" class="btn-group">
+                    <button [disabled]="!editForm.dirty" type="submit" form="editForm"
+                            style="vertical-align: center; width: 100%" class="btn btn-success mb-3">
+                        <svg style="margin-right: 0; margin-top: -4px" class="sidebar-nav__icon">
+                            <use xlink:href="assets/img/sprite.svg#icon-save"></use>
+                        </svg>
+                        Lagre Endinger
+                    </button>
+                    <a routerLink="/" style="vertical-align: center; width: 100%;" class="btn btn-secondary">
+                        <svg style="margin-right: 0; margin-top: -4px" class="sidebar-nav__icon">
+                            <use xlink:href="assets/img/sprite.svg#icon-cross"></use>
+                        </svg>
+                        Avbryt
+                    </a>
+                </div>
+                <!-- /.btn-group d-flex -->
+            </div>
+            <!-- /.card-footer -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col-4 -->
+    <div class="col-7">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+            <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                <li ngbNavItem>
+                    <a ngbNavLink>Om {{ user.username }}</a>
+                    <ng-template ngbNavContent>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input disabled [(ngModel)]="user.username"
+                                           type="text" class="form-control" id="username" name="username">
+                                </div>
+                                <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input disabled [(ngModel)]="user.age"
+                                           type="text" class="form-control" id="age" name="age">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <input disabled [(ngModel)]="user.gender"
+                                           type="text" class="form-control" id="gender" name="gender">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input [(ngModel)]="user.address"
+                                           type="text" class="form-control" id="address" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input [(ngModel)]="user.city"
+                                           type="text" class="form-control" id="city" name="city">
+                                </div>
+
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="name">Navn</label>-->
+                                <!--                                    <input value="Anna" type="text" class="form-control" id="name" name="name">-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="surname">Etternavn</label>-->
+                                <!--                                    <input type="text" class="form-control" id="surname" name="surname">-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="category">Kategori</label>-->
+                                <!--                                    <input type="text" class="form-control" id="category" name="category">-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="gender">Kjønn</label>-->
+                                <!--                                    <input type="text" class="form-control" id="gender" name="gender">-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="alder">Alder</label>-->
+                                <!--                                    <input type="text" class="form-control" id="alder" name="age">-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="place">Sted</label>-->
+                                <!--                                    <input type="text" class="form-control" id="place" name="place">-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="approval">Godkjenning</label>-->
+                                <!--                                    <textarea type="text" class="form-control" id="approval" name="approval"></textarea>-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label for="practice" name="practice">Praksis</label>-->
+                                <!--                                    <textarea type="text" class="form-control" id="practice" name="practice"></textarea>-->
+                                <!--                                </div>-->
+                                <!--                                &lt;!&ndash; /.form-group &ndash;&gt;-->
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </ng-template>
+                </li>
+                <li ngbNavItem>
+                    <a ngbNavLink>Meldinger</a>
+                    <ng-template ngbNavContent>
+                        <app-register></app-register>
+                    </ng-template>
+                </li>
+            </ul>
+            <div [ngbNavOutlet]="nav"></div>
+        </form>
+    </div>
+    <!-- /.col-8 -->
+</div>
+<!-- /.row -->
