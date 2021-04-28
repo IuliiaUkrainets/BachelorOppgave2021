@@ -16,7 +16,7 @@ from resources.patient import \
     PatientBySsn, \
     CreatePatient
 from resources.user import UserRegister, Users
-from resources.image import Image
+from resources.image import Image, ImagePath
 app = Flask(__name__)
 app.config.from_pyfile('config.cfg')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -47,7 +47,7 @@ api.add_resource(CreatePatient, '/patient')
 
 api.add_resource(UserRegister, '/register')
 api.add_resource(Users, '/users')
-api.add_resource(Image, '/image')
+api.add_resource(ImagePath, '/image/<string:name>')
 if __name__ == '__main__':
     db.init_app(app)
     app.run(port=5000, debug=True)

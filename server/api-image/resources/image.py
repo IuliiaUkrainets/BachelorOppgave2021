@@ -30,3 +30,12 @@ class Image(Resource):
         else:
             return {'error': "A patient with îd '{}' not found ".format(
                 data['id'])}, 404
+
+class ImagePath(Resource):
+    @staticmethod
+    def get(name):
+        if request.method == "GET":
+            images = './image/'+name+'.dcm'
+            from until.wavelet import get_wavelet
+            return {"image": get_wavelet(images)}, 201
+

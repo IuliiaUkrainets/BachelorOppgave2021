@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import pydicom as dicom
-import pylab as pl
+#import pylab as pl
 from PIL.Image import fromarray
 from PIL import Image
 import pylibjpeg
@@ -13,22 +13,22 @@ import random
 import string
 import os
 
+
 def get_random_string():
     result_str = ''.join(random.choice(string.ascii_letters) for i in range(12))
     return result_str
 
 
 def get_compression_image(name):
-
     d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
     f.write(str(d))
 
-    ds = dicom.dcmread('0004.dcm')
+    ds = dicom.dcmread(name)
     pixel = ds.pixel_array
     pixel[pixel < 300] = 0
-    pixel = (pixel  / ds[('0028','0107')].value)
+    pixel = (pixel / ds[('0028', '0107')].value)
     pixel[pixel > 1.0] = 1
     pixel = pixel * 255
 
@@ -37,17 +37,17 @@ def get_compression_image(name):
 
     return path
 
-def get_original_image(name):
 
+def get_original_image(name):
     d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
     f.write(str(d))
 
-    ds = dicom.dcmread('0004.dcm')
+    ds = dicom.dcmread(name)
     pixel = ds.pixel_array
     pixel[pixel < 300] = 0
-    pixel = (pixel  / ds[('0028','0107')].value)
+    pixel = (pixel / ds[('0028', '0107')].value)
     pixel[pixel > 1.0] = 1
     pixel = pixel * 255
 
@@ -56,37 +56,35 @@ def get_original_image(name):
 
     return path
 
-def get_image(name):
 
+def get_image(name):
     d = dicom.dcmread(name)
 
-
-    ds = dicom.dcmread('0004.dcm')
+    ds = dicom.dcmread(name)
     pixel = ds.pixel_array
     pixel[pixel < 300] = 0
-    pixel = (pixel  / ds[('0028','0107')].value)
+    pixel = (pixel / ds[('0028', '0107')].value)
     pixel[pixel > 1.0] = 1
     pixel = pixel * 255
 
-
     return pixel
 
-def get_wavelet(name):
 
+def get_wavelet(name):
     d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
     f.write(str(d))
 
-    ds = dicom.dcmread('0004.dcm')
+    ds = dicom.dcmread(name)
     pixel = ds.pixel_array
     pixel[pixel < 300] = 0
-    pixel = (pixel  / ds[('0028','0107')].value)
+    pixel = (pixel / ds[('0028', '0107')].value)
     pixel[pixel > 1.0] = 1
     pixel = pixel * 255
 
-
     return wavelet(pixel)
+
 
 # Array = np.zeros((int(d.Rows), int(d.Columns)), dtype=d.pixel_array.dtype)
 # cv2.imwrite("SavedFiles/original.jpg", d.pixel_array)
@@ -102,17 +100,15 @@ def get_wavelet(name):
 # gray = Array
 
 
-
 # image = cv2.imread('0004.jpg')
 # gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#
 # print(np.max(gray))
-#t = ycbcr(image)
+# t = ycbcr(image)
 
 # print(t[0])
 
 
 # arr = np.array([[13,12,16,15], [15,14,11,19],[12,13,18,15], [11,14,17,16]])
-
 
 
 def wavelet(arr):
@@ -125,7 +121,6 @@ def wavelet(arr):
         for j in range(0, arr.shape[1], 2):
             temp.append((arr[i][j] + arr[i][j + 1]) / 2.)
         WL.append(temp)
-
 
     for i in range(arr.shape[0]):
         temp = []
@@ -166,7 +161,7 @@ def wavelet(arr):
     return WLL, WLH, WHL, WHH
 
 
-def waveletR(WLL, WLH, WHL, WHH): # dekomprimering
+def waveletR(WLL, WLH, WHL, WHH):  # dekomprimering
     WL = []
     for i in range(len(WLL[0])):
         temp = []
@@ -191,7 +186,7 @@ def waveletR(WLL, WLH, WHL, WHH): # dekomprimering
         WH.append(temp)
         WH.append(temp1)
 
-    W = [] # resultat matrise
+    W = []  # resultat matrise
     for i in range(len(WH)):
         temp = []
         for j in range(len(WH[0])):
@@ -200,12 +195,10 @@ def waveletR(WLL, WLH, WHL, WHH): # dekomprimering
 
         W.append(temp)
 
-
     return np.uint8(W)
 
 
-def waveletT(image, count, matrix = []):
-
+def waveletT(image, count, matrix=[]):
     p = wavelet(image)
     if count > 0:
         count -= 1
@@ -219,10 +212,7 @@ def waveletT(image, count, matrix = []):
         matrix.append(p[1])
         matrix.append(p[0])
 
-
-    
     return matrix
-
 
 
 def concate(matrix):
@@ -232,16 +222,13 @@ def concate(matrix):
     c = matrix.pop()
     d = matrix.pop()
 
-    t1 = np.concatenate([np.uint8(a), np.uint8(b)], axis = 1)
-    t2 = np.concatenate([np.uint8(c), np.uint8(d)], axis = 1)
-    t3 = np.concatenate([t1, t2], axis = 0)
+    t1 = np.concatenate([np.uint8(a), np.uint8(b)], axis=1)
+    t2 = np.concatenate([np.uint8(c), np.uint8(d)], axis=1)
+    t3 = np.concatenate([t1, t2], axis=0)
     t = np.uint8(t3)
     if np.array(matrix).shape[0] > 0:
         matrix.append(t3)
         concate(matrix)
-
-
-
 
 
 def RunLength(r):
@@ -251,19 +238,18 @@ def RunLength(r):
         for j in range(r.shape[0]):
             if r[i][j] != 0:
                 p.append((count, r[i][j]))
-            else: 
+            else:
                 count += 1
     return np.array(p)
 
 #
 # get_original_image('0004.dcm')
-image = get_image('0004.dcm')
+# image = get_image('0004.dcm')
 
 
+# concate(waveletT(image, 5))
 
-concate(waveletT(image, 5))
- 
-print(RunLength(np.array(t)))
+# print(RunLength(np.array(t)))
 # print(m[0])
 # p = wavelet(np.uint8(t[0]))
 # t1 = np.concatenate([np.uint8(p[0]), np.uint8(p[1])], axis = 1)
@@ -276,7 +262,6 @@ print(RunLength(np.array(t)))
 # r = np.uint8(p3)
 
 
-
 # print(len(p))
 
 
@@ -284,27 +269,27 @@ print(RunLength(np.array(t)))
 
 # cv2.waitKey()
 
-#cv2.imwrite('SavedFiles/c.jpg', np.uint8(t[0]))
+# cv2.imwrite('SavedFiles/c.jpg', np.uint8(t[0]))
 
-#img = waveletR(*t)
+# img = waveletR(*t)
 
-#cv2.imwrite('SavedFiles/d.jpg', img)
+# cv2.imwrite('SavedFiles/d.jpg', img)
 
 
-#cv2.imwrite('SavedFiles/wavelet.jpg', np.int16(t[0])) # lagre bilde på server
-#print(img)
+# cv2.imwrite('SavedFiles/wavelet.jpg', np.int16(t[0])) # lagre bilde på server
+# print(img)
 # print(gray.shape,img.shape)
 #
 #
 # t = pl.imshow(gray, cmap='gray' )
 #
-#t = wavelet(np.int16(t[0]))
+# t = wavelet(np.int16(t[0]))
 # t = wavelet(np.int16(t[0]))
 # t = wavelet(np.int16(t[0]))
 
 # pl.imshow(gray, cmap='gray') # original, for å få dekomprimerte bilde endrer jeg til img i steden for gray
-#img = np.int16(t[0])
-#img = img[20:145, 20:145]
+# img = np.int16(t[0])
+# img = img[20:145, 20:145]
 # i = cv2.imread('SavedFiles/ZFNrTJPbHaHF.jpg', 0)
 # cv2.imshow('c', i)
 # wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
