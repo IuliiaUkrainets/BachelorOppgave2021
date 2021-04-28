@@ -1,7 +1,7 @@
-<div *ngIf="user" class="row ">
+<div *ngIf="user" class="row">
     <div class="col-4">
         <div class="card">
-            <img src="{{user.photos[0].url || 'assets/img/user.png'}}" alt="{{user.username}}"
+            <img src="{{user.photos[user.photos.length - 1].url || 'assets/img/user.png'}}" alt="{{user.username}}"
                 class="card-img-top img-thumbnail">
             <div class="card-body">
                 <div>

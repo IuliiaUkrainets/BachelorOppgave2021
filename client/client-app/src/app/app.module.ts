@@ -28,6 +28,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { PatientListComponent } from './patients/patient-list/patient-list.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { PhotoEditorComponent } from './users/photo-editor/photo-editor.component';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         UserCardComponent,
         UserEditComponent,
         PatientListComponent,
+        PhotoEditorComponent,
     ],
     imports: [
         BrowserModule,

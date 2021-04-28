@@ -1,7 +1,7 @@
 <div class="thumb">
     <a href="#" class="thumb__link">
         <div class="thumb__image-wrapper">
-            <img src="{{user.photos[0].url || 'assets/img/user.png'}}" alt="{{user.username}}" class="thumb__image">
+            <img src="{{user.photos[user.photos.length - 1].url || 'assets/img/user.png'}}" alt="{{user.username}}" class="thumb__image">
             <ul class="list-inline user-icons animate text-center mb-2">
                 <li class="list-inline-item">
                     <a type="button" routerLink="/users/{{user.username}}" class="btn-send-message">

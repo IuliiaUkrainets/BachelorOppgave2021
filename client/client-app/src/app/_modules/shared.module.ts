@@ -4,6 +4,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ToastrModule } from 'ngx-toastr';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
     declarations: [],
@@ -15,12 +16,14 @@ import { ToastrModule } from 'ngx-toastr';
         ToastrModule.forRoot({
             positionClass: 'toast-bottom-right',
         }),
+        FileUploadModule,
     ],
     exports: [
         BsDropdownModule,
         BsDropdownModule,
         IconSpriteModule,
         ToastrModule,
+        FileUploadModule,
     ],
 })
 export class SharedModule {}

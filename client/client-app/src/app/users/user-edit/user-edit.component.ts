@@ -6,6 +6,8 @@ import { UsersService } from '../../_services/users.service';
 import { take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { FileUploader } from 'ng2-file-upload';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-user-edit',
@@ -14,9 +16,19 @@ import { NgForm } from '@angular/forms';
 })
 export class UserEditComponent implements OnInit {
     @ViewChild('editForm') editForm: NgForm | undefined;
+    // @ts-ignore
+    uploader: FileUploader;
 
-    user: User | undefined;
-    appUser: AppUser | undefined;
+    hasBaseDropZoneOver = false;
+
+    baseUrl = environment.apiUrl;
+
+    // @ts-ignore
+    user: User;
+
+    // @ts-ignore
+    appUser: AppUser;
+
     // tslint:disable-next-line:typedef
     @HostListener('window:beforeunload', ['$event']) unloadNotification(
         $event: any
@@ -38,6 +50,10 @@ export class UserEditComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadUser();
+    }
+
+    fileOverBase(e: any): void {
+        this.hasBaseDropZoneOver = e;
     }
 
     loadUser(): void {

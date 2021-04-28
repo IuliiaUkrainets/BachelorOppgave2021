@@ -13,18 +13,18 @@
     <!-- /.col-8 -->
     <div class="col-4">
         <div class="card">
-            <img src="{{user.photos[0].url || 'assets/img/user.png'}}" alt="{{user.username}}"
+            <img src="{{user.photos[user.photos.length - 1].url || 'assets/img/user.png'}}" alt="{{user.username}}"
                  class="card-img-top img-thumbnail">
             <div class="card-body">
-                <div>
-                    <button style="vertical-align: center; width: 100%; border: 1px solid;"
-                            class="btn btn-outline-secondary mb-0">
-                        <svg style="margin-right: 0; margin-top: -4px" class="sidebar-nav__icon">
-                            <use xlink:href="assets/img/sprite.svg#icon-image-inverted"></use>
-                        </svg>
-                        Browse
-                    </button>
-                </div>
+<!--                <div>-->
+<!--                    <button style="vertical-align: center; width: 100%; border: 1px solid;"-->
+<!--                            class="btn btn-outline-secondary mb-0">-->
+<!--                        <svg style="margin-right: 0; margin-top: -4px" class="sidebar-nav__icon">-->
+<!--                            <use xlink:href="assets/img/sprite.svg#icon-image-inverted"></use>-->
+<!--                        </svg>-->
+<!--                        Browse-->
+<!--                    </button>-->
+<!--                </div>-->
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -135,6 +135,12 @@
                     <a ngbNavLink>Meldinger</a>
                     <ng-template ngbNavContent>
                         <app-register></app-register>
+                    </ng-template>
+                </li>
+                <li ngbNavItem>
+                    <a ngbNavLink>Bilde</a>
+                    <ng-template ngbNavContent>
+                        <app-photo-editor></app-photo-editor>
                     </ng-template>
                 </li>
             </ul>
