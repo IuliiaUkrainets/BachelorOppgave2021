@@ -7,6 +7,7 @@ import { AccountService } from '../../_services/account.service';
 import { UsersService } from '../../_services/users.service';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-photo-editor',
@@ -26,11 +27,14 @@ export class PhotoEditorComponent implements OnInit {
     constructor(
         private accountService: AccountService,
         private userService: UsersService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router,
+        private route: ActivatedRoute
     ) {
         this.accountService.currentUser$
             .pipe(take(1))
             .subscribe((appUser) => (this.appUser = appUser));
+        this.loadUser();
     }
 
     ngOnInit(): void {
@@ -55,8 +59,26 @@ export class PhotoEditorComponent implements OnInit {
             file.withCredentials = false;
         };
         this.uploader.onSuccessItem = (item, response, status, headers) => {
-            const photo = JSON.parse(response);
-            this.user.photos.push(photo);
+            this.deletePhoto(this.appUser.photoId);
+            this.accountService.renewToken().subscribe(() => {
+                window.location.reload();
+            });
+            // const photo = JSON.parse(response);
+            // this.user.photos.push(photo);
         };
+    }
+
+    loadUser(): void {
+        this.userService
+            .getUser(this.route.snapshot.paramMap.get('username'))
+            .subscribe((user) => {
+                this.user = user;
+            });
+    }
+
+    deletePhoto(photoId: number): void {
+        this.userService.deletePhoto(photoId).subscribe(() => {
+            // this.user.photos = this.user.photos.filter((x) => x.id !== photoId);
+        });
     }
 }

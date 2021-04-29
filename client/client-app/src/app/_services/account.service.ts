@@ -23,8 +23,22 @@ export class AccountService {
                     let user: AppUser;
                     user = response;
                     if (user) {
-                        localStorage.setItem('user', JSON.stringify(user));
-                        this.currentUserSource.next(user);
+                        this.setCurrentUser(user);
+                    }
+                })
+            );
+    }
+
+    renewToken(): Observable<any> {
+        return this.http
+            .get<AppUser>(this.baseUrl + 'account/renew-token')
+            .pipe(
+                map((response: AppUser) => {
+                    let user: AppUser;
+                    user = response;
+                    if (user) {
+                        localStorage.removeItem('user');
+                        this.setCurrentUser(user);
                     }
                 })
             );
@@ -45,6 +59,7 @@ export class AccountService {
     }
 
     setCurrentUser(user: AppUser): void {
+        localStorage.setItem('user', JSON.stringify(user));
         this.currentUserSource.next(user);
     }
 

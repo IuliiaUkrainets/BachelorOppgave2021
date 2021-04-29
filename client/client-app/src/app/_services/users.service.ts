@@ -45,4 +45,8 @@ export class UsersService {
             })
         );
     }
+
+    deletePhoto(photoId: number): Observable<any> {
+        return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
+    }
 }

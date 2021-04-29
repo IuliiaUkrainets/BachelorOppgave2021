@@ -10,8 +10,7 @@
         </form>
         <div class="dropdown header--dropdown" dropdown *ngIf="(accountService.currentUser$ | async) as user">
             <span href="#"  class="user header__user" dropdownToggle>
-
-                <img src="../../../assets/img/user.jpeg" alt="Avatar: Reidun Nordland" class="user__avatar">
+                <img class="user__avatar" src="{{ user.photoUrl || 'assets/img/user.png'}}" alt="{{ user.username }}">
                     <span style="min-width: 6rem" class="user__name">{{user.username}}</span>
                     <svg class="dropdown__icon">
                         <use xlink:href="assets/img/sprite.svg#icon-arrow_drop_down"></use>
