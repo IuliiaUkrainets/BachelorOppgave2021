@@ -56,6 +56,7 @@ namespace API.Controllers
         public async Task<ActionResult<AppUserDTO>> RenewToken()
         {
             var username = User.GetUsername();
+        
             if (username == null) return Unauthorized("Token cannot be renewed");
 
 
