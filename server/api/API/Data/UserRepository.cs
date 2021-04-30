@@ -32,11 +32,6 @@ namespace API.Data
                 .SingleOrDefaultAsync(user => user.UserName == username);
         }
 
-        public Task GetUserByUsernameAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public async Task<UserDTO> GetUserDtoAsync(string username)
         {
             return await _context.Users

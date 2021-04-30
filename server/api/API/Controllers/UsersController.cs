@@ -23,7 +23,7 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        public UsersController(IUserRepository userRepository, IMapper mapper, 
+        public UsersController(IUserRepository userRepository, IMapper mapper,
         IPhotoService photoService)
         {
             _photoService = photoService;
@@ -47,7 +47,8 @@ namespace API.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(UserUpdateDTO userUpdateDTO)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userRepository.GetUserByUsernameAsync(username);
 
             _mapper.Map(userUpdateDTO, user);
 
@@ -57,7 +58,6 @@ namespace API.Controllers
 
             return BadRequest("Failed to update user");
         }
-
 
         [HttpPost("add-photo")]
         public async Task<ActionResult<UserPhotoDTO>> AddPhoto(IFormFile file)
@@ -80,7 +80,7 @@ namespace API.Controllers
             {
                 return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<UserPhotoDTO>(photo));
             }
-            
+
             return BadRequest("Problem adding photo");
         }
 
@@ -93,7 +93,7 @@ namespace API.Controllers
 
             if (photo == null) return NotFound();
 
-            if(photo.PublicId != null) 
+            if (photo.PublicId != null)
             {
                 var result = await _photoService.DeletePhotoAsync(photo.PublicId);
                 if (result.Error != null) return BadRequest(result.Error.Message);
@@ -105,5 +105,6 @@ namespace API.Controllers
 
             return BadRequest("Failed to Delete the Photo");
         }
+
     }
 }

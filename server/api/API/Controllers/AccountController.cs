@@ -17,11 +17,8 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
-        private readonly UserRepository _userRepository;
 
-        public AccountController(
-            DataContext context,
-            ITokenService tokenService)
+        public AccountController(DataContext context, ITokenService tokenService)
         {
             _context = context;
             _tokenService = tokenService;
@@ -44,7 +41,7 @@ namespace API.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return new AppUserDTO
+            return new AppUserDTO 
             {
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user),
@@ -56,7 +53,7 @@ namespace API.Controllers
         public async Task<ActionResult<AppUserDTO>> RenewToken()
         {
             var username = User.GetUsername();
-        
+
             if (username == null) return Unauthorized("Token cannot be renewed");
 
 
@@ -72,11 +69,10 @@ namespace API.Controllers
             {
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user),
-                PhotoUrl = user.Photos.OrderByDescending(x => x.Id).First()?.Url,
-                PhotoId = user.Photos.OrderByDescending(x => x.Id).First().Id
+                PhotoUrl = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Url,
+                PhotoId = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Id
             };
         }
-
 
         [HttpPost("login")]
         public async Task<ActionResult<AppUserDTO>> Login(LoginDTO loginDTO)
@@ -106,6 +102,8 @@ namespace API.Controllers
                 PhotoId = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Id
             };
         }
+
+       
 
         private async Task<bool> UserExists(string username)
         {
