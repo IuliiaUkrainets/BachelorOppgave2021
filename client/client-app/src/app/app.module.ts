@@ -29,7 +29,7 @@ import { PatientListComponent } from './patients/patient-list/patient-list.compo
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PhotoEditorComponent } from './users/photo-editor/photo-editor.component';
-import { ImageListComponent } from './medical-img/image-list/image-list.component';
+import { ImageListComponent } from './images/image-list/image-list.component';
 
 @NgModule({
     declarations: [
