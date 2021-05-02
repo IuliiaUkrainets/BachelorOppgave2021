@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ParamService } from './_services/param.service';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +10,12 @@ import { AccountService } from './_services/account.service';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    constructor(public accountService: AccountService) {}
+    constructor(
+        public accountService: AccountService,
+        public router: Router,
+        private route: ActivatedRoute,
+        private paramService: ParamService
+    ) {}
 
     ngOnInit(): void {
         this.setCurrentUser();
@@ -18,5 +25,10 @@ export class AppComponent implements OnInit {
         // @ts-ignore
         const user: AppUser = JSON.parse(localStorage.getItem('user'));
         this.accountService.setCurrentUser(user);
+    }
+
+    isImageRoute(): boolean {
+        const param = this.paramService.getParam();
+        return this.router.url === '/image/' + param;
     }
 }

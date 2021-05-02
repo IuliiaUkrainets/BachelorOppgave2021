@@ -12,6 +12,7 @@ import { AdminMainComponent } from './admin/admin-main/admin-main.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { PatientListComponent } from './patients/patient-list/patient-list.component';
 import { PreventUnsavedChangedGuard } from './_guards/prevent-unsaved-changed.guard';
+import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
             { path: 'admin', component: AdminMainComponent },
             { path: 'messages', component: MessagesComponent },
             { path: 'images', component: ImageListComponent },
+            { path: 'image/:id', component: ImageComponent },
         ],
     },
     { path: 'errors', component: TestErrorsComponent },

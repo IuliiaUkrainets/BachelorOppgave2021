@@ -29,7 +29,9 @@ import { PatientListComponent } from './patients/patient-list/patient-list.compo
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PhotoEditorComponent } from './users/photo-editor/photo-editor.component';
+import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
+import { HoldableDirective } from './_directives/holdable.directive';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import { ImageListComponent } from './images/image-list/image-list.component';
         UserEditComponent,
         PatientListComponent,
         PhotoEditorComponent,
+        ImageComponent,
         ImageListComponent,
+        HoldableDirective,
     ],
     imports: [
         BrowserModule,

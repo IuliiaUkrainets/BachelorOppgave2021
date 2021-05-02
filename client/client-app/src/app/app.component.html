@@ -1,12 +1,13 @@
 <ngx-spinner>
     <h3>Loading...</h3>
 </ngx-spinner>
+<router-outlet *ngIf="isImageRoute()"></router-outlet>
 <ng-container *ngIf="(accountService.currentUser$ | async) as user">
-    <div class="content">
-        <app-side-nav></app-side-nav>
+    <div  class="content">
+        <app-side-nav *ngIf="!isImageRoute()"></app-side-nav>
         <div class="content-wrapper">
-            <app-top-nav></app-top-nav>
-            <main class="main">
+            <app-top-nav *ngIf="!isImageRoute()"></app-top-nav>
+            <main *ngIf="!isImageRoute()" class="main">
                 <router-outlet></router-outlet>
             </main>
         </div>
@@ -16,6 +17,7 @@
 <ng-container *ngIf="(accountService.currentUser$ | async) === null">
     <app-login></app-login>
 </ng-container>
+
 
 
 

@@ -1,0 +1,55 @@
+<div id="content-image" class="content content-image">
+    <div class="image-toolbar">
+        <div class="image-toolbar__meta">
+            <ul class="image-toolbar__list">
+                <li class="image-toolbar__name">Pasient: Matheo Salberg</li>
+                <li class="image-toolbar__date">Fødselsdato: 14.03.87</li>
+                <li class="image-toolbar__">Tatt: 21.03.2021</li>
+            </ul>
+        </div>
+        <!-- /.image-toolbar__meta -->
+        <div class="image-toolbar__tools">
+            <a routerLink="/images" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-cross"></use>
+                </svg>
+            </a>
+            <button appHoldable (holdTime)="grow()" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-resize-100"></use>
+                </svg>
+            </button>
+            <button appHoldable (holdTime)="shrink()" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-resize-full-screen"></use>
+                </svg>
+            </button>
+            <button appHoldable (click)="reset()" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-reload-alt"></use>
+                </svg>
+            </button>
+            <a href="./comments.html" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-insert_comment"></use>
+                </svg>
+            </a>
+        </div>
+        <!-- /.image-toolbar__tools -->
+    </div>
+    <!-- ./image-toolbar -->
+
+    <!-- /.close-image -->
+    <div #image id="image-container"
+         class="image-container"
+    >
+            <img
+                style="{{ style() }}"
+                src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
+                alt="Image: Anna Andersen">
+
+    </div>
+    <!-- /.image-container -->
+</div>
+<!-- /.content -->
+

@@ -1,6 +1,7 @@
 .image {
     &-toolbar {
         position: fixed;
+        z-index: 100;
 
         &__list {
             border-radius: 1px;
