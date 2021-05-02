@@ -1,10 +1,26 @@
-<p>image-list works!</p>
+<div class="container image-list-container">
+<div class="row">
+    <div *ngFor="let image of images" class="col-md-4 col-lg-4 col-xl-4">
+        <div class="thumb">
+            <a routerLink="/image/{{ image.id }}" class="thumb__link">
+                <img src="{{ image ? image.imageString : '/assets/img/image-placeholder.jpg' }}" alt="Image: example of a thumb" class="thumb__image">
+                <!-- /.thumb__image -->
+                <div class="thumb__meta">
+                    <ul class="thumb__meta-list">
+                        <li class="thumb__meta-list-item">Navn: Nikolai Andersen</li>
+                        <li class="thumb__meta-list-item">Dato: 20.03.2021</li>
+                        <li class="thumb__meta-list-item">Lege: Reidun Nordland</li>
+                    </ul>
+                </div>
+                <!-- /.thumb-meta -->
+            </a>
+        </div>
+        <!-- /.thumb -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /.container -->
 
-<!--<div class="row">-->
-<!--    <div class="col-3">-->
-<!--        <img style="width: 100%" src="{{ medicalImage ? medicalImage.imageString : '/assets/img/image-placeholder.jpg' }}" alt="image">-->
-<!--    </div>-->
-<!--    <div class="col-3">-->
-<!--        <img style="width: 100%" src="{{  medicalImage ? medicalImage.imageString : '/assets/img/image-placeholder.jpg' }}" alt="image">-->
-<!--    </div>-->
-<!--</div>-->
+

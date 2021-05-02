@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { ImageResponse, MedicalImage } from '../_models/medicalimage';
-import { User } from '../_models/user';
 import { map } from 'rxjs/operators';
 import { decompressImage } from '../_decompression/decompression';
 
@@ -33,4 +32,20 @@ export class ImagesService {
                 })
             );
     }
+
+    // getImages(ids: string[]): Observable<MedicalImage> {
+    //     ids.forEach((id) => {
+    //         return this.http
+    //             .get<ImageResponse>(this.medicalImgUrl + 'image/' + id)
+    //             .pipe(
+    //                 map((imageResponse: ImageResponse) => {
+    //                     const imageString: string | null = decompressImage(
+    //                         imageResponse
+    //                     );
+    //                     this.images.push({ id, imageString });
+    //                     return this.images;
+    //                 })
+    //             );
+    //     });
+    // }
 }
