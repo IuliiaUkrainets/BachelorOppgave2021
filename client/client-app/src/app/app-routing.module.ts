@@ -14,6 +14,7 @@ import { PatientListComponent } from './patients/patient-list/patient-list.compo
 import { PreventUnsavedChangedGuard } from './_guards/prevent-unsaved-changed.guard';
 import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
+import { PatientComponent } from './patients/patient/patient.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
                 canDeactivate: [PreventUnsavedChangedGuard],
             },
             { path: 'patients', component: PatientListComponent },
+            { path: 'patient/:id', component: PatientComponent },
             { path: 'admin', component: AdminMainComponent },
             { path: 'messages', component: MessagesComponent },
             { path: 'images', component: ImageListComponent },

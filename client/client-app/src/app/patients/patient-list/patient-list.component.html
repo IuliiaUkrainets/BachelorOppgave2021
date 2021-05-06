@@ -12,7 +12,6 @@
     <tr class="table__row--header">
         <th class="table__header">Fødselsnummer</th>
         <th class="table__header">Pasientens Navn</th>
-        <th class="table__header">Fødselsdato</th>
         <th class="table__header">Email</th>
         <th class="table__header">Telefonnummer</th>
     </tr>
@@ -21,7 +20,15 @@
     <tr class="table__row">
         <td class="table__data">
             <form action="#" class="search nav__search">
-                <input type="text" class="search__input input" placeholder="Fødselsnummer...">
+                <input
+                    type="text"
+                    class="search__input input"
+                    placeholder="Fødselsnummer..."
+                    autocomplete="off"
+                    name="ssn"
+                    [(ngModel)]="ssn"
+                    (ngModelChange)="searchBySsn()"
+                >
                 <button class="search__button">
                     <svg class="search__icon">
                         <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
@@ -31,7 +38,15 @@
         </td>
         <td class="table__data">
             <form action="#" class="search nav__search">
-                <input type="text" class="search__input input" placeholder="Navn...">
+                <input
+                    type="text"
+                    class="search__input input"
+                    placeholder="Navn..."
+                    name="lastName"
+                    autocomplete="off"
+                    [(ngModel)]="lastName"
+                    (ngModelChange)="searchByLastName()"
+                >
                 <button class="search__button">
                     <svg class="search__icon">
                         <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
@@ -41,7 +56,15 @@
         </td>
         <td class="table__data">
             <form action="#" class="search nav__search">
-                <input type="text" class="search__input input" placeholder="Fødselsdato...">
+                <input
+                    type="text"
+                    class="search__input input"
+                    placeholder="Email..."
+                    autocomplete="off"
+                    name="email"
+                    [(ngModel)]="email"
+                    (ngModelChange)="searchByEmail()"
+                >
                 <button class="search__button">
                     <svg class="search__icon">
                         <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
@@ -51,17 +74,15 @@
         </td>
         <td class="table__data">
             <form action="#" class="search nav__search">
-                <input type="text" class="search__input input" placeholder="Email...">
-                <button class="search__button">
-                    <svg class="search__icon">
-                        <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
-                    </svg>
-                </button>
-            </form>
-        </td>
-        <td class="table__data">
-            <form action="#" class="search nav__search">
-                <input type="text" class="search__input input" placeholder="Telefon...">
+                <input
+                    type="text"
+                    class="search__input input"
+                    placeholder="Telefon..."
+                    autocomplete="off"
+                    name="telephone"
+                    [(ngModel)]="telephone"
+                    (ngModelChange)="searchByTelephone()"
+                >
                 <button class="search__button">
                     <svg class="search__icon">
                         <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
@@ -70,18 +91,17 @@
             </form>
         </td>
     </tr>
-    <tr *ngFor="let patient of patients$ | async" class="table__row">
+    <tr *ngFor="let patient of patients" class="table__row">
         <td class="table__data">
-            <a href="./pasient.html" class="table__link">{{ patient.ssn }}</a>
+            <a routerLink="/patient/{{patient.id}}"  class="table__link">{{ patient.ssn }}</a>
         </td>
         <td class="table__data">
-            <a href="./pasient.html" class="table__link">
+            <a routerLink="/patient/{{patient.id}}" class="table__link">
                 {{ patient.firstName }} {{ patient.lastName }}
             </a>
         </td>
-        <td class="table__data"><a href="./pasient.html" class="table__link">{{ patient.dateOfBirth | date  }}</a></td>
-        <td class="table__data"><a href="./pasient.html" class="table__link">{{ patient.email }}</a></td>
-        <td class="table__data"><a href="./pasient.html" class="table__link">{{ patient.phoneNumber }}</a></td>
+        <td class="table__data"><a routerLink="/patient/{{patient.id}}" class="table__link">{{ patient.email }}</a></td>
+        <td class="table__data"><a routerLink="/patient/{{patient.id}}" class="table__link">{{ patient.phoneNumber }}</a></td>
     </tr>
     </tbody>
 </table>

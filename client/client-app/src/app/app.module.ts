@@ -32,6 +32,10 @@ import { PhotoEditorComponent } from './users/photo-editor/photo-editor.componen
 import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
 import { HoldableDirective } from './_directives/holdable.directive';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderModule } from 'ngx-order-pipe';
+import { PatientComponent } from './patients/patient/patient.component';
 
 @NgModule({
     declarations: [
@@ -57,6 +61,7 @@ import { HoldableDirective } from './_directives/holdable.directive';
         ImageComponent,
         ImageListComponent,
         HoldableDirective,
+        PatientComponent,
     ],
     imports: [
         BrowserModule,
@@ -66,6 +71,9 @@ import { HoldableDirective } from './_directives/holdable.directive';
         FormsModule,
         SharedModule,
         NgxSpinnerModule,
+        Ng2SearchPipeModule,
+        OrderModule,
+        NgxPaginationModule,
     ],
     providers: [
         {
