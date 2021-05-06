@@ -40,11 +40,11 @@
     <!-- ./image-toolbar -->
 
     <!-- /.close-image -->
-    <div #image id="image-container"
+    <div style="{{ styleHeight()}}"
          class="image-container"
     >
             <img
-                style="{{ style() }}"
+                style="{{ styleWidth() }}"
                 src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
                 alt="Image: Anna Andersen">
 

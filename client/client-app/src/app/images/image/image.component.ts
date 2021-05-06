@@ -36,8 +36,12 @@ export class ImageComponent implements OnInit {
         });
     }
 
-    style(): string {
+    styleWidth(): string {
         return `width:${this.containerWidth}%;`;
+    }
+
+    styleHeight(): string {
+        return `height:${this.containerWidth}%;`;
     }
 
     shrink(): number {

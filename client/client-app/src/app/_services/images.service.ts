@@ -2,16 +2,23 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { ImageResponse, MedicalImage } from '../_models/medicalimage';
+import {
+    ImageMeta,
+    ImageResponse,
+    MedicalImage,
+} from '../_models/medicalimage';
 import { map } from 'rxjs/operators';
 import { decompressImage } from '../_decompression/decompression';
+import { User } from '../_models/user';
 
 @Injectable({
     providedIn: 'root',
 })
 export class ImagesService {
     medicalImgUrl = environment.imageApiUrl;
+    baseUrl = environment.apiUrl;
     images: MedicalImage[] = [];
+    imagesMeta: ImageMeta[] = [];
 
     constructor(private http: HttpClient) {}
 
@@ -31,6 +38,18 @@ export class ImagesService {
                     return { id, imageString };
                 })
             );
+    }
+
+    getImagesMeta(): Observable<ImageMeta[]> {
+        if (this.imagesMeta.length > 0) {
+            return of(this.imagesMeta);
+        }
+        return this.http.get<ImageMeta[]>(this.baseUrl + 'images').pipe(
+            map((imageMeta) => {
+                this.imagesMeta = imageMeta;
+                return imageMeta;
+            })
+        );
     }
 
     // getImages(ids: string[]): Observable<MedicalImage> {

@@ -15,6 +15,8 @@ namespace API.Extensions
         {
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMedicalImageRepository, MedicalImageRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddDbContext<DataContext>(options =>

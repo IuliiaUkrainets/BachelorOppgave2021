@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from '../../_services/images.service';
-import { MedicalImage } from '../../_models/medicalimage';
+import { ImageMeta, MedicalImage } from '../../_models/medicalimage';
 
 @Component({
     selector: 'app-image-list',
@@ -18,13 +18,15 @@ export class ImageListComponent implements OnInit {
     //     '0130',
     //     '0302',
     // ];
-    ids: string[] = ['0004', '0008', '0010', '0016', '0126', '0127'];
+    // ids: string[] = ['0302', '0008', '0010', '0016', '0126', '0127'];
+    ids: string[] = [];
+    imagesMeta: ImageMeta[] = [];
     images: MedicalImage[] = [];
 
     constructor(private imageService: ImagesService) {}
 
     ngOnInit(): void {
-        this.getImages();
+        this.getImageMeta();
     }
 
     getImages(): void {
@@ -32,6 +34,17 @@ export class ImageListComponent implements OnInit {
             this.imageService.getImage(id).subscribe((image) => {
                 this.images.push(image);
             });
+        });
+    }
+
+    getImageMeta(): void {
+        this.imageService.getImagesMeta().subscribe((imageMeta) => {
+            this.imagesMeta = imageMeta;
+            console.log(this.imagesMeta);
+            this.imagesMeta.forEach((meta) => {
+                this.ids.push(meta.url);
+            });
+            this.getImages();
         });
     }
 }

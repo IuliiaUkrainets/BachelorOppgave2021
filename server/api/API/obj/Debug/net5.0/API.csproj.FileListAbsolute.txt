@@ -136,3 +136,4 @@ C:\Users\Bruker\Desktop\BachelorNew\API\obj\Debug\net5.0\API.dll
 C:\Users\Bruker\Desktop\BachelorNew\API\obj\Debug\net5.0\ref\API.dll
 C:\Users\Bruker\Desktop\BachelorNew\API\obj\Debug\net5.0\API.pdb
 C:\Users\Bruker\Desktop\BachelorNew\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\Bruker\Desktop\BachelorOppgave2021\server\api\API\bin\Debug\net5.0\Data\PatientSeedData.json
