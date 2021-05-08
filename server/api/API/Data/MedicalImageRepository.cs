@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -27,12 +28,7 @@ namespace API.Data
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<MedicalImage>> GetAllMedicalImagesWithPatient()
-        {
-               return await _context.MedicalImages
-                .Include(i => i.Patient)
-                .ToListAsync();
-        }
+      
 
         public async Task<IEnumerable<MedicalImageDTO>> GetImageByPatientId(int id)
         {
@@ -40,6 +36,15 @@ namespace API.Data
                     .ProjectTo<MedicalImageDTO>(_mapper.ConfigurationProvider)
                     .Where(i => i.PatientId == id)
                     .ToListAsync();
+        }
+
+        public async Task<PagedList<MedicalImageDTO>> GetImageDtosAsync(PageParams pageParams)
+        {
+            var query = _context.MedicalImages
+                .ProjectTo<MedicalImageDTO>(_mapper.ConfigurationProvider)
+                .AsNoTracking();
+
+            return await PagedList<MedicalImageDTO>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
     }
 }

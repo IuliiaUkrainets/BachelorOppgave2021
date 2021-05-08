@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from '../../_services/images.service';
 import { ImageMeta, MedicalImage } from '../../_models/medicalimage';
+import { PaginatedResult, Pagination } from '../../_models/pagination';
+import { User } from '../../_models/user';
 
 @Component({
     selector: 'app-image-list',
@@ -8,43 +10,46 @@ import { ImageMeta, MedicalImage } from '../../_models/medicalimage';
     styleUrls: ['./image-list.component.scss'],
 })
 export class ImageListComponent implements OnInit {
-    // ids: string[] = [
-    //     '0004',
-    //     '0008',
-    //     '0010',
-    //     '0016',
-    //     '0126',
-    //     '0127',
-    //     '0130',
-    //     '0302',
-    // ];
-    // ids: string[] = ['0302', '0008', '0010', '0016', '0126', '0127'];
-    ids: string[] = [];
     imagesMeta: ImageMeta[] = [];
-    images: MedicalImage[] = [];
+    pagination: Pagination;
+    pageNumber = 1;
+    pageSize = 3;
 
     constructor(private imageService: ImagesService) {}
 
     ngOnInit(): void {
-        this.getImageMeta();
+        this.loadImageMeta();
     }
 
-    getImages(): void {
-        this.ids.forEach((id) => {
-            this.imageService.getImage(id).subscribe((image) => {
-                this.images.push(image);
+    loadImageMeta(): void {
+        this.imageService
+            .getImagesMeta(this.pageNumber, this.pageSize)
+            .subscribe((response) => {
+                this.imagesMeta = response.result;
+                this.pagination = response.pagination;
             });
-        });
     }
 
-    getImageMeta(): void {
-        this.imageService.getImagesMeta().subscribe((imageMeta) => {
-            this.imagesMeta = imageMeta;
-            console.log(this.imagesMeta);
-            this.imagesMeta.forEach((meta) => {
-                this.ids.push(meta.url);
-            });
-            this.getImages();
-        });
+    pageChanged(event: any): void {
+        this.pageNumber = event.page;
+        this.loadImageMeta();
     }
+
+    // getImageMeta(): void {
+    //     this.imageService.getImagesMeta().subscribe((imageMeta) => {
+    //         this.imagesMeta = imageMeta;
+    //         // this.imagesMeta.forEach((meta) => {
+    //         //     this.ids.push(meta.url);
+    //         // });
+    //         // this.getImages();
+    //     });
+    // }
+
+    //  getImages(): void {
+    //     this.ids.forEach((id) => {
+    //         this.imageService.getImage(id).subscribe((image) => {
+    //             this.images.push(image);
+    //         });
+    //     });
+    // }
 }

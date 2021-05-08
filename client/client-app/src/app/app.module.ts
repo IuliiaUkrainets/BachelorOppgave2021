@@ -37,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 import { PatientComponent } from './patients/patient/patient.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
+import { SingleImageComponent } from './images/single-image/single-image.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
         HoldableDirective,
         PatientComponent,
         TextInputComponent,
+        SingleImageComponent,
     ],
     imports: [
         BrowserModule,

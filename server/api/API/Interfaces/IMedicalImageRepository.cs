@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 
 namespace API.Interfaces
 {
     public interface IMedicalImageRepository
     {
         Task<IEnumerable<MedicalImageDTO>> GetAllMedicalImages();
-        Task<IEnumerable<MedicalImage>> GetAllMedicalImagesWithPatient();
         Task<IEnumerable<MedicalImageDTO>> GetImageByPatientId(int id);
+        Task<PagedList<MedicalImageDTO>> GetImageDtosAsync(PageParams pageParams);
     }
 }

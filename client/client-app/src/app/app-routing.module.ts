@@ -38,7 +38,7 @@ const routes: Routes = [
             { path: 'admin', component: AdminMainComponent },
             { path: 'messages', component: MessagesComponent },
             { path: 'images', component: ImageListComponent },
-            { path: 'image/:id', component: ImageComponent },
+            { path: 'image/:id/:patientId', component: ImageComponent },
         ],
     },
     { path: 'errors', component: TestErrorsComponent },

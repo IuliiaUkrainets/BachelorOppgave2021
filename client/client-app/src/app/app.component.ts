@@ -28,7 +28,12 @@ export class AppComponent implements OnInit {
     }
 
     isImageRoute(): boolean {
-        const param = this.paramService.getParam();
-        return this.router.url === '/image/' + param;
+        return (
+            this.router.url ===
+            '/image/' +
+                this.paramService.paramId +
+                '/' +
+                this.paramService.paramPatientId
+        );
     }
 }

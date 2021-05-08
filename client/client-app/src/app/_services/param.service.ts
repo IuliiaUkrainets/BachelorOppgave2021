@@ -4,15 +4,24 @@ import { Injectable } from '@angular/core';
     providedIn: 'root',
 })
 export class ParamService {
-    param: string | null | undefined;
+    paramId: string | null | undefined;
+    paramPatientId: string | null | undefined;
 
     constructor() {}
 
-    setParam(param: string | null | undefined): void {
-        this.param = param;
+    setParamId(param: string | null | undefined): void {
+        this.paramId = param;
     }
 
-    getParam(): string | null | undefined {
-        return this.param;
+    getParamId(): string | null | undefined {
+        return this.paramId;
+    }
+
+    setParamPatientId(param: string | null | undefined): void {
+        this.paramPatientId = param;
+    }
+
+    getParamPatientId(): string | null | undefined {
+        return this.paramPatientId;
     }
 }

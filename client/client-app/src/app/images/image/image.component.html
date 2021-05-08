@@ -2,9 +2,9 @@
     <div class="image-toolbar">
         <div class="image-toolbar__meta">
             <ul class="image-toolbar__list">
-                <li class="image-toolbar__name">Pasient: Matheo Salberg</li>
-                <li class="image-toolbar__date">Fødselsdato: 14.03.87</li>
-                <li class="image-toolbar__">Tatt: 21.03.2021</li>
+                <li class="image-toolbar__name">Pasient: {{patient.firstName}} {{patient.lastName}}</li>
+                <li class="image-toolbar__date">Fødselsdato: {{ patient.dateOfBirth }}</li>
+                <li class="image-toolbar__">Kjønn: {{patient.gender}}</li>
             </ul>
         </div>
         <!-- /.image-toolbar__meta -->
@@ -46,7 +46,7 @@
             <img
                 style="{{ styleWidth() }}"
                 src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
-                alt="Image: Anna Andersen">
+                alt="{{patient.lastName}}">
 
     </div>
     <!-- /.image-container -->

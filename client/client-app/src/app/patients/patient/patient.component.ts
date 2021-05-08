@@ -28,7 +28,6 @@ export class PatientComponent implements OnInit {
 
     ngOnInit(): void {
         const param = this.route.snapshot.paramMap.get('id');
-        this.paramService.setParam(param);
         // @ts-ignore
         const paramNum: number = +param;
         this.param = paramNum;
