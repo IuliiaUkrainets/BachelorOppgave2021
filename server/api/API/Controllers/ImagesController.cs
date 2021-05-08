@@ -18,9 +18,9 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MedicalImageDTO>>> GetImages()
+        public async Task<ActionResult<IEnumerable<MedicalImage>>> GetImages()
         {
-            var images = await _imageRepository.GetAllMedicalImages();            
+            var images = await _imageRepository.GetAllMedicalImagesWithPatient();            
             return Ok(images);
         }
 

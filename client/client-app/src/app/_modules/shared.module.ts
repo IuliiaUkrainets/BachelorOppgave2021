@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
     declarations: [],
@@ -17,6 +18,7 @@ import { FileUploadModule } from 'ng2-file-upload';
             positionClass: 'toast-bottom-right',
         }),
         FileUploadModule,
+        PaginationModule,
     ],
     exports: [
         BsDropdownModule,
@@ -24,6 +26,7 @@ import { FileUploadModule } from 'ng2-file-upload';
         IconSpriteModule,
         ToastrModule,
         FileUploadModule,
+        PaginationModule,
     ],
 })
 export class SharedModule {}

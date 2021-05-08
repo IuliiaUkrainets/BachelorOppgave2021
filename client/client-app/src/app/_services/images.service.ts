@@ -9,7 +9,6 @@ import {
 } from '../_models/medicalimage';
 import { map } from 'rxjs/operators';
 import { decompressImage } from '../_decompression/decompression';
-import { User } from '../_models/user';
 
 @Injectable({
     providedIn: 'root',
@@ -19,6 +18,7 @@ export class ImagesService {
     baseUrl = environment.apiUrl;
     images: MedicalImage[] = [];
     imagesMeta: ImageMeta[] = [];
+    patientImageMeta: ImageMeta[] = [];
 
     constructor(private http: HttpClient) {}
 
@@ -47,6 +47,14 @@ export class ImagesService {
         return this.http.get<ImageMeta[]>(this.baseUrl + 'images').pipe(
             map((imageMeta) => {
                 this.imagesMeta = imageMeta;
+                return imageMeta;
+            })
+        );
+    }
+
+    getPatientsImagesMeta(id: number): Observable<ImageMeta[]> {
+        return this.http.get<ImageMeta[]>(this.baseUrl + 'images/' + id).pipe(
+            map((imageMeta) => {
                 return imageMeta;
             })
         );

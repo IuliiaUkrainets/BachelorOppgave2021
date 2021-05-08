@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -24,6 +25,15 @@ namespace API.Data
             return await _context.Patients
                 .ProjectTo<PatientDTO>(_mapper.ConfigurationProvider)
                 .ToListAsync();
+        }
+
+        public async Task<PagedList<PatientDTO>> GetPatientDtosAsync(PageParams pageParams)
+        {
+            var query = _context.Patients
+                .ProjectTo<PatientDTO>(_mapper.ConfigurationProvider)
+                .AsNoTracking();
+
+            return await PagedList<PatientDTO>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public async Task<Patient> GetPatientByIdAsync(int id)

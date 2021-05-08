@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { map } from 'rxjs/operators';
+import { PaginatedResult } from '../_models/pagination';
 
 @Injectable({
     providedIn: 'root',
@@ -11,19 +12,35 @@ import { map } from 'rxjs/operators';
 export class UsersService {
     baseUrl = environment.apiUrl;
     users: User[] = [];
+    paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
 
     constructor(private http: HttpClient) {}
 
-    getUsers(): Observable<User[]> {
-        if (this.users.length > 0) {
-            return of(this.users);
+    getUsers(
+        page?: number,
+        itemsPerPage?: number
+    ): Observable<PaginatedResult<User[]>> {
+        let params = new HttpParams();
+        if (page !== null && itemsPerPage !== null) {
+            params = params.append('pageNumber', page.toString());
+            params = params.append('pageSize', itemsPerPage.toString());
         }
-        return this.http.get<User[]>(this.baseUrl + 'users').pipe(
-            map((users) => {
-                this.users = users;
-                return users;
+        return this.http
+            .get<User[]>(this.baseUrl + 'users', {
+                observe: 'response',
+                params,
             })
-        );
+            .pipe(
+                map((response) => {
+                    this.paginatedResult.result = response.body;
+                    if (response.headers.get('Pagination') !== null) {
+                        this.paginatedResult.pagination = JSON.parse(
+                            response.headers.get('Pagination')
+                        );
+                    }
+                    return this.paginatedResult;
+                })
+            );
     }
 
     getUser(username: string | null): Observable<User> {

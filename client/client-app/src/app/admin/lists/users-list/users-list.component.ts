@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../_models/user';
 import { UsersService } from '../../../_services/users.service';
 import { Observable } from 'rxjs';
+import { Pagination } from '../../../_models/pagination';
 
 @Component({
     selector: 'app-users-list',
@@ -9,11 +10,24 @@ import { Observable } from 'rxjs';
     styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-    users$: Observable<User[]> | undefined;
+    users: User[];
+    pagination: Pagination;
+    pageNumber = 1;
+    pageSize = 5;
 
     constructor(private userService: UsersService) {}
 
     ngOnInit(): void {
-        this.users$ = this.userService.getUsers();
+        this.loadMembers();
+    }
+
+    // tslint:disable-next-line:typedef
+    loadMembers() {
+        this.userService
+            .getUsers(this.pageNumber, this.pageSize)
+            .subscribe((response) => {
+                this.users = response.result;
+                this.pagination = response.pagination;
+            });
     }
 }

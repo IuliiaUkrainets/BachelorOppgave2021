@@ -26,4 +26,12 @@ export class PatientsService {
             })
         );
     }
+
+    getPatient(id: number | null): Observable<Patient> {
+        const patient = this.patients.find((x) => x.id === id);
+        if (patient !== undefined) {
+            return of(patient);
+        }
+        return this.http.get<Patient>(this.baseUrl + 'patients/' + id);
+    }
 }

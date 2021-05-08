@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SideNavComponent } from './nav/side-nav/side-nav.component';
 import { TopNavComponent } from './nav/top-nav/top-nav.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
@@ -36,6 +36,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderModule } from 'ngx-order-pipe';
 import { PatientComponent } from './patients/patient/patient.component';
+import { TextInputComponent } from './_forms/text-input/text-input.component';
 
 @NgModule({
     declarations: [
@@ -62,6 +63,7 @@ import { PatientComponent } from './patients/patient/patient.component';
         ImageListComponent,
         HoldableDirective,
         PatientComponent,
+        TextInputComponent,
     ],
     imports: [
         BrowserModule,
@@ -69,6 +71,7 @@ import { PatientComponent } from './patients/patient/patient.component';
         HttpClientModule,
         NgbModule,
         FormsModule,
+        ReactiveFormsModule,
         SharedModule,
         NgxSpinnerModule,
         Ng2SearchPipeModule,

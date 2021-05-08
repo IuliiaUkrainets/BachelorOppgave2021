@@ -1,28 +1,18 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-5 mt-5">
-            <form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
                 <h2 class="text-center form--header">Registrer ny bruker</h2>
                 <hr>
-                <div class="form-group">
-                    <input
-                        type="text"
-                        class="form-control"
-                        name="username"
-                        [(ngModel)]="model.username"
-                        placeholder="Username">
-                </div>
-                <!-- /.form-group -->
-
-                <div class="form-group">
-                    <input
-                        type="password"
-                        class="form-control form-group__input"
-                        name="password"
-                        [(ngModel)]="model.password"
-                        placeholder="Password">
-                </div>
-                <!-- /.form-group -->
+                <app-text-input
+                    [formControl]="registerForm.controls['username']"
+                    [label]="'Username'" >
+                </app-text-input>
+                <app-text-input
+                    [formControl]="registerForm.controls['password']"
+                    [label]="'Password'"
+                >
+                </app-text-input>
                 <div class="form-group text-right">
                     <button class="btn-success form-group--button mr-2 " type="submit">Registrer</button>
                     <button (click)="cancel()" class="btn-secondary form-group--button mr-2" type="button">Avbryt</button>

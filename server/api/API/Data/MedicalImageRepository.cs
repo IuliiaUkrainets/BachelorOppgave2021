@@ -27,6 +27,13 @@ namespace API.Data
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<MedicalImage>> GetAllMedicalImagesWithPatient()
+        {
+               return await _context.MedicalImages
+                .Include(i => i.Patient)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<MedicalImageDTO>> GetImageByPatientId(int id)
         {
             return await _context.MedicalImages

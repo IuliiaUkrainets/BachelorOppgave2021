@@ -8,6 +8,7 @@ namespace API.Interfaces
     public interface IMedicalImageRepository
     {
         Task<IEnumerable<MedicalImageDTO>> GetAllMedicalImages();
+        Task<IEnumerable<MedicalImage>> GetAllMedicalImagesWithPatient();
         Task<IEnumerable<MedicalImageDTO>> GetImageByPatientId(int id);
     }
 }

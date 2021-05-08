@@ -61,7 +61,7 @@
             </form>
         </td>
     </tr>
-    <tr *ngFor="let user of users$ | async" class="table__row">
+    <tr *ngFor="let user of users" class="table__row">
         <td class="table__data"><a href="./pasient.html" class="table__link">{{user.id}}</a></td>
         <td class="table__data"><a href="./pasient.html" class="table__link">{{user.username}}</a></td>
         <td class="table__data"><a href="./pasient.html" class="table__link">{{user.address}}</a></td>

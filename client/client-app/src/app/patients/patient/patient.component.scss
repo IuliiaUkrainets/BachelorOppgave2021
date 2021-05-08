@@ -1,0 +1,46 @@
+.row {
+    margin-left: 3rem;
+    margin-top: 3rem;
+
+}
+.card {
+    font-size: 1.4rem;
+
+    img {
+        width: 80%;
+        margin: auto;
+        margin-top: 3rem;
+    }
+    .nav__icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: currentColor;
+        overflow: visible;
+    }
+}
+
+.nav-tabs {
+    li {
+        font-size: 1.3rem;
+        a {
+            border: none;
+        }
+    }
+}
+
+.nav-item {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #F3F3F3;
+    overflow: hidden;
+    &:last-child {
+        border-right: 1px solid #ccc;
+    }
+}
+
+
+
+
+

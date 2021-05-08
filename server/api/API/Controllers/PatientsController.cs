@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +19,16 @@ namespace API.Controllers
             _patientRepository = patientRepository;
         }
 
+
         [HttpGet]
-        public async Task<ActionResult<PatientDTO>> GetPatients()
+        public async Task<ActionResult<IEnumerable<PatientDTO>>> GetPatients([FromQuery] PageParams pageParams)
         {
-            var patients =  await _patientRepository.GetPatientsAsync();
+            var patients = await _patientRepository.GetPatientDtosAsync(pageParams);
+            Response.AddPaginationHeader(
+                patients.CurrentPage, 
+                patients.PageSize, 
+                patients.TotalCount, 
+                patients.TotalPages);
             return Ok(patients);
         }
 
