@@ -28,8 +28,7 @@ namespace API.Data
                 .ToListAsync();
         }
 
-      
-
+    
         public async Task<IEnumerable<MedicalImageDTO>> GetImageByPatientId(int id)
         {
             return await _context.MedicalImages
@@ -38,13 +37,27 @@ namespace API.Data
                     .ToListAsync();
         }
 
-        public async Task<PagedList<MedicalImageDTO>> GetImageDtosAsync(PageParams pageParams)
+        public async Task<PagedList<MedicalImageDTO>> GetImageDtosAsync(ImageParams imageParams)
         {
-            var query = _context.MedicalImages
-                .ProjectTo<MedicalImageDTO>(_mapper.ConfigurationProvider)
-                .AsNoTracking();
+            var query = _context
+            .MedicalImages 
+            .AsQueryable();
 
-            return await PagedList<MedicalImageDTO>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+            if (imageParams.SSN != null) {
+                query = query
+                .Where(i => i.Patient.SSN == imageParams.SSN);
+            }
+
+            if(imageParams.LastName != null) {
+                query = query
+                .Where(i => i.Patient.LastName == imageParams.LastName);
+            }
+
+
+            return await PagedList<MedicalImageDTO>.CreateAsync(
+                query.ProjectTo<MedicalImageDTO>(_mapper.ConfigurationProvider).AsNoTracking(),
+                imageParams.PageNumber,
+                imageParams.PageSize);
         }
     }
 }

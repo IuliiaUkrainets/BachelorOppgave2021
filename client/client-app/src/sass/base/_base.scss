@@ -22,4 +22,13 @@ body {
     background-color: #e1eaf2;
 }
 
+.page-item.active .page-link {
+    background-color: #234590;
+    border-color: #234590;
+}
+
+.page-link {
+    color: #234590;
+}
+
 

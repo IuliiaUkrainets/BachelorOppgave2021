@@ -8,6 +8,6 @@ namespace API.DTOs
         public string Url { get; set; }
         public DateTime Taken { get; set; }
         public int PatientId { get; set; }
-        public PatientDTO patient { get; set; }
+        public PatientDTO Patient { get; set; }
     }
 }
