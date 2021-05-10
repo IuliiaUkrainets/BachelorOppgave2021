@@ -10,6 +10,6 @@ namespace API.Interfaces
     {
         Task<IEnumerable<MedicalImageDTO>> GetAllMedicalImages();
         Task<IEnumerable<MedicalImageDTO>> GetImageByPatientId(int id);
-        Task<PagedList<MedicalImageDTO>> GetImageDtosAsync(PageParams pageParams);
+        Task<PagedList<MedicalImageDTO>> GetImageDtosAsync(ImageParams imageParams);
     }
 }

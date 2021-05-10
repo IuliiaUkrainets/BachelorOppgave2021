@@ -12,7 +12,8 @@
 
 # .vscode
 .vscode
-
+bin/Debug/net5.0
+obj/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -420,7 +421,7 @@ ehthumbs_vista.db
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-
+bin/Debug
 # Windows Installer files
 *.cab
 *.msi

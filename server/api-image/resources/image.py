@@ -2,11 +2,9 @@ from models.patient import PatientModel
 from models.image import ImageModel
 from flask_restful import Resource
 from until.parser import parseRequest
-from flask import request, send_from_directory
+from flask import request
 from werkzeug.utils import secure_filename
 import os
-import pydicom as dicom
-from ast import literal_eval
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'jpg', 'jpeg', 'dcm'}
 def allowed_file(filename):
@@ -41,6 +39,7 @@ class ImagePath(Resource):
             from until.wavelet import get_wavelet
             return {"image": get_wavelet(images)}, 201
 
+<<<<<<< HEAD
 class Images(Resource):
     @staticmethod
     def get(array):
@@ -73,3 +72,5 @@ class Negative(Resource):
         from until.wavelet import get_original_image
         images = './image/' + name + '.dcm'
         return {'image': get_original_image(images)}, 201
+=======
+>>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38

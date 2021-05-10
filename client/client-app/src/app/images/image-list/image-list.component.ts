@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from '../../_services/images.service';
-import { ImageMeta, MedicalImage } from '../../_models/medicalimage';
-import { PaginatedResult, Pagination } from '../../_models/pagination';
-import { User } from '../../_models/user';
+import { ImageMeta } from '../../_models/medicalimage';
+import { Pagination } from '../../_models/pagination';
+import { ImageParams } from '../../_models/params';
+import { SearchParamService } from '../../_services/search-param.service';
 
 @Component({
     selector: 'app-image-list',
@@ -12,26 +13,44 @@ import { User } from '../../_models/user';
 export class ImageListComponent implements OnInit {
     imagesMeta: ImageMeta[] = [];
     pagination: Pagination;
-    pageNumber = 1;
-    pageSize = 3;
+    imageParams: ImageParams;
+    search: string;
 
-    constructor(private imageService: ImagesService) {}
+    constructor(
+        private imageService: ImagesService,
+        private searchService: SearchParamService
+    ) {
+        this.imageParams = new ImageParams();
+    }
 
     ngOnInit(): void {
         this.loadImageMeta();
+        this.searchService.search.subscribe((result) => {
+            if (isNaN(+result)) {
+                this.imageParams.lastName = result;
+            } else {
+                this.imageParams.ssn = result;
+            }
+            this.loadImageMeta();
+        });
     }
 
     loadImageMeta(): void {
         this.imageService
-            .getImagesMeta(this.pageNumber, this.pageSize)
+            .getImagesMeta(this.imageParams)
             .subscribe((response) => {
                 this.imagesMeta = response.result;
                 this.pagination = response.pagination;
             });
     }
 
+    resetFilters(): void {
+        this.imageParams = new ImageParams();
+        this.loadImageMeta();
+    }
+
     pageChanged(event: any): void {
-        this.pageNumber = event.page;
+        this.imageParams.pageNumber = event.page;
         this.loadImageMeta();
     }
 

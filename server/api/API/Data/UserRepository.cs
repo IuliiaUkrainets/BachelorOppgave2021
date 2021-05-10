@@ -41,13 +41,17 @@ namespace API.Data
                     .SingleOrDefaultAsync();
         }
 
-        public async Task<PagedList<UserDTO>> GetUserDtosAsync(PageParams pageParams)
+        public async Task<PagedList<UserDTO>> GetUserDtosAsync(UserParams userParams)
         {
-            var query = _context.Users
-                .ProjectTo<UserDTO>(_mapper.ConfigurationProvider)
-                .AsNoTracking();
+            var query = _context.Users.AsQueryable();
+
+            query = query.Where(u => u.UserName != userParams.CurrentUsername);
             
-            return await PagedList<UserDTO>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+            
+            return await PagedList<UserDTO>.CreateAsync(
+                query.ProjectTo<UserDTO>(_mapper.ConfigurationProvider).AsNoTracking(), 
+                userParams.PageNumber, 
+                userParams.PageSize);
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()

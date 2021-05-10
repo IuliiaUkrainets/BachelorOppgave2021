@@ -10,6 +10,7 @@ import {
 import { map } from 'rxjs/operators';
 import { decompressImage } from '../_decompression/decompression';
 import { PaginatedResult } from '../_models/pagination';
+import { ImageParams } from '../_models/params';
 
 @Injectable({
     providedIn: 'root',
@@ -20,9 +21,6 @@ export class ImagesService {
     images: MedicalImage[] = [];
     imagesMeta: ImageMeta[] = [];
     patientImageMeta: ImageMeta[] = [];
-    paginatedResult: PaginatedResult<ImageMeta[]> = new PaginatedResult<
-        ImageMeta[]
-    >();
 
     constructor(private http: HttpClient) {}
 
@@ -45,31 +43,55 @@ export class ImagesService {
     }
 
     getImagesMeta(
-        page?: number,
-        itemsPerPage?: number
+        imageParams: ImageParams
     ): Observable<PaginatedResult<ImageMeta[]>> {
-        let params = new HttpParams();
-        if (page !== null && itemsPerPage !== null) {
-            params = params.append('pageNumber', page.toString());
-            params = params.append('pageSize', itemsPerPage.toString());
+        let params = this.getPaginationHeaders(
+            imageParams.pageNumber,
+            imageParams.pageSize
+        );
+        if (imageParams.lastName != null) {
+            params = params.append('lastName', imageParams.lastName);
+        }
+
+        if (imageParams.ssn != null) {
+            params = params.append('ssn', imageParams.ssn);
         }
         // @ts-ignore
+        return this.getPaginatedResult<ImageMeta[]>(
+            this.baseUrl + 'images',
+            params
+        );
+    }
+
+    private getPaginatedResult<T>(url, params): Observable<PaginatedResult<T>> {
+        const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
         return this.http
-            .get<ImageMeta[]>(this.baseUrl + 'images', {
+            .get<T>(url, {
                 observe: 'response',
                 params,
             })
             .pipe(
                 map((response) => {
-                    this.paginatedResult.result = response.body;
+                    paginatedResult.result = response.body;
                     if (response.headers.get('Pagination') !== null) {
-                        this.paginatedResult.pagination = JSON.parse(
+                        paginatedResult.pagination = JSON.parse(
                             response.headers.get('Pagination')
                         );
                     }
-                    return this.paginatedResult;
+                    return paginatedResult;
                 })
             );
+    }
+
+    private getPaginationHeaders(
+        pageNumber: number,
+        pageSize: number
+    ): HttpParams {
+        let params = new HttpParams();
+        params = params.append('pageNumber', pageNumber.toString());
+        params = params.append('pageSize', pageSize.toString());
+
+        return params;
     }
 
     getPatientsImagesMeta(id: number): Observable<ImageMeta[]> {

@@ -12,7 +12,7 @@ import scipy.misc
 import random
 import string
 import os
-import base64
+
 
 def get_random_string():
     result_str = ''.join(random.choice(string.ascii_letters) for i in range(12))
@@ -67,18 +67,6 @@ def get_image(name):
 
     return pixel
 
-def get_image_base64(name):
-    ds = dicom.dcmread(name)
-    pixel = ds.pixel_array
-    pixel[pixel < 300] = 0
-    pixel = (pixel / ds[('0028', '0107')].value)
-    pixel[pixel > 1.0] = 1
-    pixel = pixel * 255
-    name = get_random_string() + '.jpg'
-    path = './image/'+ name
-    cv2.imwrite(path, np.uint8(pixel))
-    return name
-    # return 'data:image/jpg;base64,' + b64_string
 
 def get_wavelet(name):
     d = dicom.dcmread(name)
@@ -254,8 +242,13 @@ def RunLength(r):
 
 #
 # get_original_image('0004.dcm')
+<<<<<<< HEAD
 # image = get_wavelet('../image/0004.dcm')
 # cv2.imwrite('../image/0004.jpg', waveletR(*image))
+=======
+# image = get_image('0004.dcm')
+
+>>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
 
 # concate(waveletT(image, 5))
 
@@ -300,10 +293,17 @@ def RunLength(r):
 # pl.imshow(gray, cmap='gray') # original, for å få dekomprimerte bilde endrer jeg til img i steden for gray
 # img = np.int16(t[0])
 # img = img[20:145, 20:145]
+<<<<<<< HEAD
 # i = cv2.imread('../image/DUTukoMruAbH.jpg', 0)
 # cv2.imshow('c', i)
 # wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
 # j = cv2.imread('../image/0004.jpg', 0)
+=======
+# i = cv2.imread('SavedFiles/ZFNrTJPbHaHF.jpg', 0)
+# cv2.imshow('c', i)
+# wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
+# j = cv2.imread('SavedFiles/d.jpg', 0)
+>>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
 # cv2.imshow('c', j)
 # original = cv2.calcHist([j],[0],None,[256],[0,256])
 # #c = pl.imshow(cv2.bitwise_not(j), cmap='gray') #negativ transformation

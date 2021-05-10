@@ -27,9 +27,9 @@ namespace API.Controllers
         } */
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MedicalImageDTO>>> GetPatients([FromQuery] PageParams pageParams)
+        public async Task<ActionResult<IEnumerable<MedicalImageDTO>>> GetImages([FromQuery] ImageParams imageParams)
         {
-            var images = await _imageRepository.GetImageDtosAsync(pageParams);
+            var images = await _imageRepository.GetImageDtosAsync(imageParams);
             Response.AddPaginationHeader(
                 images.CurrentPage,
                 images.PageSize,
