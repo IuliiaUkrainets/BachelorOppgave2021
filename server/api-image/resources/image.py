@@ -66,3 +66,10 @@ class sendImage(Resource):
     def get(path):
         return send_from_directory('./image', path)
 
+
+class Negative(Resource):
+    @staticmethod
+    def get(name):
+        from until.wavelet import get_original_image
+        images = './image/' + name + '.dcm'
+        return {'image': get_original_image(images)}, 201
