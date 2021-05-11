@@ -53,6 +53,11 @@ namespace API.Data
                 .Where(i => i.Patient.LastName == imageParams.LastName);
             }
 
+            query = imageParams.OrderBy switch
+            {
+                "taken" => query.OrderByDescending(i => i.Taken)
+            };
+
 
             return await PagedList<MedicalImageDTO>.CreateAsync(
                 query.ProjectTo<MedicalImageDTO>(_mapper.ConfigurationProvider).AsNoTracking(),

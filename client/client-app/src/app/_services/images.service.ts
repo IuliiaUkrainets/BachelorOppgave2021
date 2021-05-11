@@ -21,6 +21,7 @@ export class ImagesService {
     images: MedicalImage[] = [];
     imagesMeta: ImageMeta[] = [];
     patientImageMeta: ImageMeta[] = [];
+    imagesMetaCash = new Map();
 
     constructor(private http: HttpClient) {}
 
@@ -45,6 +46,12 @@ export class ImagesService {
     getImagesMeta(
         imageParams: ImageParams
     ): Observable<PaginatedResult<ImageMeta[]>> {
+        const response = this.imagesMetaCash.get(
+            Object.values(imageParams).join('-')
+        );
+        if (response) {
+            return of(response);
+        }
         let params = this.getPaginationHeaders(
             imageParams.pageNumber,
             imageParams.pageSize
@@ -60,6 +67,14 @@ export class ImagesService {
         return this.getPaginatedResult<ImageMeta[]>(
             this.baseUrl + 'images',
             params
+        ).pipe(
+            map((resp) => {
+                this.imagesMetaCash.set(
+                    Object.values(imageParams).join('-'),
+                    resp
+                );
+                return resp;
+            })
         );
     }
 

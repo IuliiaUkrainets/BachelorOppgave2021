@@ -11,5 +11,7 @@ namespace API.Entities
         public byte[] PasswordSalt { get; set; }
         public DateTime LastActive { get; set; }
         public ICollection<UserPhoto> Photos { get; set; }
+        public ICollection<Message> MessagessSent { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
     }
 }

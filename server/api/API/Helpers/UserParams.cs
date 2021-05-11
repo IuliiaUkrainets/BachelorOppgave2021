@@ -2,8 +2,7 @@ namespace API.Helpers
 {
     public class UserParams
     {
-
-        private const int MaxPageSize = 50;
+        private const int MaxPageSize = 10;
         public int PageNumber { get; set; } = 1;
         public int _pageSize { get; set; } = 10;
 
@@ -14,5 +13,6 @@ namespace API.Helpers
         }
 
         public string CurrentUsername { get; set; }     
+        public string OrderBy { get; set; } = "lastActive";
     }
 }

@@ -81,7 +81,7 @@
                         <li class="thumb__meta-list-item">Kjønn:
                             {{ image.patient.gender }}
                         </li>
-                        <li class="thumb__meta-list-item">Tatt: {{ image.taken }}</li>
+                        <li class="thumb__meta-list-item">Tatt: {{ image.taken | date: 'dd MMMM, yyyy' }}</li>
                     </ul>
                 </div>
                 <!-- /.thumb-meta -->

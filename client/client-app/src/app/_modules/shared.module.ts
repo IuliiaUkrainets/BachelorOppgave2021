@@ -6,6 +6,7 @@ import { IconSpriteModule } from 'ng-svg-icon-sprite';
 import { ToastrModule } from 'ngx-toastr';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
     declarations: [],
@@ -19,6 +20,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
         }),
         FileUploadModule,
         PaginationModule,
+        ButtonsModule.forRoot(),
     ],
     exports: [
         BsDropdownModule,
@@ -27,6 +29,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
         ToastrModule,
         FileUploadModule,
         PaginationModule,
+        ButtonsModule,
     ],
 })
 export class SharedModule {}

@@ -14,5 +14,6 @@ namespace API.Helpers
 
         public string SSN { get; set; } = null;
         public string LastName { get; set; }
+        public string OrderBy { get; set; } = "taken";
     }
 }
