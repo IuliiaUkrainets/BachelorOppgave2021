@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -29,13 +27,9 @@ namespace API.Controllers
         {
             if (await UserExists(registerDTO.Username)) return BadRequest("Username is taken");
 
-            using var hmac = new HMACSHA512();
-
             var user = new AppUser
             {
-                UserName = registerDTO.Username.ToLower(),
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDTO.Password)),
-                PasswordSalt = hmac.Key
+                UserName = registerDTO.Username.ToLower()
             };
 
             _context.Users.Add(user);
@@ -84,15 +78,6 @@ namespace API.Controllers
 
             if (user == null) return Unauthorized("Invalid username");
 
-            using var hmac = new HMACSHA512(user.PasswordSalt);
-
-            var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
-
-            for (int i = 0; i < computedHash.Length; i++)
-            {
-                if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid Password");
-            }
-
 
             return new AppUserDTO
             {
@@ -102,8 +87,6 @@ namespace API.Controllers
                 PhotoId = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Id
             };
         }
-
-       
 
         private async Task<bool> UserExists(string username)
         {

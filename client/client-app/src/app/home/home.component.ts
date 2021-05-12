@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     users: User[];
     pagination: Pagination;
     pageNumber = 1;
-    pageSize = 10;
+    pageSize = 9;
 
     constructor(private userService: UsersService) {}
 
