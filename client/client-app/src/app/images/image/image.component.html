@@ -29,6 +29,11 @@
                     <use xlink:href="/assets/img/sprite.svg#icon-reload-alt"></use>
                 </svg>
             </button>
+            <button (click)="openTextModal()" type="button" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-info"></use>
+                </svg>
+            </button>
             <a href="./comments.html" class="image-toolbar__control">
                 <svg class="image__icon">
                     <use xlink:href="/assets/img/sprite.svg#icon-insert_comment"></use>
@@ -47,7 +52,8 @@
                 style="{{ styleWidth() }}"
                 src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
                 alt="{{patient.lastName}}">
-
+<!--        style="-webkit-filter: invert(1);-->
+<!--        filter: invert(1);"-->
     </div>
     <!-- /.image-container -->
 </div>

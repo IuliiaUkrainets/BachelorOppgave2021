@@ -40,6 +40,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { SingleImageComponent } from './images/single-image/single-image.component';
 import { HarRoleDirective } from './_directives/har-role.directive';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { ImageTextModalComponent } from './modals/image-text-modal/image-text-modal.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
         SingleImageComponent,
         HarRoleDirective,
         RolesModalComponent,
+        ImageTextModalComponent,
     ],
     imports: [
         BrowserModule,

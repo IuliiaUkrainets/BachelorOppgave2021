@@ -28,3 +28,7 @@ export interface ImageMeta {
         extraInfo: null;
     };
 }
+
+export interface ImageText {
+    text: string;
+}

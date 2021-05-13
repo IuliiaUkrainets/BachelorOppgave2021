@@ -11,6 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ParamService } from '../../_services/param.service';
 import { PatientsService } from '../../_services/patients.service';
 import { Patient } from '../../_models/patient';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ImageTextModalComponent } from '../../modals/image-text-modal/image-text-modal.component';
 
 @Component({
     selector: 'app-image',
@@ -23,12 +25,14 @@ export class ImageComponent implements OnInit {
     medicalImage: MedicalImage | undefined;
     containerWidth = 100;
     patient: Patient | undefined;
+    bsModalRef: BsModalRef;
 
     constructor(
         private imageService: ImagesService,
         private route: ActivatedRoute,
         private paramService: ParamService,
-        private patientService: PatientsService
+        private patientService: PatientsService,
+        private modalService: BsModalService
     ) {}
 
     ngOnInit(): void {
@@ -80,5 +84,19 @@ export class ImageComponent implements OnInit {
 
     reset(): number {
         return (this.containerWidth = 100);
+    }
+
+    openTextModal(): void {
+        this.imageService
+            .getImageText(this.medicalImage.id)
+            .subscribe((imageText) => {
+                const initialState = {
+                    content: imageText.text,
+                };
+                this.bsModalRef = this.modalService.show(
+                    ImageTextModalComponent,
+                    { initialState }
+                );
+            });
     }
 }

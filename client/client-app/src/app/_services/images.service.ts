@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import {
     ImageMeta,
     ImageResponse,
+    ImageText,
     MedicalImage,
 } from '../_models/medicalimage';
 import { map } from 'rxjs/operators';
@@ -113,6 +114,14 @@ export class ImagesService {
         return this.http.get<ImageMeta[]>(this.baseUrl + 'images/' + id).pipe(
             map((imageMeta) => {
                 return imageMeta;
+            })
+        );
+    }
+
+    getImageText(id: string): Observable<ImageText> {
+        return this.http.get<ImageText>(this.medicalImgUrl + 'text/' + id).pipe(
+            map((imageText) => {
+                return imageText;
             })
         );
     }
