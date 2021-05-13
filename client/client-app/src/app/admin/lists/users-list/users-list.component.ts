@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../_models/user';
-import { UsersService } from '../../../_services/users.service';
-import { Observable } from 'rxjs';
-import { Pagination } from '../../../_models/pagination';
+import { UserForAdmin } from '../../../_models/user';
+import { AdminService } from '../../../_services/admin.service';
+import { BsModalRef, BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { RolesModalComponent } from '../../../modals/roles-modal/roles-modal.component';
 
 @Component({
     selector: 'app-users-list',
@@ -10,24 +10,37 @@ import { Pagination } from '../../../_models/pagination';
     styleUrls: ['./users-list.component.scss'],
 })
 export class UsersListComponent implements OnInit {
-    users: User[];
-    pagination: Pagination;
-    pageNumber = 1;
-    pageSize = 5;
+    users: UserForAdmin[];
+    bsModalRef: BsModalRef;
 
-    constructor(private userService: UsersService) {}
+    constructor(
+        private adminService: AdminService,
+        private modalService: BsModalService
+    ) {}
 
     ngOnInit(): void {
-        this.loadMembers();
+        this.getUsersWithRoles();
     }
 
-    // tslint:disable-next-line:typedef
-    loadMembers() {
-        this.userService
-            .getUsers(this.pageNumber, this.pageSize)
-            .subscribe((response) => {
-                this.users = response.result;
-                this.pagination = response.pagination;
-            });
+    getUsersWithRoles(): void {
+        this.adminService.getUsersWithRoles().subscribe((users) => {
+            this.users = users;
+        });
+    }
+
+    openRolesModal(): void {
+        const initialState = {
+            list: [
+                'Open a modal with component',
+                'Pass your data',
+                'Do something else',
+                '...',
+            ],
+            title: 'Modal with components',
+        };
+        this.bsModalRef = this.modalService.show(RolesModalComponent, {
+            initialState,
+        });
+        this.bsModalRef.content.closeBtnName = 'Close';
     }
 }

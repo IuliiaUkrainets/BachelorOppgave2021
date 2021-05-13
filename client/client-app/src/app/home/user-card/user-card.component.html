@@ -11,7 +11,7 @@
                 <span class="thumb__meta-list-wrapper ml-3">
                     <div class="thumb__meta-list-item__name">{{user.firstName | titlecase}}</div>
                     <div class="thumb__meta-list-item__name">{{user.lastName}}</div>
-                    <div style="text-transform: uppercase;" class="thumb__meta-list-item">{{ user.category }}</div>
+                    <div style="text-transform: uppercase;" class="thumb__meta-list-item">{{ user.category ? user.category : '&nbsp;' }}</div>
                 </span>
             </span>
         </div>

@@ -16,3 +16,13 @@ export interface User {
     practice: string;
     photos: Photo[];
 }
+
+export interface UserForAdmin {
+    id: number;
+    username: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: Date;
+    email: string;
+    roles: string[];
+}

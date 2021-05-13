@@ -38,6 +38,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { PatientComponent } from './patients/patient/patient.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { SingleImageComponent } from './images/single-image/single-image.component';
+import { HarRoleDirective } from './_directives/har-role.directive';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 
 @NgModule({
     declarations: [
@@ -66,6 +68,8 @@ import { SingleImageComponent } from './images/single-image/single-image.compone
         PatientComponent,
         TextInputComponent,
         SingleImageComponent,
+        HarRoleDirective,
+        RolesModalComponent,
     ],
     imports: [
         BrowserModule,

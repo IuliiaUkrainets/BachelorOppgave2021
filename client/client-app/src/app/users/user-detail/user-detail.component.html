@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     <strong>Kategori: </strong>
-                    <p>Fastlege</p>
+                    <p>{{ user.category | titlecase}}</p>
                 </div>
                 <div>
                     <strong>Sist Aktiv: </strong>
@@ -37,7 +37,7 @@
     <div class="col-xs-12 col-lg-7">
         <ul ngbNav #nav="ngbNav" class="nav-tabs">
             <li ngbNavItem>
-                <a ngbNavLink>Om {{ user.username }}</a>
+                <a ngbNavLink>Om {{ user.firstName }} {{ user.lastName }}</a>
                 <ng-template ngbNavContent>
                     <div class="card">
                         <div class="card-body">
@@ -47,15 +47,11 @@
                             </div>
                             <div>
                                 <strong>Etternavn: </strong>
-                                <p>Nordmann</p>
+                                <p>{{ user.lastName }}</p>
                             </div>
                             <div>
                                 <strong>Kjønn: </strong>
                                 <p>{{ user.gender }}</p>
-                            </div>
-                            <div>
-                                <strong>Godkjenning: </strong>
-                                <p>Autorisasjon 2009</p>
                             </div>
                             <div>
                                 <strong>Sted: </strong>
@@ -67,14 +63,12 @@
                             </div>
                             <div>
                                 <strong>Kategori: </strong>
-                                <p>Fastlege</p>
+                                <p>{{ user.category }}</p>
                             </div>
-                            <div>
+                            <div *ngIf="user.practice">
                                 <strong>Praksis: </strong>
                                 <p>
-                                    Slemdal Legesenter
-                                    Stasjonsveien 4
-                                    0776 Oslo
+                                    {{ user.practice }}
                                 </p>
                             </div>
                         </div>

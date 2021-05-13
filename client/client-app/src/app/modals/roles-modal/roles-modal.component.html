@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<!-- /.modal-header -->
+<div class="modal-body">
+    <ul *ngIf="list.length">
+        <li *ngFor="let item of list">{{item}}</li>
+    </ul>
+</div>
+<!-- /.modal-body -->
+<div class="modal-footer">
+    <button class="btn-success form-group--button mr-2" (click)="bsModalRef.hide()" type="button">{{closeBtnName}}</button>
+</div>
+<!-- /.modal-footer -->

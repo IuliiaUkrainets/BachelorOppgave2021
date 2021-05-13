@@ -5,7 +5,9 @@ using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,11 +17,20 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
-
-        public AccountController(DataContext context, ITokenService tokenService)
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IMapper _mapper;
+        public AccountController(DataContext context,
+                                 UserManager<AppUser> userManager,
+                                 SignInManager<AppUser> signInManager,
+                                 ITokenService tokenService,
+                                 IMapper mapper)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _context = context;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -27,19 +38,19 @@ namespace API.Controllers
         {
             if (await UserExists(registerDTO.Username)) return BadRequest("Username is taken");
 
-            var user = new AppUser
-            {
-                UserName = registerDTO.Username.ToLower()
-            };
+            var user = _mapper.Map<AppUser>(registerDTO);
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            user.UserName = registerDTO.Username.ToLower();
 
-            return new AppUserDTO 
-            {
-                Username = user.UserName,
-                Token = _tokenService.CreateToken(user),
-            };
+            var result = await _userManager.CreateAsync(user, registerDTO.Password);
+
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            var roleResult = await _userManager.AddToRoleAsync(user, "User");
+
+            if (!roleResult.Succeeded) return BadRequest(result.Errors);
+
+            return Ok(_mapper.Map<UserDTO>(user));
         }
 
         [HttpGet("renew-token")]
@@ -51,7 +62,7 @@ namespace API.Controllers
             if (username == null) return Unauthorized("Token cannot be renewed");
 
 
-            var user = await _context.Users
+            var user = await _userManager.Users
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(user => user.UserName == username.ToLower());
 
@@ -62,7 +73,7 @@ namespace API.Controllers
             return new AppUserDTO
             {
                 Username = user.UserName,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Url,
                 PhotoId = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Id
             };
@@ -71,18 +82,21 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<AppUserDTO>> Login(LoginDTO loginDTO)
         {
-            var user = await _context.Users
+            var user = await _userManager.Users
                 .Include(p => p.Photos)
                 .SingleOrDefaultAsync(user => user.UserName == loginDTO.Username.ToLower());
 
 
             if (user == null) return Unauthorized("Invalid username");
 
+            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, false);
+
+            if (!result.Succeeded) return Unauthorized();
 
             return new AppUserDTO
             {
                 Username = user.UserName,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 PhotoUrl = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Url,
                 PhotoId = user.Photos.OrderByDescending(x => x.Id).FirstOrDefault()?.Id
             };
@@ -90,7 +104,7 @@ namespace API.Controllers
 
         private async Task<bool> UserExists(string username)
         {
-            return await _context.Users.AnyAsync(user => user.UserName == username.ToLower());
+            return await _userManager.Users.AnyAsync(user => user.UserName == username.ToLower());
         }
     }
 }

@@ -29,7 +29,7 @@ true}">
                 <span>Bilder</span>
             </a>
         </li>
-        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+        <li *appHasRole="['Admin']" class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
             <a routerLink="/admin"  class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-user-tie"></use>
@@ -37,7 +37,7 @@ true}">
                 <span>Admin</span>
             </a>
         </li>
-        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+        <li *appHasRole="['Admin']" class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
             <a routerLink="/errors"  class="sidebar-nav__link">
                 <svg class="sidebar-nav__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-cog"></use>

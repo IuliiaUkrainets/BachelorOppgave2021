@@ -3,4 +3,5 @@ export interface AppUser {
     token: string;
     photoUrl: string;
     photoId: number;
+    roles: string[];
 }

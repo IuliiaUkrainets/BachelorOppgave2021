@@ -15,6 +15,7 @@ import { PreventUnsavedChangedGuard } from './_guards/prevent-unsaved-changed.gu
 import { ImageComponent } from './images/image/image.component';
 import { ImageListComponent } from './images/image-list/image-list.component';
 import { PatientComponent } from './patients/patient/patient.component';
+import { AdminGuard } from './_guards/admin.guard';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -35,13 +36,21 @@ const routes: Routes = [
             },
             { path: 'patients', component: PatientListComponent },
             { path: 'patient/:id', component: PatientComponent },
-            { path: 'admin', component: AdminMainComponent },
+            {
+                path: 'admin',
+                component: AdminMainComponent,
+                canActivate: [AdminGuard],
+            },
             { path: 'messages', component: MessagesComponent },
             { path: 'images', component: ImageListComponent },
             { path: 'image/:id/:patientId', component: ImageComponent },
         ],
     },
-    { path: 'errors', component: TestErrorsComponent },
+    {
+        path: 'errors',
+        component: TestErrorsComponent,
+        canActivate: [AdminGuard],
+    },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'server-error', component: ServerErrorComponent },
     { path: '**', component: NotFoundComponent, pathMatch: 'full' },
