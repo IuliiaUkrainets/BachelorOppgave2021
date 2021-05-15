@@ -2,9 +2,13 @@ from models.patient import PatientModel
 from models.image import ImageModel
 from flask_restful import Resource
 from until.parser import parseRequest
-from flask import request
+from flask import request, send_from_directory
 from werkzeug.utils import secure_filename
 import os
+import cv2
+import numpy as np
+import pydicom as dicom
+from ast import literal_eval
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'jpg', 'jpeg', 'dcm'}
 def allowed_file(filename):
@@ -36,10 +40,11 @@ class ImagePath(Resource):
     def get(name):
         if request.method == "GET":
             images = './image/'+name+'.dcm'
-            from until.wavelet import get_wavelet
-            return {"image": get_wavelet(images)}, 201
+            from until.wavelet import get_wavelet2, wavelet
+            arr = get_wavelet2(images)
 
-<<<<<<< HEAD
+            return {"image": arr}, 201
+
 class Images(Resource):
     @staticmethod
     def get(array):
@@ -58,6 +63,7 @@ class TextImage(Resource):
         if request.method == "GET":
             images = './image/'+name+'.dcm'
             d = dicom.dcmread(images)
+
             return {"text": str(d)}, 201
 
 class sendImage(Resource):
@@ -72,5 +78,17 @@ class Negative(Resource):
         from until.wavelet import get_original_image
         images = './image/' + name + '.dcm'
         return {'image': get_original_image(images)}, 201
-=======
->>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
+
+
+class Roi(Resource):
+    @staticmethod
+    def get(arr):
+        t = arr.split(',')
+        print(t)
+        from until.wavelet import get_image, get_random_string
+        images = './image/' + t[0] + '.dcm'
+        image = get_image(images)
+        name = get_random_string() + '.jpg'
+        path = './image/'+ name
+        cv2.imwrite(path, np.uint8(image[int(t[2]): int(t[4]), int(t[1]): int(t[3])]))
+        return {'image': name}, 201
