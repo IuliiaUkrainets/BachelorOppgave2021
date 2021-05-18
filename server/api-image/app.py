@@ -16,11 +16,15 @@ from resources.patient import \
     PatientBySsn, \
     CreatePatient
 from resources.user import UserRegister, Users
-from resources.image import Image, ImagePath, TextImage, Images, sendImage, Negative, Roi
+<<<<<<< HEAD
+from resources.image import Image, ImagePath, TextImage, Images, sendImage, Negative
+=======
+from resources.image import Image, ImagePath
+>>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
 app = Flask(__name__)
-#app.config.from_pyfile('config.cfg')
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config.from_pyfile('config.cfg')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 app.secret_key = 'ArcticUniversity'
 
@@ -48,12 +52,14 @@ api.add_resource(CreatePatient, '/patient')
 api.add_resource(UserRegister, '/register')
 api.add_resource(Users, '/users')
 api.add_resource(ImagePath, '/image/<string:name>')
+<<<<<<< HEAD
 api.add_resource(TextImage, '/text/<string:name>')
 api.add_resource(Images, '/images/<string:array>')
 api.add_resource(sendImage, '/getImage/<string:path>')
 api.add_resource(Negative, '/negative/<string:name>')
-api.add_resource(Roi, '/roi/<string:arr>')
 
+=======
+>>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
 if __name__ == '__main__':
     db.init_app(app)
     app.run(port=5000, debug=True)

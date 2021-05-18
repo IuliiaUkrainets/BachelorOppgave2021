@@ -14,12 +14,10 @@ namespace API.Extensions
                 IConfiguration config)
         {
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMedicalImageRepository, MedicalImageRepository>();
-            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LogUserActivity>();
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IPhotoService, PhotoService>();  
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));

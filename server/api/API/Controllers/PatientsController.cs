@@ -13,21 +13,21 @@ namespace API.Controllers
     [Authorize]
     public class PatientsController : BaseApiController
     {
-        private readonly IPatientRepository _patientRepository;
-        public PatientsController(IPatientRepository patientRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public PatientsController(IUnitOfWork unitOfWork)
         {
-            _patientRepository = patientRepository;
+            _unitOfWork = unitOfWork;
         }
 
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PatientDTO>>> GetPatients([FromQuery] PageParams pageParams)
         {
-            var patients = await _patientRepository.GetPatientDtosAsync(pageParams);
+            var patients = await _unitOfWork.PatientRepository.GetPatientDtosAsync(pageParams);
             Response.AddPaginationHeader(
-                patients.CurrentPage, 
-                patients.PageSize, 
-                patients.TotalCount, 
+                patients.CurrentPage,
+                patients.PageSize,
+                patients.TotalCount,
                 patients.TotalPages);
             return Ok(patients);
         }
@@ -35,7 +35,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> GetPatientById(int id)
         {
-            return await _patientRepository
+            return await _unitOfWork.PatientRepository
                 .GetPatientByIdAsync(id);
         }
     }

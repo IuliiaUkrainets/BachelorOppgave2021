@@ -67,12 +67,6 @@ namespace API.Data
         {
             throw new System.NotImplementedException();
         }
-
-        public Task<bool> SaveAllAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void Update(Patient patient)
         {
             throw new System.NotImplementedException();

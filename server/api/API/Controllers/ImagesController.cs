@@ -13,23 +13,16 @@ namespace API.Controllers
     [Authorize]
     public class ImagesController : BaseApiController
     {
-        private readonly IMedicalImageRepository _imageRepository;
-        public ImagesController(IMedicalImageRepository imageRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public ImagesController(IUnitOfWork unitOfWork)
         {
-            _imageRepository = imageRepository;
+            _unitOfWork = unitOfWork;
         }
-
-        /* [HttpGet]
-        public async Task<ActionResult<IEnumerable<MedicalImage>>> GetImages()
-        {
-            var images = await _imageRepository.GetAllMedicalImagesWithPatient();            
-            return Ok(images);
-        } */
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MedicalImageDTO>>> GetImages([FromQuery] ImageParams imageParams)
         {
-            var images = await _imageRepository.GetImageDtosAsync(imageParams);
+            var images = await _unitOfWork.MedicalImageRepository.GetImageDtosAsync(imageParams);
             Response.AddPaginationHeader(
                 images.CurrentPage,
                 images.PageSize,
@@ -41,7 +34,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<MedicalImageDTO>> GetImagesByPatientId(int id)
         {
-            var images = await _imageRepository.GetImageByPatientId(id);
+            var images = await _unitOfWork.MedicalImageRepository.GetImageByPatientId(id);
             return Ok(images);
         }
     }
