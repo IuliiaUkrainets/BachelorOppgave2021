@@ -20,6 +20,7 @@ export class SingleImageComponent implements OnInit {
 
     getImage(): void {
         this.imageService.getImage(this.imageUrl).subscribe((image) => {
+            console.log(image);
             this.medicalImage = image;
         });
     }

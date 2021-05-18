@@ -1,0 +1,12 @@
+<body>
+<div
+    #appImage
+    appImage
+    (mousedown)="parentMouseDown($event)"
+    (mousemove)="parentOnDrag($event)"
+    (mouseup)="parentOnMouseUp($event)"
+    class="focus-image">
+    <img #imageElement src="http://localhost:5030/getImage/0004.jpg"  alt="0004"/>
+    <div #bbox id="bbox"></div>
+</div>
+

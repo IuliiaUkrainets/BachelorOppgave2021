@@ -1,0 +1,21 @@
+div.focus-image {
+    border: 1px solid #dddddd;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+div.focus-image div {
+    display: none;
+    border: 2px solid red;
+    position: absolute;
+    left: 90px;
+    /*x*/
+    top: 60px;
+    /*y*/
+}
+
+img {
+    width: 512px;
+    height: 512px;
+}

@@ -3,7 +3,6 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Patient } from '../_models/patient';
 import { Observable, of } from 'rxjs';
-import { User } from '../_models/user';
 import { map } from 'rxjs/operators';
 
 @Injectable({

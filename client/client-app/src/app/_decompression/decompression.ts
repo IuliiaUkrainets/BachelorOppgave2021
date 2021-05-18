@@ -1,6 +1,8 @@
 import { ImageResponse } from '../_models/medicalimage';
 
 export function decompressImage(response: ImageResponse): string | null {
+    console.log('DECOMPRESS');
+    console.log(response);
     if (response == null) {
         return null;
     }

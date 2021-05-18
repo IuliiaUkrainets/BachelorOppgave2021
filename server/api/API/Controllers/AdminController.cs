@@ -2,6 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entities;
+using API.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -24,13 +25,14 @@ namespace API.Controllers
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]
-        public async Task<ActionResult> GetUsersWithRoles()
+        public async Task<ActionResult> GetUsersWithRoles([FromQuery] UserParams userParams)
         {
             var users = await _userManager.Users
                 .Include(r => r.UserRoles)
                 .ThenInclude(r => r.Role)
                 .OrderBy(u => u.UserName)
                 .Where(u => u.UserName.ToLower() != "admin")
+
                 .Select(u => new
                 {
                     u.Id,

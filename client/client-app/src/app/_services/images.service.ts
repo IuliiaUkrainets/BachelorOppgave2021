@@ -38,6 +38,7 @@ export class ImagesService {
                     const imageString: string | null = decompressImage(
                         imageResponse
                     );
+                    console.log(imageString);
                     this.images.push({ id, imageString });
                     return { id, imageString };
                 })

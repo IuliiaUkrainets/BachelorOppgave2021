@@ -41,6 +41,8 @@ import { SingleImageComponent } from './images/single-image/single-image.compone
 import { HarRoleDirective } from './_directives/har-role.directive';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { ImageTextModalComponent } from './modals/image-text-modal/image-text-modal.component';
+import { ImageTestComponent } from './image-test/image-test.component';
+import { ImageDirective } from './_directives/image.directive';
 
 @NgModule({
     declarations: [
@@ -72,6 +74,8 @@ import { ImageTextModalComponent } from './modals/image-text-modal/image-text-mo
         HarRoleDirective,
         RolesModalComponent,
         ImageTextModalComponent,
+        ImageTestComponent,
+        ImageDirective,
     ],
     imports: [
         BrowserModule,
