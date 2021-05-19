@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>canvas</title>
+  <meta charset="utf-8">
+  <script>
+  
+
+    function dekomprimering(WLL, WLH, WHL, WHH){
+    let WL = [];
+    for(let i=0; i<WLL[0].length; i++){
+    let temp = [];
+    let temp1 = [];
+    for(let j=0; j<WLL.length; j++){
+       temp.push(Number(WLL[i][j]) + Number(WLH[i][j]));
+       
+    temp1.push(Number(WLL[i][j]) - Number(WLH[i][j]));
+    }
+    WL.push(temp);
+    WL.push(temp1);
+}
+let WH = [];
+    for(let i=0; i<WHL[0].length; i++){
+    let temp = [];
+    let temp1 = [];
+    for(let j=0; j<WHL.length; j++){
+       temp.push(Number(WHL[i][j]) + Number(WHH[i][j]));
+
+    temp1.push(Number(WHL[i][j]) - Number(WHH[i][j]));
+    }
+    WH.push(temp);
+    WH.push(temp1);
+}
+
+let W = [];
+    for(let i=0; i<WL.length; i++){
+    let temp = [];
+    for(let j=0; j<WL[0].length; j++){
+       temp.push(Number(WL[i][j]) + Number(WH[i][j]));
+       temp.push(Number(WL[i][j]) - Number(WH[i][j]));
+    }
+    W.push(temp);
+}
+    return W;
+}
+  window.onload = ()=> {
+    fetch('http://127.0.0.1:5000/image/0004').then(x=> x.json()).then(x=> {
+
+    let t = dekomprimering(x.image[0][0],x.image[0][1],x.image[0][2],x.image[0][3]);
+    t = dekomprimering(t,x.image[1],x.image[2],x.image[3]);
+    var width = 512,
+    height = 512,
+    buffer = new Uint8ClampedArray(width * height * 4);
+    for(var y = 0; y < height; y++) {
+    for(var x = 0; x < width; x++) {
+        var pos = (y * width + x) * 4; 
+        buffer[pos  ] = t[y][x];           
+        buffer[pos+1] = t[y][x];        
+        buffer[pos+2] = t[y][x];         
+        buffer[pos+3] = 255;          
+    }
+}
+var canvas = document.createElement('canvas'),
+    ctx = canvas.getContext('2d');
+
+canvas.width = width;
+canvas.height = height;
+
+var idata = ctx.createImageData(width, height);
+
+idata.data.set(buffer);
+
+ctx.putImageData(idata, 0, 0);
+var dataUri = canvas.toDataURL(); 
+let image = document.getElementById('image');
+image.src = dataUri
+})
+}
+  </script>
+ </head>
+ <body>
+    <img id='image' src="" />
+  <canvas style="display: none;" id="canvas" width="512" height="512">
+  </canvas>
+ </body>
+</html>
