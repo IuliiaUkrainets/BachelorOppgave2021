@@ -1,13 +1,13 @@
 .image {
     &-toolbar {
         position: fixed;
+        top: 0;
+        left: 0;
         z-index: 100;
-
         &__list {
             border-radius: 1px;
             font-size: 1.3rem;
             color: $color-white;
-            //background-color: rgba($color-grey-dark, 0.6);
             background-color: $color-grey-dark-secondary;
             padding: 0.2rem;
             list-style: none;

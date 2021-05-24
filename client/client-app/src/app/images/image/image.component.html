@@ -1,4 +1,4 @@
-<div id="content-image" class="content content-image">
+<div id="content-image" class="content content-image" style="{{ toggleNegative() }}">
     <div class="image-toolbar">
         <div class="image-toolbar__meta">
             <ul class="image-toolbar__list">
@@ -9,11 +9,11 @@
         </div>
         <!-- /.image-toolbar__meta -->
         <div class="image-toolbar__tools">
-            <a routerLink="/images" class="image-toolbar__control">
-                <svg class="image__icon">
-                    <use xlink:href="/assets/img/sprite.svg#icon-cross"></use>
-                </svg>
-            </a>
+<!--            <a routerLink="/images" class="image-toolbar__control">-->
+<!--                <svg class="image__icon">-->
+<!--                    <use xlink:href="/assets/img/sprite.svg#icon-cross"></use>-->
+<!--                </svg>-->
+<!--            </a>-->
             <button appHoldable (holdTime)="grow()" class="image-toolbar__control">
                 <svg class="image__icon">
                     <use xlink:href="/assets/img/sprite.svg#icon-resize-100"></use>
@@ -34,11 +34,16 @@
                     <use xlink:href="/assets/img/sprite.svg#icon-info"></use>
                 </svg>
             </button>
-            <a href="./comments.html" class="image-toolbar__control">
+            <button (click)="changeCoefficient()" type="button" class="image-toolbar__control">
                 <svg class="image__icon">
-                    <use xlink:href="/assets/img/sprite.svg#icon-insert_comment"></use>
+                    <use xlink:href="/assets/img/sprite.svg#icon-adjust"></use>
                 </svg>
-            </a>
+            </button>
+<!--            <a href="./comments.html" class="image-toolbar__control">-->
+<!--                <svg class="image__icon">-->
+<!--                    <use xlink:href="/assets/img/sprite.svg#icon-insert_comment"></use>-->
+<!--                </svg>-->
+<!--            </a>-->
         </div>
         <!-- /.image-toolbar__tools -->
     </div>
@@ -52,8 +57,6 @@
                 style="{{ styleWidth() }}"
                 src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
                 alt="{{patient.lastName}}">
-<!--        style="-webkit-filter: invert(1);-->
-<!--        filter: invert(1);"-->
     </div>
     <!-- /.image-container -->
 </div>

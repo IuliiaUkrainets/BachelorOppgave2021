@@ -5,3 +5,14 @@
 .page-link:hover {
     background-color: #042c84;
 }
+
+.user-list {
+    margin: 3rem;
+}
+
+@media (max-width: 650px) {
+    .user-list {
+        margin-top: 7rem;
+    }
+}
+

@@ -27,13 +27,14 @@ namespace API.Data
                 .ToListAsync();
         }
 
-        public async Task<PagedList<PatientDTO>> GetPatientDtosAsync(PageParams pageParams)
+        public async Task<PagedList<PatientDTO>> GetPatientDtosAsync(PatientParams patientParams)
         {
-            var query = _context.Patients
+            var query = _context
+                    .Patients
                 .ProjectTo<PatientDTO>(_mapper.ConfigurationProvider)
                 .AsNoTracking();
 
-            return await PagedList<PatientDTO>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+            return await PagedList<PatientDTO>.CreateAsync(query, patientParams.PageNumber, patientParams.PageSize);
         }
 
         public async Task<Patient> GetPatientByIdAsync(int id)

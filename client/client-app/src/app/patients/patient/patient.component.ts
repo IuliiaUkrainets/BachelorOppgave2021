@@ -33,10 +33,15 @@ export class PatientComponent implements OnInit {
         this.param = paramNum;
 
         this.patientService.getPatient(paramNum).subscribe((patient) => {
+            console.log(patient);
             this.patient = patient;
+            this.imageService
+                .getPatientsImagesMeta(this.patient.id)
+                .subscribe((patientsImageMeta) => {
+                    console.log(patientsImageMeta);
+                    this.patientImagesMeta = patientsImageMeta;
+                });
         });
-
-        this.getImageMeta();
     }
 
     getImages(): void {

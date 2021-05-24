@@ -1,21 +1,21 @@
 import { ImageResponse } from '../_models/medicalimage';
 
 export function decompressImage(response: ImageResponse): string | null {
-    console.log('DECOMPRESS');
-    console.log(response);
     if (response == null) {
         return null;
     }
 
-    const t = decompress(
-        response.image[0],
-        response.image[1],
-        response.image[2],
-        response.image[3]
+    let t = decompress(
+        response.image[0][0],
+        response.image[0][1],
+        response.image[0][2],
+        response.image[0][3]
     );
 
-    const width = 512;
-    const height = 512;
+    t = decompress(t, response.image[1], response.image[2], response.image[3]);
+
+    const width = t[0].length;
+    const height = t.length;
     const buffer = new Uint8ClampedArray(width * height * 4);
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -48,22 +48,21 @@ export function decompressImage(response: ImageResponse): string | null {
 // tslint:disable-next-line:typedef
 function decompress(WLL, WLH, WHL, WHH) {
     const WL = [];
-    for (let i = 0; i < WLL[0].length; i++) {
+    for (let i = 0; i < WLL.length; i++) {
         const temp = [];
         const temp1 = [];
-        for (let j = 0; j < WLL.length; j++) {
+        for (let j = 0; j < WLL[0].length; j++) {
             temp.push(Number(WLL[i][j]) + Number(WLH[i][j]));
-
             temp1.push(Number(WLL[i][j]) - Number(WLH[i][j]));
         }
         WL.push(temp);
         WL.push(temp1);
     }
     const WH = [];
-    for (let i = 0; i < WHL[0].length; i++) {
+    for (let i = 0; i < WHL.length; i++) {
         const temp = [];
         const temp1 = [];
-        for (let j = 0; j < WHL.length; j++) {
+        for (let j = 0; j < WHL[0].length; j++) {
             temp.push(Number(WHL[i][j]) + Number(WHH[i][j]));
 
             temp1.push(Number(WHL[i][j]) - Number(WHH[i][j]));

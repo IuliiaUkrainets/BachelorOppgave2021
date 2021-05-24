@@ -1,5 +1,5 @@
 export interface ImageResponse {
-    image: [][];
+    image: [][][];
 }
 
 export interface MedicalImage {

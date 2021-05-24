@@ -21,9 +21,9 @@ namespace API.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PatientDTO>>> GetPatients([FromQuery] PageParams pageParams)
+        public async Task<ActionResult<IEnumerable<PatientDTO>>> GetPatients([FromQuery] PatientParams patientParams)
         {
-            var patients = await _unitOfWork.PatientRepository.GetPatientDtosAsync(pageParams);
+            var patients = await _unitOfWork.PatientRepository.GetPatientDtosAsync(patientParams);
             Response.AddPaginationHeader(
                 patients.CurrentPage,
                 patients.PageSize,

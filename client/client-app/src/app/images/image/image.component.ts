@@ -1,13 +1,14 @@
 import {
     Component,
     HostListener,
+    Input,
     OnInit,
     Output,
     ViewChild,
 } from '@angular/core';
 import { ImagesService } from '../../_services/images.service';
 import { MedicalImage } from '../../_models/medicalimage';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ParamService } from '../../_services/param.service';
 import { PatientsService } from '../../_services/patients.service';
 import { Patient } from '../../_models/patient';
@@ -26,13 +27,15 @@ export class ImageComponent implements OnInit {
     containerWidth = 100;
     patient: Patient | undefined;
     bsModalRef: BsModalRef;
+    coefficient = 0;
 
     constructor(
         private imageService: ImagesService,
         private route: ActivatedRoute,
         private paramService: ParamService,
         private patientService: PatientsService,
-        private modalService: BsModalService
+        private modalService: BsModalService,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
@@ -66,6 +69,18 @@ export class ImageComponent implements OnInit {
 
     styleHeight(): string {
         return `height:${this.containerWidth}%;`;
+    }
+
+    toggleNegative(): string {
+        return `-webkit-filter: invert(${this.coefficient}); filter: invert(${this.coefficient})`;
+    }
+
+    changeCoefficient(): void {
+        if (this.coefficient === 1) {
+            this.coefficient = 0;
+        } else {
+            this.coefficient = 1;
+        }
     }
 
     shrink(): number {

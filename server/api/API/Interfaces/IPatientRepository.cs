@@ -13,7 +13,7 @@ namespace API.Interfaces
         Task<Patient> GetPatientByIdAsync(int id);
         Task<Patient> GetPatientByLastnameAsync(string lastname);
         Task<Patient> GetPatientBySSNAsync(string SSN);
-        Task<PagedList<PatientDTO>> GetPatientDtosAsync(PageParams pageParams);
+        Task<PagedList<PatientDTO>> GetPatientDtosAsync(PatientParams patientParams);
         Task<Patient> GetPatientDtoAsync(string username);
     }
 }

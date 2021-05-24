@@ -65,7 +65,7 @@
 
 <div class="container image-list-container mt-5">
 <div class="row">
-    <div *ngFor="let image of imagesMeta" class="col-md-4 col-lg-4 col-xl-4">
+    <div *ngFor="let image of imagesMeta" class="col-lg-4 col-xl-4">
         <div class="thumb">
             <a routerLink="/image/{{ image.url }}/{{image.patient.id}}" class="thumb__link">
                 <app-single-image [imageUrl] ="image.url"></app-single-image>

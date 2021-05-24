@@ -23,6 +23,7 @@ export class ImagesService {
     imagesMeta: ImageMeta[] = [];
     patientImageMeta: ImageMeta[] = [];
     imagesMetaCash = new Map();
+    imageThumbs = new Map();
 
     constructor(private http: HttpClient) {}
 
@@ -38,7 +39,6 @@ export class ImagesService {
                     const imageString: string | null = decompressImage(
                         imageResponse
                     );
-                    console.log(imageString);
                     this.images.push({ id, imageString });
                     return { id, imageString };
                 })
@@ -115,6 +115,27 @@ export class ImagesService {
         return this.http.get<ImageMeta[]>(this.baseUrl + 'images/' + id).pipe(
             map((imageMeta) => {
                 return imageMeta;
+            })
+        );
+    }
+
+    // tslint:disable-next-line:typedef
+    getImageThumbName(id: string) {
+        console.log(this.imageThumbs);
+        const imageThumb = this.imageThumbs.get(id);
+        console.log(imageThumb);
+
+        if (imageThumb !== undefined) {
+            return of(imageThumb);
+        }
+        return this.http.get(this.medicalImgUrl + `images/['${id}']`).pipe(
+            map((response) => {
+                this.imageThumbs.set(
+                    Object.keys(response)[0],
+                    response[Object.keys(response)[0]]
+                );
+
+                return response[Object.keys(response)[0]];
             })
         );
     }

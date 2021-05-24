@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EbsjEA5DhLfTSX10grmNQo54CEVr/r3GrHLnH5+uv3e3Bdb5P3TZKHUPQaXKyixz8zAC1R1F56XAwZd3ET84Fw==",
+  "dgSpecHash": "0LxocGKvJ596RrQKPwTp7gtPYTifKW8D2JGHv6HhwDMWx5TOZWCZAlCk2qOmCXhN3NcCApW7zyhdCVgOtyW3PQ==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Bruker\\Desktop\\BachelorOppgave2021\\server\\api\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\Bruker\\Desktop\\BachelorOppgave2021\\server\\api\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Bruker\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Bruker\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
