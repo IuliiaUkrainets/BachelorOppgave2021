@@ -1,10 +1,32 @@
+
+ <style>
+    div.focus-image {
+        width: 512px;
+height:512px;
+display:inline-block;
+position:relative;
+cursor:pointer;
+}
+div.focus-image div {
+display:none;
+border:2px solid red;
+position:absolute;
+left:90px; /*x*/
+top:60px; /*y*/
+}
+img{
+width: 512px;
+height:512px;
+}
+</style>
+
 <div id="content-image" class="content content-image" style="{{ toggleNegative() }}">
     <div class="image-toolbar">
         <div class="image-toolbar__meta">
             <ul class="image-toolbar__list">
                 <li class="image-toolbar__name">Pasient: {{patient.firstName}} {{patient.lastName}}</li>
                 <li class="image-toolbar__date">Fødselsdato: {{ patient.dateOfBirth | date }}</li>
-                <li class="image-toolbar__">Kjønn: {{patient.gender}}</li>
+                <li class="image-toolbar__">Kjønn: {{patient.gender}}</li> 
             </ul>
         </div>
         <!-- /.image-toolbar__meta -->
@@ -51,14 +73,21 @@
 
     <!-- /.close-image -->
     <div style="{{ styleHeight()}}"
-         class="image-container"
+         class="image-container" 
     >
+    <div (document:mousemove)="onMouseMove($event)" (document:mousedown)="onMouseDown($event)" (document:mouseup)="onMouseUp($event)" id="cont" class="focus-image">
             <img
                 style="{{ styleWidth() }}"
                 src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
                 alt="{{patient.lastName}}">
+
+             <div id="bbox"></div>
+            </div>
     </div>
+   
     <!-- /.image-container -->
 </div>
+
+
 <!-- /.content -->
 

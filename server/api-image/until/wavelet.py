@@ -67,7 +67,7 @@ def get_image(name):
 
     return pixel
 
-def get_image_base64(name):
+def get_image_jpg(name):
     ds = dicom.dcmread(name)
     pixel = ds.pixel_array
     pixel[pixel < 300] = 0

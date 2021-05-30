@@ -18,8 +18,8 @@ from resources.patient import \
 from resources.user import UserRegister, Users
 from resources.image import Image, ImagePath, TextImage, Images, sendImage, Negative, Roi
 app = Flask(__name__)
-app.config.from_pyfile('config.cfg')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#app.config.from_pyfile('config.cfg')
+#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
 app.secret_key = 'ArcticUniversity'
@@ -56,5 +56,5 @@ api.add_resource(Roi, '/roi/<string:arr>')
 
 if __name__ == '__main__':
     db.init_app(app)
-    app.run(port=5000, debug=True)
+    app.run(port=5030, debug=True)
 
