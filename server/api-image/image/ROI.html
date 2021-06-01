@@ -28,10 +28,15 @@ height:512px;
 </head>
 <body>
     <div id="cont" class="focus-image">
-        <img src="http://localhost:5000/getImage/0004.jpg" />
+      
+        <img id="image" src="http://localhost:5000/getImage/0004.jpg" />
         <div id="bbox"></div>
       </div>
       <script>
+  fetch("http://127.0.0.1:5000/images/['0004']").then(x=> x.json()).then(x=>
+ {
+        document.getElementById('image').src = x['0004'];
+    });
         var x,y,oldx,oldy;
 var showDrag = false;
 document.getElementById("cont").addEventListener("mousedown", function(e) {
@@ -70,7 +75,7 @@ document.getElementById("cont").addEventListener("mousemove", function(e) {
 });
 document.getElementById("cont").addEventListener("mouseup", function(e) {
   showDrag = false;
-  fetch('http://127.0.0.1:5000/roi/0004,'+oldx+','+oldy+','+x_coord+','+y_coord+'').then(x=> x.json()).then(x=>
+  fetch('http://127.0.0.1:5030/roi/0004,'+oldx+','+oldy+','+x_coord+','+y_coord+'').then(x=> x.json()).then(x=>
     {
       document.querySelector('img').src = 'http://localhost:5000/getImage/' + x.image;
       var bbox = document.getElementById("bbox");

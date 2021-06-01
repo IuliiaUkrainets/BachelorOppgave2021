@@ -5,14 +5,14 @@ import pydicom as dicom
 from PIL.Image import fromarray
 from PIL import Image
 import pylibjpeg
-import scipy.signal as scs
-import sys
-import matplotlib.path as mplPath
-import scipy.misc
+#import scipy.signal as scs
+#import sys
+#import matplotlib.path as mplPath
+#import scipy.misc
 import random
 import string
 import os
-
+import base64
 
 def get_random_string():
     result_str = ''.join(random.choice(string.ascii_letters) for i in range(12))
@@ -67,6 +67,18 @@ def get_image(name):
 
     return pixel
 
+def get_image_jpg(name):
+    ds = dicom.dcmread(name)
+    pixel = ds.pixel_array
+    pixel[pixel < 300] = 0
+    pixel = (pixel / ds[('0028', '0107')].value)
+    pixel[pixel > 1.0] = 1
+    pixel = pixel * 255
+    name = get_random_string() + '.jpg'
+    path = './image/'+ name
+    cv2.imwrite(path, np.uint8(wavelet(pixel)[0]))
+    return name
+    # return 'data:image/jpg;base64,' + b64_string
 
 def get_wavelet(name):
     d = dicom.dcmread(name)
@@ -83,6 +95,26 @@ def get_wavelet(name):
 
     return wavelet(pixel)
 
+def get_wavelet2(name):
+    d = dicom.dcmread(name)
+    f = open('test.txt', 'a')
+
+    f.write(str(d))
+
+    ds = dicom.dcmread(name)
+    pixel = ds.pixel_array
+    pixel[pixel < 300] = 0
+    pixel = (pixel / ds[('0028', '0107')].value)
+    pixel[pixel > 1.0] = 1
+    pixel = pixel * 255
+    arr = wavelet(pixel)
+    temp = []
+    temp.append(wavelet(arr[0]))
+    temp.append(arr[1])
+    temp.append(arr[2])
+    temp.append(arr[3])
+
+    return temp
 
 # Array = np.zeros((int(d.Rows), int(d.Columns)), dtype=d.pixel_array.dtype)
 # cv2.imwrite("SavedFiles/original.jpg", d.pixel_array)
@@ -109,7 +141,7 @@ def get_wavelet(name):
 # arr = np.array([[13,12,16,15], [15,14,11,19],[12,13,18,15], [11,14,17,16]])
 
 
-def wavelet(arr):
+def wavelet(arr): # spalting
     WL = []
     WH = []
     arr = np.int16(arr)
@@ -156,35 +188,35 @@ def wavelet(arr):
         for j in range(len(WH[0])):
             temp.append((WH[i][j] - WH[i + 1][j]) / 2.)
         WHH.append(temp)
-    return WLL, WLH, WHL, WHH
+    return WLL, WLH, WHL, WHH # returnere 4 matriser
 
 
 def waveletR(WLL, WLH, WHL, WHH):  # dekomprimering
     WL = []
-    for i in range(len(WLL[0])):
+    for i in range(len(WLL)):
         temp = []
         temp1 = []
-        for j in range(len(WLL)):
+        for j in range(len(WLL[0])):
             temp.append(WLL[i][j] + WLH[i][j])
-        for j in range(len(WLL)):
+        for j in range(len(WLL[0])):
             temp1.append(WLL[i][j] - WLH[i][j])
         WL.append(temp)
         WL.append(temp1)
 
     WH = []
 
-    for i in range(len(WHL[0])):
+    for i in range(len(WHL)):
         temp = []
         temp1 = []
-        for j in range(len(WHL)):
+        for j in range(len(WHL[0])):
             temp.append(WHL[i][j] + WHH[i][j])
 
-        for j in range(len(WHL)):
+        for j in range(len(WHL[0])):
             temp1.append(WHL[i][j] - WHH[i][j])
         WH.append(temp)
         WH.append(temp1)
 
-    W = []  # resultat matrise
+    W = []  # resultat  en matrise som samles av grov versjon og  gorisontal, vertikal og diagonal avviker
     for i in range(len(WH)):
         temp = []
         for j in range(len(WH[0])):
@@ -196,7 +228,7 @@ def waveletR(WLL, WLH, WHL, WHH):  # dekomprimering
     return np.uint8(W)
 
 
-def waveletT(image, count, matrix=[]):
+def waveletT(image, count, matrix=[]): # øker iterasjon
     p = wavelet(image)
     if count > 0:
         count -= 1
@@ -212,43 +244,39 @@ def waveletT(image, count, matrix=[]):
 
     return matrix
 
+#
+# def concate(matrix): # samling iterasjon i en stor matrise for å visiolisere bildet
+#     global t
+#     a = matrix.pop()
+#     b = matrix.pop()
+#     c = matrix.pop()
+#     d = matrix.pop()
+#
+#     t1 = np.concatenate([np.uint8(a), np.uint8(b)], axis=1)
+#     t2 = np.concatenate([np.uint8(c), np.uint8(d)], axis=1)
+#     t3 = np.concatenate([t1, t2], axis=0)
+#     t = np.uint8(t3)
+#     if np.array(matrix).shape[0] > 0:
+#         matrix.append(t3)
+#         concate(matrix)
 
-def concate(matrix):
-    global t
-    a = matrix.pop()
-    b = matrix.pop()
-    c = matrix.pop()
-    d = matrix.pop()
 
-    t1 = np.concatenate([np.uint8(a), np.uint8(b)], axis=1)
-    t2 = np.concatenate([np.uint8(c), np.uint8(d)], axis=1)
-    t3 = np.concatenate([t1, t2], axis=0)
-    t = np.uint8(t3)
-    if np.array(matrix).shape[0] > 0:
-        matrix.append(t3)
-        concate(matrix)
-
-
-def RunLength(r):
-    count = 0
-    p = []
-    for i in range(r.shape[0]):
-        for j in range(r.shape[0]):
-            if r[i][j] != 0:
-                p.append((count, r[i][j]))
-            else:
-                count += 1
-    return np.array(p)
+# def RunLength(r): #
+#     count = 0
+#     p = []
+#     for i in range(r.shape[0]):
+#         for j in range(r.shape[0]):
+#             if r[i][j] != 0:
+#                 p.append((count, r[i][j]))
+#             else:
+#                 count += 1
+#     return np.array(p)
 
 #
 # get_original_image('0004.dcm')
-<<<<<<< HEAD
-# image = get_wavelet('../image/0004.dcm')
-# cv2.imwrite('../image/0004.jpg', waveletR(*image))
-=======
-# image = get_image('0004.dcm')
-
->>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
+# name = '0450'
+# t = get_wavelet('../image/'+name+'.dcm')
+# cv2.imwrite('../image/'+name+'.jpg', waveletR(*t))
 
 # concate(waveletT(image, 5))
 
@@ -272,11 +300,11 @@ def RunLength(r):
 
 # cv2.waitKey()
 
-# cv2.imwrite('SavedFiles/c.jpg', np.uint8(t[0]))
-
+# cv2.imwrite('../image/c.jpg', np.uint8(t[0]))
+#
 # img = waveletR(*t)
-
-# cv2.imwrite('SavedFiles/d.jpg', img)
+#
+# cv2.imwrite('../image/d.jpg', img)
 
 
 # cv2.imwrite('SavedFiles/wavelet.jpg', np.int16(t[0])) # lagre bilde på server
@@ -293,17 +321,10 @@ def RunLength(r):
 # pl.imshow(gray, cmap='gray') # original, for å få dekomprimerte bilde endrer jeg til img i steden for gray
 # img = np.int16(t[0])
 # img = img[20:145, 20:145]
-<<<<<<< HEAD
-# i = cv2.imread('../image/DUTukoMruAbH.jpg', 0)
+# i = cv2.imread('../image/'+name+'.jpg', 0)
 # cv2.imshow('c', i)
 # wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
-# j = cv2.imread('../image/0004.jpg', 0)
-=======
-# i = cv2.imread('SavedFiles/ZFNrTJPbHaHF.jpg', 0)
-# cv2.imshow('c', i)
-# wav = cv2.calcHist([i],[0],None,[256],[0,256]) # regne  entropi gistagram
-# j = cv2.imread('SavedFiles/d.jpg', 0)
->>>>>>> 0598bac391de28f9f2e88d716082c0b5fb88bf38
+# j = cv2.imread('../image/d.jpg', 0)
 # cv2.imshow('c', j)
 # original = cv2.calcHist([j],[0],None,[256],[0,256])
 # #c = pl.imshow(cv2.bitwise_not(j), cmap='gray') #negativ transformation
@@ -314,7 +335,7 @@ def RunLength(r):
 
 # print(np.mean(i**2-j**2))
 
-# c = os.stat('SavedFiles/c.jpg').st_size
-# o = os.stat('SavedFiles/d.jpg').st_size
+# c = os.stat('../image/c.jpg').st_size
+# o = os.stat('../image/d.jpg').st_size
 # print(o/c) # koefisient komprimering
 # cv2.waitKey()
