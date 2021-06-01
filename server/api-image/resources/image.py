@@ -9,9 +9,11 @@ import cv2
 import numpy as np
 import pydicom as dicom
 from ast import literal_eval
+import os.path
 
+image_compression = {} # save arras 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'jpg', 'jpeg', 'dcm'}
-def allowed_file(filename): # function
+def allowed_file(filename): # function sjekker utvidelsen for filer
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
@@ -39,9 +41,13 @@ class ImagePath(Resource): # returnerer bilder i matriser (arrey 2 d)
     @staticmethod
     def get(name):
         if request.method == "GET":
-            images = './image/'+name+'.dcm'
-            from until.wavelet import get_wavelet2, wavelet
-            arr = get_wavelet2(images)
+            if name in image_compression:
+                arr = image_compression[name]
+            else:
+                images = './image/'+name+'.dcm'
+                from until.wavelet import get_wavelet2, wavelet
+                arr = get_wavelet2(images)
+                image_compression[name] = arr
 
             return {"image": arr}, 201
 
@@ -52,9 +58,11 @@ class Images(Resource): # leverer matriser med bilder navn i format jpg
             image = literal_eval(array)
             result = {}
             for img in image:
-                images = './image/'+img+'.dcm'
-                from until.wavelet import get_image_jpg
-                result[img] = get_image_jpg(images)
+                if os.path.exists('./image/'+img+'.jpg'):
+                    result[img] = img+'.jpg'
+                else:
+                    from until.wavelet import get_image_jpg
+                    result[img] = get_image_jpg(img)
             return result, 201
 
 class TextImage(Resource): # function for å få text fra DICOM fil
@@ -83,7 +91,7 @@ class Negative(Resource): #function for oversetelse bilde til negative
 class Roi(Resource): # function for roi
     @staticmethod
     def get(arr):
-        t = arr.split(',')
+        t = arr.split(',') #foresporsel fra client parset
         print(t)
         from until.wavelet import get_image, get_random_string
         images = './image/' + t[0] + '.dcm'

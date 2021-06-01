@@ -14,14 +14,14 @@ import string
 import os
 import base64
 
-def get_random_string():
+def get_random_string(): # generer rando numerisk simbol
     result_str = ''.join(random.choice(string.ascii_letters) for i in range(12))
     return result_str
 
 
-def get_compression_image(name):
+def get_compression_image(name): # fungerer som en iterasjon (test)
     d = dicom.dcmread(name)
-    f = open('test.txt', 'a')
+    f = open('text.txt', 'a')
 
     f.write(str(d))
 
@@ -32,13 +32,13 @@ def get_compression_image(name):
     pixel[pixel > 1.0] = 1
     pixel = pixel * 255
 
-    path = 'SavedFiles/' + get_random_string() + '.jpg'
+    path = './image/' + get_random_string() + '.jpg'
     cv2.imwrite(path, np.uint8(wavelet(pixel)[0]))
 
     return path
 
 
-def get_original_image(name):
+def get_original_image(name): # funksjon konverterer til jpg, negative bilder
 
     ds = dicom.dcmread(name)
     pixel = ds.pixel_array
@@ -55,7 +55,7 @@ def get_original_image(name):
     return name
 
 
-def get_image(name):
+def get_image(name): # function leverer piksel bilder
     d = dicom.dcmread(name)
 
     ds = dicom.dcmread(name)
@@ -67,20 +67,20 @@ def get_image(name):
 
     return pixel
 
-def get_image_jpg(name):
-    ds = dicom.dcmread(name)
+def get_image_jpg(name): # leverer bilder i jpg
+    ds = dicom.dcmread('./image/'+ name+'.dcm')
     pixel = ds.pixel_array
     pixel[pixel < 300] = 0
     pixel = (pixel / ds[('0028', '0107')].value)
     pixel[pixel > 1.0] = 1
     pixel = pixel * 255
-    name = get_random_string() + '.jpg'
-    path = './image/'+ name
+    name_original = name + '.jpg'
+    path = './image/'+ name_original
     cv2.imwrite(path, np.uint8(wavelet(pixel)[0]))
-    return name
+    return name_original
     # return 'data:image/jpg;base64,' + b64_string
 
-def get_wavelet(name):
+def get_wavelet(name): # funk. leverer wavelet
     d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
@@ -95,7 +95,7 @@ def get_wavelet(name):
 
     return wavelet(pixel)
 
-def get_wavelet2(name):
+def get_wavelet2(name): # to iterasjon
     d = dicom.dcmread(name)
     f = open('test.txt', 'a')
 
@@ -333,9 +333,24 @@ def waveletT(image, count, matrix=[]): # øker iterasjon
 # pl.legend()
 # pl.show()
 
-# print(np.mean(i**2-j**2))
+# beregner feil
+#sum=0
+#for m in range(i.shape[0]):
+#     for n in range(i.shape[1]):
+#         sum+= abs(np.int64(i[m][n]) - np.int64(j[m][n]))
+#
+# print(sum/(i.shape[0]*i.shape[1]))
 
+
+# SLE standartavvik
+# print(np.mean(i**2-j**2)) 
+
+
+# koefisient komprimering
 # c = os.stat('../image/c.jpg').st_size
 # o = os.stat('../image/d.jpg').st_size
-# print(o/c) # koefisient komprimering
+# print(o/c) 
 # cv2.waitKey()
+
+
+

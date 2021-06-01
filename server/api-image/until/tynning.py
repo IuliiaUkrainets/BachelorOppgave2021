@@ -141,20 +141,26 @@ for i in range(V.shape[0]):
 # plt.show()
 
 
-# o = os.stat('original.jpg').st_size
-# c = os.stat('del_zero.jpg').st_size
+# 
 # t = cv2.imread('original.jpg', 0)
 #d = cv2.imread("")
+
+
+# beregning feil
 # sum = 0
-#
 # for m in range(t.shape[0]):
 #     for n in range(t.shape[1]):
 #         sum+= abs(np.int64(t[m][n]) - np.int64(d[m][n]))
-#
 # print(sum/(t.shape[0]*t.shape[1]))
 #
+
+#beregning SLE
 # print(np.mean((t-d)**2))
+
+# komprimerings forhold Koefisient 
+# o = os.stat('original.jpg').st_size
+# c = os.stat('del_zero.jpg').st_size
 # print(o/c)
 
 
-cv2.waitKey() # metod for a luke bilde ved a trikke noen knapen
+#cv2.waitKey() # metod for a luke bilde ved a trikke noen knapen
