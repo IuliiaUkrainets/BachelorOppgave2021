@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
@@ -29,12 +30,27 @@ namespace API.Data
 
         public async Task<PagedList<PatientDTO>> GetPatientDtosAsync(PatientParams patientParams)
         {
-            var query = _context
-                    .Patients
-                .ProjectTo<PatientDTO>(_mapper.ConfigurationProvider)
-                .AsNoTracking();
+            var query = _context.Patients.AsQueryable();
 
-            return await PagedList<PatientDTO>.CreateAsync(query, patientParams.PageNumber, patientParams.PageSize);
+            if (patientParams.Search != null)
+            {
+                query = query
+                .Where(p => p.LastName.ToLower().Contains(patientParams.Search.ToLower())
+                        || p.FirstName.ToLower().Contains(patientParams.Search.ToLower())
+                        || p.Middlename.ToLower().Contains(patientParams.Search.ToLower())
+                        || p.SSN.Contains(patientParams.Search)
+                        || p.Email.ToLower().Contains(patientParams.Search.ToLower())
+                        || p.PhoneNumber.ToLower().Contains(patientParams.Search.ToLower())
+                        );
+            }
+
+            return await PagedList<PatientDTO>.CreateAsync(
+                query.ProjectTo<PatientDTO>
+                (
+                    _mapper.ConfigurationProvider).AsNoTracking(),
+                    patientParams.PageNumber,
+                    patientParams.PageSize
+                );
         }
 
         public async Task<Patient> GetPatientByIdAsync(int id)
@@ -72,37 +88,5 @@ namespace API.Data
         {
             throw new System.NotImplementedException();
         }
-
-        /*  public async Task<UserDTO> GetUserDtoAsync(string username)
-         {
-             return await _context.Users
-                     .Where(x => x.UserName == username)
-                     .ProjectTo<UserDTO>(_mapper.ConfigurationProvider)
-                     .SingleOrDefaultAsync();
-         }
-
-         public async Task<IEnumerable<UserDTO>> GetUserDtosAsync()
-         {
-             return await _context.Users
-                 .ProjectTo<UserDTO>(_mapper.ConfigurationProvider)
-                 .ToListAsync();
-         }
-
-         public async Task<IEnumerable<AppUser>> GetUsersAsync()
-         {
-             return await _context.Users
-                 .Include(p => p.Photos)
-                 .ToListAsync();
-         }
-
-         public async Task<bool> SaveAllAsync()
-         {
-             return await _context.SaveChangesAsync() > 0;
-         }
-
-         public void Update(AppUser user)
-         {
-             _context.Entry(user).State = EntityState.Modified;
-         } */
     }
 }

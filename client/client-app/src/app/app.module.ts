@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
-import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
@@ -55,7 +54,6 @@ import { ImageDirective } from './_directives/image.directive';
         RegisterPasientComponent,
         UserListComponent,
         UserDetailComponent,
-        MessagesComponent,
         TestErrorsComponent,
         NotFoundComponent,
         ServerErrorComponent,

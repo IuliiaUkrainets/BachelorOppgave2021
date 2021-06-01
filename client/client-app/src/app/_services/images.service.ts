@@ -58,13 +58,10 @@ export class ImagesService {
             imageParams.pageNumber,
             imageParams.pageSize
         );
-        if (imageParams.lastName != null) {
-            params = params.append('lastName', imageParams.lastName);
+        if (imageParams.search != null) {
+            params = params.append('search', imageParams.search);
         }
 
-        if (imageParams.ssn != null) {
-            params = params.append('ssn', imageParams.ssn);
-        }
         // @ts-ignore
         return this.getPaginatedResult<ImageMeta[]>(
             this.baseUrl + 'images',
@@ -146,5 +143,34 @@ export class ImagesService {
                 return imageText;
             })
         );
+    }
+
+    getRoi(
+        id: string,
+        oldX: number,
+        oldY: number,
+        x: number,
+        y: number
+    ): Observable<any> {
+        return this.http
+            .get<any>(
+                this.medicalImgUrl +
+                    'roi/' +
+                    id +
+                    ',' +
+                    oldX +
+                    ',' +
+                    oldY +
+                    ',' +
+                    x +
+                    ',' +
+                    y +
+                    ''
+            )
+            .pipe(
+                map((response) => {
+                    return response;
+                })
+            );
     }
 }

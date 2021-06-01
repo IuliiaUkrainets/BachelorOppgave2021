@@ -10,7 +10,7 @@ export class SearchParamService {
 
     constructor() {}
 
-    changeSearch(username: string): void {
-        this.searchSource.next(username);
+    changeSearch(searchString: string): void {
+        this.searchSource.next(searchString);
     }
 }

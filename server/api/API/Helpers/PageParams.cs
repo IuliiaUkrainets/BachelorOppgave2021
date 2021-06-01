@@ -15,9 +15,6 @@ namespace API.Helpers
         public string SSN { get; set; } = null;
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string TelephoneNumber { get; set; }
-
-    
-       
+        public string TelephoneNumber { get; set; }  
     }
 }

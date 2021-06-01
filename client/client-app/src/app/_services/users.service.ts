@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 import { map } from 'rxjs/operators';
 import { PaginatedResult } from '../_models/pagination';
+import { serialize } from 'uri-js';
 
 @Injectable({
     providedIn: 'root',
@@ -13,17 +14,23 @@ export class UsersService {
     baseUrl = environment.apiUrl;
     users: User[] = [];
     paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
+    userCash = new Map();
 
     constructor(private http: HttpClient) {}
 
     getUsers(
         page?: number,
-        itemsPerPage?: number
+        itemsPerPage?: number,
+        search?: string
     ): Observable<PaginatedResult<User[]>> {
         let params = new HttpParams();
         if (page !== null && itemsPerPage !== null) {
             params = params.append('pageNumber', page.toString());
             params = params.append('pageSize', itemsPerPage.toString());
+        }
+
+        if (search !== null) {
+            params = params.append('search', search);
         }
         return this.http
             .get<User[]>(this.baseUrl + 'users', {

@@ -43,14 +43,16 @@ namespace API.Data
             .MedicalImages 
             .AsQueryable();
 
-            if (imageParams.SSN != null) {
+            if (imageParams.Search != null)
+            {
                 query = query
-                .Where(i => i.Patient.SSN == imageParams.SSN);
-            }
-
-            if(imageParams.LastName != null) {
-                query = query
-                .Where(i => i.Patient.LastName == imageParams.LastName);
+                .Where(i => i.Patient.LastName.ToLower().Contains(imageParams.Search.ToLower())
+                        || i.Patient.FirstName.ToLower().Contains(imageParams.Search.ToLower())
+                        || i.Patient.Middlename.ToLower().Contains(imageParams.Search.ToLower())
+                        || i.Patient.SSN.Contains(imageParams.Search)
+                        || i.Patient.Email.ToLower().Contains(imageParams.Search.ToLower())
+                        || i.Patient.PhoneNumber.ToLower().Contains(imageParams.Search.ToLower())
+                        );
             }
 
             query = imageParams.OrderBy switch

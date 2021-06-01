@@ -9,11 +9,6 @@
         </div>
         <!-- /.image-toolbar__meta -->
         <div class="image-toolbar__tools">
-<!--            <a routerLink="/images" class="image-toolbar__control">-->
-<!--                <svg class="image__icon">-->
-<!--                    <use xlink:href="/assets/img/sprite.svg#icon-cross"></use>-->
-<!--                </svg>-->
-<!--            </a>-->
             <button appHoldable (holdTime)="grow()" class="image-toolbar__control">
                 <svg class="image__icon">
                     <use xlink:href="/assets/img/sprite.svg#icon-resize-100"></use>
@@ -39,26 +34,27 @@
                     <use xlink:href="/assets/img/sprite.svg#icon-adjust"></use>
                 </svg>
             </button>
-<!--            <a href="./comments.html" class="image-toolbar__control">-->
-<!--                <svg class="image__icon">-->
-<!--                    <use xlink:href="/assets/img/sprite.svg#icon-insert_comment"></use>-->
-<!--                </svg>-->
-<!--            </a>-->
         </div>
         <!-- /.image-toolbar__tools -->
     </div>
-    <!-- ./image-toolbar -->
-
-    <!-- /.close-image -->
     <div style="{{ styleHeight()}}"
-         class="image-container"
-    >
-            <img
-                style="{{ styleWidth() }}"
-                src="{{  medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
-                alt="{{patient.lastName}}">
+         class="image-container">
+        <div
+            style="{{ styleHeight()}}"
+            class="image-container focus-image"
+            #appImage
+            appImage
+            (mousedown)="parentMouseDown($event)"
+            (mousemove)="parentOnDrag($event)"
+            (mouseup)="parentOnMouseUp($event)"
+        >
+            <img #imageElement
+                 style="{{ styleWidth() }}"
+                 src="{{ medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
+                 alt="{{patient.lastName}}">
+            <div #bbox></div>
+        </div>
     </div>
-    <!-- /.image-container -->
 </div>
 <!-- /.content -->
 

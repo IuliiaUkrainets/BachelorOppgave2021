@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Pagination } from 'src/app/_models/pagination';
 import { Patient } from '../../_models/patient';
 import { PatientsService } from '../../_services/patients.service';
+import { PatientParams } from '../../_models/params';
+import { SearchParamService } from '../../_services/search-param.service';
 
 @Component({
     selector: 'app-patient-list',
@@ -9,65 +11,36 @@ import { PatientsService } from '../../_services/patients.service';
     styleUrls: ['./patient-list.component.scss'],
 })
 export class PatientListComponent implements OnInit {
-    patients$: Observable<Patient[]> | undefined;
     patients: Patient[] = [];
-    ssn = '';
-    lastName = '';
-    email = '';
-    telephone = '';
+    pagination: Pagination;
+    patientParams: PatientParams;
 
-    constructor(private patientService: PatientsService) {}
+    constructor(
+        private patientService: PatientsService,
+        private searchService: SearchParamService
+    ) {
+        this.patientParams = new PatientParams();
+    }
 
     ngOnInit(): void {
-        this.patients$ = this.patientService.getPatients();
-        this.patients$.subscribe((patients) => {
-            this.patients = patients;
+        this.loadPatients();
+        this.searchService.search.subscribe((result) => {
+            this.patientParams.search = result;
+            this.loadPatients();
         });
     }
 
-    searchBySsn(): void {
-        if (this.ssn === '') {
-            this.ngOnInit();
-        } else {
-            this.patients = this.patients.filter((res) => {
-                return res.ssn.match(this.ssn);
+    loadPatients(): void {
+        this.patientService
+            .getPatients(this.patientParams)
+            .subscribe((response) => {
+                this.patients = response.result;
+                this.pagination = response.pagination;
             });
-        }
     }
 
-    searchByLastName(): void {
-        if (this.lastName === '') {
-            this.ngOnInit();
-        } else {
-            this.patients = this.patients.filter((res) => {
-                return res.lastName
-                    .toLocaleLowerCase()
-                    .match(this.lastName.toLocaleLowerCase());
-            });
-        }
-    }
-
-    searchByEmail(): void {
-        if (this.email === '') {
-            this.ngOnInit();
-        } else {
-            this.patients = this.patients.filter((res) => {
-                return res.email
-                    .toLocaleLowerCase()
-                    .match(this.email.toLocaleLowerCase());
-            });
-        }
-    }
-
-    searchByTelephone(): void {
-        if (this.telephone === '') {
-            this.ngOnInit();
-        } else {
-            this.patients = this.patients.filter((res) => {
-                return res.phoneNumber
-                    .toLocaleLowerCase()
-                    .match(this.telephone.toLocaleLowerCase());
-            });
-        }
+    pageChanged(event: any): void {
+        this.patientParams.pageNumber = event.page;
+        this.loadPatients();
     }
 }

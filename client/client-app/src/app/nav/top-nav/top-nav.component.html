@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header-wrapper">
         <form #form="ngForm" class="search nav__search">
-            <input autocomplete="off"  #searchField [(ngModel)]="search" name="search" type="text" class="search__input input" placeholder="Søk...">
+            <input autocomplete="off" #searchField [(ngModel)]="search" name="search" type="text" class="search__input input" placeholder="Søk...">
             <button (click)="updateSearch()"  class="search__button">
                 <svg class="search__icon">
                     <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>

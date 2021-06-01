@@ -26,11 +26,7 @@ export class ImageListComponent implements OnInit {
     ngOnInit(): void {
         this.loadImageMeta();
         this.searchService.search.subscribe((result) => {
-            if (isNaN(+result)) {
-                this.imageParams.lastName = result;
-            } else {
-                this.imageParams.ssn = result;
-            }
+            this.imageParams.search = result;
             this.loadImageMeta();
         });
     }
@@ -53,22 +49,4 @@ export class ImageListComponent implements OnInit {
         this.imageParams.pageNumber = event.page;
         this.loadImageMeta();
     }
-
-    // getImageMeta(): void {
-    //     this.imageService.getImagesMeta().subscribe((imageMeta) => {
-    //         this.imagesMeta = imageMeta;
-    //         // this.imagesMeta.forEach((meta) => {
-    //         //     this.ids.push(meta.url);
-    //         // });
-    //         // this.getImages();
-    //     });
-    // }
-
-    //  getImages(): void {
-    //     this.ids.forEach((id) => {
-    //         this.imageService.getImage(id).subscribe((image) => {
-    //             this.images.push(image);
-    //         });
-    //     });
-    // }
 }

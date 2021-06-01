@@ -12,8 +12,7 @@ namespace API.Helpers
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
 
-        public string SSN { get; set; } = null;
-        public string LastName { get; set; }
+        public string Search { get; set; }
         public string OrderBy { get; set; } = "taken";
     }
 }

@@ -30,6 +30,10 @@
         background-color: $color-grey-light;
     }
 
+    &__row:last-child {
+        border-bottom: 1px solid #dee2e6;
+    }
+
     .search {
         width: 100%;
     }

@@ -2,7 +2,6 @@ namespace API.Helpers
 {
     public class PatientParams
     {
-
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
         public int _pageSize { get; set; } = 10;
@@ -12,5 +11,7 @@ namespace API.Helpers
             get => _pageSize;
             set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
         }
+
+        public string Search { get; set; }
     }
 }

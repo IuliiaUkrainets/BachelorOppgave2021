@@ -53,6 +53,15 @@ namespace API.Data
                 "created" => query.OrderByDescending(u => u.Created),
                 _ => query.OrderByDescending(u => u.LastActive)
             };
+
+            if (userParams.Search != null)
+            {
+                query = query
+                .Where(u => u.LastName.ToLower().Contains(userParams.Search.ToLower())
+                        || u.FirstName.ToLower().Contains(userParams.Search.ToLower())
+                        || u.Category.ToLower().Contains(userParams.Search.ToLower())
+                        );
+            }
             
             
             return await PagedList<UserDTO>.CreateAsync(

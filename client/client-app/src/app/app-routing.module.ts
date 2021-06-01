@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
-import { MessagesComponent } from './messages/messages.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -42,7 +41,6 @@ const routes: Routes = [
                 component: AdminMainComponent,
                 canActivate: [AdminGuard],
             },
-            { path: 'messages', component: MessagesComponent },
             { path: 'images', component: ImageListComponent },
             { path: 'image/:id/:patientId', component: ImageComponent },
             { path: 'image-test', component: ImageTestComponent },
