@@ -342,7 +342,7 @@ def waveletT(image, count, matrix=[]): # øker iterasjon
 # print(sum/(i.shape[0]*i.shape[1]))
 
 
-# SLE standartavvik
+# S- standartavvik
 # print(np.mean(i**2-j**2)) 
 
 
