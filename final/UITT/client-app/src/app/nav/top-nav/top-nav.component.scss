@@ -1,0 +1,24 @@
+.header--dropdown-menu {
+    margin-right: 1rem;
+    width: 95%;
+    margin-top: .5rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    a {
+        color: darken(#999, 20%);
+    }
+}
+
+.dropdown__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: currentColor;
+}
+
+
+.dropdown-item {
+    &:active {
+        background-color: #0086df;
+    }
+}
+

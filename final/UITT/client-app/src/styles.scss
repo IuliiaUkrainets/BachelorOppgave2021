@@ -1,0 +1,38 @@
+
+/* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+@import "sass/abstract/variables";
+
+@import "sass/base/animations";
+@import "sass/base/base";
+@import "sass/base/typography";
+@import "sass/base/utilities";
+
+@import "sass/components/button";
+@import "sass/components/comments";
+@import "sass/components/form";
+@import "sass/components/image-toolbar";
+@import "sass/components/input";
+@import "sass/components/not-found";
+@import "sass/components/patient";
+@import "sass/components/search";
+@import "sass/components/sidebar-nav";
+@import "sass/components/table";
+@import "sass/components/thumbnail";
+@import "sass/components/user";
+
+@import "sass/layout/content";
+@import "sass/layout/header";
+@import "sass/layout/image-group";
+@import "sass/layout/image-list-container";
+@import "sass/layout/main";
+@import "sass/layout/media";
+@import "sass/layout/sidebar";
+
+
+@import "sass/pages/login";
+
+
+@import '../node_modules/ngx-toastr/toastr.css';

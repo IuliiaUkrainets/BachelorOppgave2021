@@ -1,0 +1,49 @@
+.table {
+    border-collapse: collapse;
+    box-shadow: 0 0.5rem 1rem rgba($color-grey-light, 0.9);
+    background-color: $color-white;
+    text-align: left;
+    overflow: hidden;
+    font-size: $default-font-size;
+    width: 100%;
+    &__head {
+        box-shadow: 0 0.2rem 4rem rgba($color-grey-dark-secondary, 0.1);
+    }
+    &__header {
+        padding: 1rem 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: darken($color-grey-dark, 20%);
+    }
+
+    &__data {
+        padding: 1rem 2rem;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    &__row:nth-child(even) {
+        background-color: $color-grey-light;
+    }
+
+    &__row:last-child {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .input {
+        width: 90%;
+        background-color: $color-grey-light;
+    }
+
+    .search__button {
+        background-color: $color-grey-light;
+    }
+}

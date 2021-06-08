@@ -1,0 +1,22 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem>
+        <a ngbNavLink>Alle Brukere</a>
+        <ng-template ngbNavContent>
+            <app-users-list></app-users-list>
+        </ng-template>
+    </li>
+    <li ngbNavItem>
+        <a ngbNavLink>Registerer en ny bruker</a>
+        <ng-template ngbNavContent><app-register></app-register></ng-template>
+    </li>
+    <li ngbNavItem>
+        <a ngbNavLink>Alle Pasienter</a>
+        <ng-template ngbNavContent></ng-template>
+    </li>
+    <li ngbNavItem>
+        <a ngbNavLink>Registerer en ny pasient</a>
+        <ng-template ngbNavContent><app-register-pasient></app-register-pasient></ng-template>
+    </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>
+

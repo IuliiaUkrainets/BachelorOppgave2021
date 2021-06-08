@@ -1,0 +1,19 @@
+<div class="container not-found mb-5">
+    <div class="row" style="text-align: center">
+        <div class="col-12" style="text-align: center">
+            <img src="assets/img/404-error.svg" style="width: 30rem;" alt="UiT Logo" class="col-12">
+            <div style="font-size: 6px;">Icons made by <a style="color: black" href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a style="color: black" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        </div>
+        <span style="display: block;" class="text-not-found">Intern server feil</span>
+        <a style="font-size: 1.5rem;" class="col-12" routerLink="/">
+            gå tilbake til hjemmesiden</a>
+    </div>
+    <ng-container *ngIf="error">
+        <span class="text-not-found">{{ error.message }}</span><br>
+    </ng-container>
+    <ng-container *ngIf="error">
+        <span style="font-size: 1.6rem">{{ error.details }}</span>
+    </ng-container>
+</div>
+
+

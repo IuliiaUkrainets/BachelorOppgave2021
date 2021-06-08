@@ -1,0 +1,48 @@
+z.image-container-comments {
+    background-color: #000000;
+    padding-top: 4px;
+    height: 100vh;
+    text-align: center;
+    img {
+    }
+}
+
+.comments-container {
+    background-color: #000000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.comments {
+
+}
+
+#comment-dato {
+    text-transform: uppercase;
+    color: $color-primary-dark;
+}
+
+#comment-name {
+    font-weight: 700;
+    color: $color-primary-dark;
+}
+
+.content-label {
+    color: white;
+    text-transform: uppercase;
+}
+
+.comment-button {
+    width: 100%;
+    color: white;
+    padding: 1rem 0;
+    margin-top: 3px;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    background-color: $color-primary-dark;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}

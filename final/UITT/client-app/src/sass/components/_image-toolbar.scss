@@ -1,0 +1,64 @@
+.image {
+    &-toolbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        &__list {
+            border-radius: 1px;
+            font-size: 1.3rem;
+            color: $color-white;
+            background-color: $color-grey-dark-secondary;
+            padding: 0.2rem;
+            list-style: none;
+        }
+
+        &__tools {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        &__controll {
+            display: inline-block;
+            padding: 1rem;
+            border: none;
+        }
+
+        &__controll, button {
+            display: inline-block;
+            padding: 1rem;
+            border-top: 1px solid $color-grey-dark-secondary;
+            border-bottom: 1px solid $color-grey-dark-secondary;
+            cursor: pointer;
+        }
+    }
+}
+
+.image-toolbar__control {
+    display: inline-block;
+    padding: 1rem;
+    background-color: $color-grey-dark-secondary;
+    outline: none;
+    border: none;
+    margin-bottom: 1rem;
+    border-radius: 1px;
+}
+
+.image__icon {
+    width: 2rem;
+    height: 2rem;
+    fill: white;
+}
+
+.close-button {
+    position: fixed;
+    right: 0;
+    top: 0;
+    .image__icon {
+        width: 3rem;
+        height: 3rem;
+        fill: white;
+    }
+}

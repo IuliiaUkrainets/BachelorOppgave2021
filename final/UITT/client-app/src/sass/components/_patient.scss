@@ -1,0 +1,22 @@
+.nav-tabs .nav-link {
+    text-transform: uppercase;
+}
+
+.patient-info li{
+    list-style: none;
+}
+
+.col-4 {
+    .patient-label {
+        text-transform: uppercase;
+        color: #042c84;
+    }
+
+    .patient-info-single {
+        font-weight: bold;
+        a {
+            font-size: inherit;
+            color: inherit;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html{
+    min-height: 100vh;
+    background-color: #000000;
+}
+body{
+    min-height: 100vh;
+}
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    color: $color-grey-dark;
+    background-color: #e1eaf2;
+}
+
+.page-item.active .page-link {
+    background-color: #234590;
+    border-color: #234590;
+}
+
+.page-link {
+    color: #234590;
+}
+
+.modal-content {
+    width: 200%;
+    font-size: 1.6rem;
+    transform: translate(-23%);
+}
+
+
+
+

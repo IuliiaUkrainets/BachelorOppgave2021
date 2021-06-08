@@ -1,0 +1,73 @@
+<table class="table">
+    <thead class="table__head">
+    <tr class="table__row--header">
+        <th class="table__header">Fornavn</th>
+        <th class="table__header">Etternavn</th>
+        <th class="table__header">Email</th>
+        <th class="table__header">Role</th>
+        <th class="table__header">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody class="table__body">
+    <tr class="table__row">
+        <td class="table__data">
+            <form action="#" class="search nav__search">
+                <input type="text" class="search__input input" placeholder="Fornavn...">
+                <button class="search__button">
+                    <svg class="search__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
+                    </svg>
+                </button>
+            </form>
+        </td>
+        <td class="table__data">
+            <form action="#" class="search nav__search">
+                <input type="text" class="search__input input" placeholder="Etternavn...">
+                <button class="search__button">
+                    <svg class="search__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
+                    </svg>
+                </button>
+            </form>
+        </td>
+        <td class="table__data">
+            <form action="#" class="search nav__search">
+                <input type="text" class="search__input input" placeholder="Email...">
+                <button class="search__button">
+                    <svg class="search__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
+                    </svg>
+                </button>
+            </form>
+        </td>
+        <td class="table__data">
+            <form action="#" class="search nav__search">
+                <input type="text" class="search__input input" placeholder="Role...">
+                <button class="search__button">
+                    <svg class="search__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
+                    </svg>
+                </button>
+            </form>
+        </td>
+        <td class="table__data">
+            &nbsp;
+        </td>
+    </tr>
+    <tr *ngFor="let user of users" class="table__row">
+        <td class="table__data"><a href="./pasient.html" class="table__link">{{user.firstName}}</a></td>
+        <td class="table__data"><a href="./pasient.html" class="table__link">{{user.lastName}}</a></td>
+        <td class="table__data"><a href="./pasient.html" class="table__link">{{user.email}}</a></td>
+        <td class="table__data">
+            <a href="./pasient.html" class="table__link">
+                {{user.roles}}
+            </a>
+        </td>
+        <td>
+            <button (click)="openRolesModal(user)" class="btn-info form-group--button mr-2 " type="button">
+                Editer roller
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>

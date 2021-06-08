@@ -1,0 +1,78 @@
+<div class="card upload-box">
+    <div class="row upload-box" style="margin: 0; padding: 10px">
+        <div class="col-md-12">
+            <h3 class="text-center form--header">Velg bilde</h3>
+            <hr>
+            <div class="upload-wrapper mt-5">
+                <div class="drop-zone" id="drop-zone" ng2FileDrop
+                     [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+                     (fileOver)="fileOverBase($event)"
+                     [uploader]="uploader"
+                     class="well my-drop-zone">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-upload-to-cloud"></use>
+                    </svg>
+                    Slipp bilde her
+                </div>
+<!--                <div style="font-size: 2rem">eller</div>-->
+                <div>
+                    <label class="drop-zone" for="formFile">
+                        <svg class="sidebar-nav__icon">
+                            <use xlink:href="assets/img/sprite.svg#icon-image-inverted"></use>
+                        </svg>
+                        Velg bilde
+                    </label>
+                    <input type="file" id="formFile" class="form-control" ng2FileSelect [uploader]="uploader"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-bottom: 40px">
+            <div>
+                <div *ngFor="let item of uploader.queue">
+                    <div><strong>{{ item?.file?.name }}</strong></div>
+                    <div *ngIf="uploader.options.isHTML5">{{ item?.file?.size / 1024 / 1024 | number:'.2' }}MB
+                    </div>
+                    <div *ngIf="uploader.options.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar"
+                                 [ngStyle]="{ 'width': item.progress + '%' }">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span *ngIf="item.isSuccess">
+                            Ditt profilbilde er byttet
+                        </span>
+                        <span *ngIf="item.isCancel">
+                            Kansellert
+                        </span>
+                        <span *ngIf="item.isError">
+                            Error
+                        </span>
+                    </div>
+                    <div class="mt-5">
+                        <button type="button" class="btn btn-success mr-3 p-3"
+                                (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <svg style="margin-right: 0;" class="sidebar-nav__icon">
+                                <use xlink:href="assets/img/sprite.svg#icon-upload-to-cloud"></use>
+                            </svg> Upload
+                        </button>
+                        <button type="button" class="btn btn-warning mr-3 p-3"
+                                (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <svg style="margin-right: 0;" class="sidebar-nav__icon">
+                                <use xlink:href="assets/img/sprite.svg#icon-cross"></use>
+                            </svg> Cancel
+                        </button>
+                        <button type="button" class="btn btn-danger p-3"
+                                (click)="item.remove()">
+                            <svg style="margin-right: 0;" class="sidebar-nav__icon">
+                                <use xlink:href="assets/img/sprite.svg#icon-trash"></use>
+                            </svg>
+                             Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

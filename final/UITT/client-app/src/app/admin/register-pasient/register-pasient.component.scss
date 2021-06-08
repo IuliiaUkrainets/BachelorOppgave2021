@@ -1,0 +1,33 @@
+.patient-details {
+    background-color: darken(#fff, 5%);
+    padding: 3rem 4rem;
+    &__photo-group {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin: 2rem auto;
+    }
+    &__icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        fill: currentColor;
+    }
+
+    .icon-input {
+        fill: #aaa;
+    }
+
+    &__image {
+        width: 100%;
+    }
+
+    .input-register {
+        background-color: #fff;
+        border-right: none;
+    }
+}
+
+
+
+

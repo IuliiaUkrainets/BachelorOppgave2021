@@ -1,0 +1,18 @@
+.input {
+    font-size: 1.6rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: darken($color-grey-light, 10%);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 100%;
+    display: block;
+}
+
+.form-control {
+    font-size: 1.5rem;
+}
+
+

@@ -1,0 +1,140 @@
+<div *ngIf="patient" class="row" style="text-transform: uppercase">
+    <div class="col-xs-12 col-lg-11">
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+            <li ngbNavItem>
+                <a ngbNavLink>{{patient.firstName | titlecase}} {{patient.lastName | titlecase}}</a>
+                <ng-template ngbNavContent>
+                    <div class="card mb-5">
+                        <div class="card-body">
+                            <div class="row mb-5">
+                                <!-- /.row -->
+                                <div class="col-4">
+                                    <div>
+                                        <div class="patient-label">Navn: </div>
+                                        <p class="patient-info-single">{{patient.firstName | titlecase}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="patient-label">Fødselsnummer: </div>
+                                        <p class="patient-info-single">{{patient.ssn | titlecase}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="patient-label">Addresse: </div>
+                                        <p class="patient-info-single">{{patient.address | titlecase}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="patient-label">Email: </div>
+                                        <p class="patient-info-single">
+                                            <a href="mailto: {{patient.email }}">
+                                                {{patient.email | titlecase}}
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- /.col-4 -->
+                                <div class="col-4">
+                                    <div>
+                                        <div class="patient-label">Mellomnavn: </div>
+                                        <p class="patient-info-single">{{patient.middlename | titlecase}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="patient-label">Kjønn: </div>
+                                        <p class="patient-info-single">{{patient.gender | titlecase}}</p>
+                                    </div>
+
+                                    <div>
+                                        <div class="patient-label">By: </div>
+                                        <p class="patient-info-single">{{patient.city | titlecase}}</p>
+                                    </div>
+                                    <div>
+                                        <div class="patient-label">Telefon Nummer: </div>
+                                        <p class="patient-info-single">
+                                            <a href="tel: {{patient.phoneNumber }}">
+                                                {{ patient.phoneNumber }}
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- /.col-4 -->
+                                <div class="col-4">
+                                    <div>
+                                        <div class="patient-label">Etternavn: </div>
+                                        <p class="patient-info-single">{{patient.lastName | titlecase}}</p>
+                                    </div>
+                                    <div>
+                                        <strong>&nbsp;</strong>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                    <div>
+                                        <strong>&nbsp;</strong>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div>
+                                <!-- /.col-4 -->
+                            </div>
+                            <div class="container image-list-container">
+                                <div class="row">
+                                    <div *ngFor="let image of patientImagesMeta" class="col-md-4 col-lg-4 col-xl-4">
+                                        <div class="thumb">
+                                            <a routerLink="/image/{{ image.url }}/{{image.patient.id}}" class="thumb__link">
+                                                <app-single-image [imageUrl] ="image.url"></app-single-image>
+                                                <!-- /.thumb__image -->
+                                                <div class="thumb__meta">
+                                                    <ul class="thumb__meta-list">
+                                                        <li class="thumb__meta-list-item">Navn:
+                                                            {{ image.patient.firstName}} {{ image.patient.lastName}}
+                                                        </li>
+                                                        <li class="thumb__meta-list-item">Fødselsnummer:
+                                                            {{ image.patient.ssn }}
+                                                        </li>
+                                                        <li class="thumb__meta-list-item">Kjønn:
+                                                            {{ image.patient.gender }}
+                                                        </li>
+                                                        <li class="thumb__meta-list-item">Tatt: {{ image.taken | date: 'dd MMMM, yyyy' }}</li>
+                                                    </ul>
+                                                </div>
+                                                <!-- /.thumb-meta -->
+                                            </a>
+                                        </div>
+                                        <!-- /.thumb -->
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+
+<!--                                <div class="row">-->
+<!--                                    <div *ngFor="let image of patientImagesMeta" class="col-md-4 col-lg-4 col-xl-4">-->
+<!--                                        <div class="thumb">-->
+<!--                                            <a routerLink="/image/{{ image.id }}/{{patient.id}}" class="thumb__link">-->
+<!--                                                <img src="{{ image ? image.imageString : '/assets/img/image-placeholder.jpg' }}" alt="Image: example of a thumb" class="thumb__image">-->
+<!--                                                &lt;!&ndash; /.thumb__image &ndash;&gt;-->
+<!--                                                <div class="thumb__meta">-->
+<!--                                                    <ul class="thumb__meta-list">-->
+<!--                                                        <li class="thumb__meta-list-item">-->
+
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash; /.thumb-meta &ndash;&gt;-->
+<!--                                            </a>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash; /.thumb &ndash;&gt;-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash; /.col &ndash;&gt;-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; /.row &ndash;&gt;-->
+                            </div>
+                            <!-- /.container -->
+
+
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </ng-template>
+            </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+    </div>
+    <!-- /.col-8 -->
+</div>
+<!-- /.row -->
+

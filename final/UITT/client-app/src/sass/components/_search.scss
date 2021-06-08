@@ -1,0 +1,37 @@
+.search {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+    height: 3.5rem;
+    input[type=text] {
+        font-size: 1.4rem;
+        line-height: 1.3rem;
+    }
+    &__input {
+        width: 50rem;
+        padding-right: 7.5rem;
+        padding-left: 2rem;
+        font-family: "Lato", sans-serif;
+        letter-spacing: 0.5px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+    &__button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 5.5rem;
+        height: 100%;
+        border: none;
+        background-color: rgba($color-primary-dark, 0.85);
+        cursor: pointer;
+    }
+    &__icon {
+        width: 1.8rem;
+        height: 1.8rem;
+        fill: $color-grey;
+    }
+}

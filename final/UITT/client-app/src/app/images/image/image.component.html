@@ -1,0 +1,69 @@
+<div id="content-image" class="content content-image" style="{{ toggleNegative() }}">
+    <div class="image-toolbar">
+        <div class="image-toolbar__meta">
+            <ul class="image-toolbar__list">
+                <li class="image-toolbar__name">
+                    Pasient:
+                    {{patient ? patient.firstName : '&nbsp;'}} {{patient ? patient.lastName : '&nbsp;'}}
+                </li>
+                <li class="image-toolbar__date">
+                    Fødselsdato:
+                    {{ patient ? (patient.dateOfBirth | date) : '&nbsp;'}}
+                </li>
+                <li class="image-toolbar__">
+                    Kjønn:
+                    {{patient ? patient.gender : '&nbsp;'}}
+                </li>
+            </ul>
+        </div>
+        <!-- /.image-toolbar__meta -->
+        <div class="image-toolbar__tools">
+            <button appHoldable (holdTime)="grow()" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-resize-100"></use>
+                </svg>
+            </button>
+            <button appHoldable (holdTime)="shrink()" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-resize-full-screen"></use>
+                </svg>
+            </button>
+            <button appHoldable (click)="reset()" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-reload-alt"></use>
+                </svg>
+            </button>
+            <button (click)="openTextModal()" type="button" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-info"></use>
+                </svg>
+            </button>
+            <button (click)="changeCoefficient()" type="button" class="image-toolbar__control">
+                <svg class="image__icon">
+                    <use xlink:href="/assets/img/sprite.svg#icon-adjust"></use>
+                </svg>
+            </button>
+        </div>
+        <!-- /.image-toolbar__tools -->
+    </div>
+    <div style="{{ styleHeight()}}"
+         class="image-container">
+        <div
+            style="{{ styleHeight()}}"
+            class="image-container focus-image"
+            #appImage
+            appImage
+            (mousedown)="parentMouseDown($event)"
+            (mousemove)="parentOnDrag($event)"
+            (mouseup)="parentOnMouseUp($event)"
+        >
+            <img #imageElement
+                 style="{{ styleWidth() }}"
+                 src="{{ medicalImage ? medicalImage.imageString : '/assets/img/black.png' }}"
+                 alt="{{patient ? patient.lastName : '&nbsp;'}}">
+            <div #bbox></div>
+        </div>
+    </div>
+</div>
+<!-- /.content -->
+

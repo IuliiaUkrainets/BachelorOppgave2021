@@ -1,0 +1,21 @@
+.nav-tabs {
+    margin-top: .5rem;
+    li {
+        font-size: 1.3rem;
+        a {
+            border: none;
+        }
+    }
+}
+
+.nav-item {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #F3F3F3;
+    overflow: hidden;
+    &:last-child {
+        border-right: 1px solid #ccc;
+    }
+}

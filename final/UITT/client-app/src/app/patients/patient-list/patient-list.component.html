@@ -1,0 +1,51 @@
+<span class="secondary-title">
+        <svg class="secondary-title__icon">
+            <use xlink:href="assets/img/sprite.svg#icon-users"></use>
+        </svg>
+        <svg class="secondary-title__icon">
+            <use xlink:href="assets/img/sprite.svg#icon-chevron-thin-right"></use>
+        </svg>
+        <h2 style="margin-bottom: 0" class="secondary-title__text">Pasienter</h2>
+    </span>
+<table class="table">
+    <thead class="table__head">
+    <tr class="table__row--header">
+        <th class="table__header">Fødselsnummer</th>
+        <th class="table__header">Pasientens Navn</th>
+        <th class="table__header">Email</th>
+        <th class="table__header">Telefonnummer</th>
+    </tr>
+    </thead>
+    <tbody class="table__body">
+    <tr *ngFor="let patient of patients" class="table__row">
+        <td class="table__data">
+            <a routerLink="/patient/{{patient.id}}"  class="table__link">{{ patient.ssn }}</a>
+        </td>
+        <td class="table__data">
+            <a routerLink="/patient/{{patient.id}}" class="table__link">
+                {{ patient.firstName }} {{ patient.lastName }}
+            </a>
+        </td>
+        <td class="table__data"><a routerLink="/patient/{{patient.id}}" class="table__link">{{ patient.email }}</a></td>
+        <td class="table__data"><a routerLink="/patient/{{patient.id}}" class="table__link">{{ patient.phoneNumber }}</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="font-size: 1.8rem; display: flex; flex-direction: row-reverse; margin-right: 10rem"  *ngIf="pagination">
+    <pagination
+        [boundaryLinks]="true"
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+    ></pagination>
+</div>
+<!-- /.d-flex justify-content-center -->
+
+
+

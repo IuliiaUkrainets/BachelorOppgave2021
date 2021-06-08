@@ -1,0 +1,22 @@
+<div class="row user-list">
+    <div class="col-md-12 col-lg-6 col-xl-4 user-card" *ngFor="let user of users">
+        <app-user-card [user]="user"></app-user-card>
+    </div>
+    <!-- /.col-2 -->
+</div>
+<!-- /.row -->
+
+<div style="font-size: 1.5rem" class="d-flex justify-content-center" *ngIf="pagination">
+    <pagination
+        [boundaryLinks]="true"
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;"
+        ></pagination>
+</div>
+<!-- /.d-flex justify-content-center -->

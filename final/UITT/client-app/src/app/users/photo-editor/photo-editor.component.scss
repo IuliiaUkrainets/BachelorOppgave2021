@@ -1,0 +1,37 @@
+
+
+.card .upload-box {
+    font-size: 1.6rem;
+}
+
+input[type=file] {
+    color: transparent;
+}
+
+.row .upload-box {
+    margin: 0;
+    padding: .1rem;
+    .drop-zone {
+        background-color: #999999;
+    }
+}
+
+#drop-zone {
+    display: inline-block;
+    padding: 2rem 1rem;
+    border: solid 2px #999999;
+    border-radius: 4px;
+    .nv-file-over {
+        border: dotted 3px red;
+    }
+}
+
+.drop-zone {
+    padding: 2rem 1rem;
+    border: solid 2px #999999;
+    border-radius: 4px;
+}
+
+input[type="file"] {
+    display: none;
+}

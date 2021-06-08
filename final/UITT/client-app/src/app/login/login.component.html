@@ -1,0 +1,40 @@
+<div class="login-page-container">
+    <div class="login">
+        <div class="login__logo-box">
+            <img src="assets/img/logo/logo-dark.svg" alt="UiT Logo" class="login__logo">
+        </div>
+        <div class="u-center-text u-margin-bottom-small">
+            <h1 class="heading-primary">Universal Image Transfer Tool</h1>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="login()" action="#" class="form" autocomplete="off">
+            <div class="form__group">
+                <input
+                    name="username"
+                    [(ngModel)]="model.username"
+                    type="email"
+                    class="form__input"
+                    placeholder="Email"
+                    id="email"
+                    required>
+                <label for="email" class="form__label">Email</label>
+            </div>
+            <div class="form__group">
+                <input
+                    name="password"
+                    [(ngModel)]="model.password"
+                    type="password"
+                    class="form__input"
+                    placeholder="Password"
+                    id="password"
+                    required>
+                <label for="password" class="form__label">Password</label>
+            </div>
+            <div class="form__group">
+                <button type="submit" class="btn btn--dark btn--login">
+                <svg class="btn--login__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-login"></use>
+                </svg>Login</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="thumb">
+    <a href="#" class="thumb__link">
+        <div class="thumb__image-wrapper">
+<!--            <img src="{{(user.photos.length != 0) ? user.photos[user.photos.length - 1].url : 'assets/img/user.png'}}" alt="{{user.username}}" class="thumb__image">-->
+
+        </div>
+        <!-- /.thumb__image-wrapper -->
+        <div class="thumb__meta">
+            <span class="thumb__meta-list">
+                <div class="thumb__meta-list-icon"><img src="assets/img/stethoscope.svg"></div>
+                <span class="thumb__meta-list-wrapper ml-3">
+                    <div class="thumb__meta-list-item__name">{{user.firstName | titlecase}}</div>
+                    <div class="thumb__meta-list-item__name">{{user.lastName}}</div>
+                    <div style="text-transform: uppercase;" class="thumb__meta-list-item">{{ user.category ? user.category : '&nbsp;' }}</div>
+                </span>
+            </span>
+        </div>
+        <!-- /.thumb-meta -->
+        <ul class="list-inline user-icons animate text-center mb-2">
+            <li class="list-inline-item">
+                <a type="button" routerLink="/users/{{user.username}}" class="btn-send-message">
+                    <svg class="sidebar-nav__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-user"></use>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+        <!-- /.thumb__image -->
+    </a>
+</div>
+<!-- /.thumb -->
+

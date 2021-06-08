@@ -1,0 +1,58 @@
+[
+  '{{repeat(5)}}',
+  {
+    UserName: '{{firstName("female")}}',
+    Gender: 'female',
+    DateOfBirth: '{{date(new Date(1930,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
+    Created: '{{date(new Date(2021,0,1), new Date(2021, 04, 19), "YYYY-MM-dd")}}',
+    LastActive: '{{date(new Date(2021,0,1), new Date(2021, 04, 19), "YYYY-MM-dd")}}',
+    City: '{{city()}}',
+    Address: '{{street()}} {{integer()}}',
+    Photos: [
+      {
+        Url: function(num) {
+        return 'https://randomuser.me/api/portraits/women/' + num.integer(1,99) + '.jpg';
+        }
+      }
+    ]
+  }
+]
+
+
+[
+  '{{repeat(5)}}',
+  {
+    UserName: '{{firstName("male")}}',
+    Gender: 'male',
+    DateOfBirth: '{{date(new Date(1930,0,1), new Date(1999, 11, 31), "YYYY-MM-dd")}}',
+    Created: '{{date(new Date(2021,0,1), new Date(2021, 04, 19), "YYYY-MM-dd")}}',
+    LastActive: '{{date(new Date(2021,0,1), new Date(2021, 04, 19), "YYYY-MM-dd")}}',
+    City: '{{city()}}',
+    Address: '{{street()}} {{integer()}}',
+    Photos: [
+      {
+        Url: function(num) {
+        return 'https://randomuser.me/api/portraits/men/' + num.integer(1,99) + '.jpg';
+        }
+      }
+    ]
+  }
+]
+
+[
+  '{{repeat(5)}}',
+  {
+    FirstName: '{{firstName("female")}}',
+    Middlename: '{{firstName("female")}}',
+    LastName: '{{surname("female")}}',
+    Email: '{{email()}}',
+    PhoneNumber: '{{phone()}}',
+    Gender: 'female',
+    DateOfBirth: '{{date(new Date(1930,0,1), new Date(2006, 11, 31), "YYYY-MM-dd")}}',
+    Created: '{{date(new Date(2021,0,1), new Date(2021, 04, 19), "YYYY-MM-dd")}}',
+    LastActive: '{{date(new Date(2021,0,1), new Date(2021, 04, 19), "YYYY-MM-dd")}}',
+    City: '{{city()}}',
+    Address: '{{street()}} {{integer()}}'
+    
+  }
+]

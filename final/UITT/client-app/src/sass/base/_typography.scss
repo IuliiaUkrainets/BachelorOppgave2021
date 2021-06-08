@@ -1,0 +1,31 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-grey-dark;
+}
+
+.heading-primary {
+    font-size: 2.1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $color-primary-dark;
+}
+
+.secondary-title {
+    display: flex;
+    align-items: center;
+    background-color: lighten($color-grey-dark-secondary, 25%);
+    padding: 1rem;
+
+    &__icon {
+        width: 2rem;
+        height: 2rem;
+        fill: currentColor;
+        margin-right: 1rem;
+        &:first-child {
+            margin-left: 2rem;
+        }
+    }
+
+}

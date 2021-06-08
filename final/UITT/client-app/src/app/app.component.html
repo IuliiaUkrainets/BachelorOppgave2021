@@ -1,0 +1,26 @@
+<input type="checkbox" id="menu">
+<ngx-spinner>
+    <h3></h3>
+</ngx-spinner>
+<router-outlet *ngIf="isImageRoute()"></router-outlet>
+<ng-container *ngIf="(accountService.currentUser$ | async) as user">
+    <div  class="content">
+        <app-side-nav *ngIf="!isImageRoute()"></app-side-nav>
+        <div class="content-wrapper">
+            <app-top-nav *ngIf="!isImageRoute()"></app-top-nav>
+            <main *ngIf="!isImageRoute()" class="main">
+                <router-outlet></router-outlet>
+            </main>
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</ng-container>
+<ng-container *ngIf="(accountService.currentUser$ | async) === null">
+    <app-login></app-login>
+</ng-container>
+
+
+
+
+
+

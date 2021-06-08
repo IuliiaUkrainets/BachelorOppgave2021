@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div.focus-image {
+  border:1px solid #dddddd;
+  display:inline-block;
+  position:relative;
+  cursor:pointer;
+}
+div.focus-image div {
+  display:none;
+  border:2px solid red;
+  position:absolute;
+  left:90px; /*x*/
+  top:60px; /*y*/
+}
+img{
+width: 512px;
+height:512px;
+}
+    </style>
+</head>
+<body>
+    <div id="cont" class="focus-image">
+        <img src="http://localhost:5000/getImage/0004.jpg" />
+        <div id="bbox"></div>
+      </div>
+      <script>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div.focus-image {
+  border:1px solid #dddddd;
+  display:inline-block;
+  position:relative;
+  cursor:pointer;
+}
+div.focus-image div {
+  display:none;
+  border:2px solid red;
+  position:absolute;
+  left:90px; /*x*/
+  top:60px; /*y*/
+}
+img{
+width: 512px;
+height:512px;
+}
+    </style>
+</head>
+<body>
+    <div id="cont" class="focus-image">
+        <img src="http://localhost:5000/getImage/0004.jpg" />
+        <div id="bbox"></div>
+      </div>
+      <script>
+        export function decompressImage(response: ImageResponse): string | null {
+    console.log('DECOMPRESS');
+    console.log(response);
+    if (response == null) {
+        return null;
+    }
+
+    const t = decompress(
+        response.image[0],
+        response.image[1],
+        response.image[2],
+        response.image[3]
+    );
+ const t = decompress(
+        response.image[t],
+
+    );
+    const width = 512;
+    const height = 512;
+    const buffer = new Uint8ClampedArray(width * height * 4);
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const pos = (y * width + x) * 4;
+            buffer[pos] = t[y][x];
+            buffer[pos + 1] = t[y][x];
+            buffer[pos + 2] = t[y][x];
+            buffer[pos + 3] = 255;
+        }
+    }
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = width;
+    canvas.height = height;
+
+    // @ts-ignore
+    const idata = ctx.createImageData(width, height);
+
+    idata.data.set(buffer);
+
+    // @ts-ignore
+    ctx.putImageData(idata, 0, 0);
+    return canvas.toDataURL();
+}
+
+// tslint:disable-next-line:typedef
+// @ts-ignore
+// tslint:disable-next-line:typedef
+function decompress(WLL, WLH, WHL, WHH) {
+    const WL = [];
+    for (let i = 0; i < WLL[0].length; i++) {
+        const temp = [];
+        const temp1 = [];
+        for (let j = 0; j < WLL.length; j++) {
+            temp.push(Number(WLL[i][j]) + Number(WLH[i][j]));
+
+            temp1.push(Number(WLL[i][j]) - Number(WLH[i][j]));
+        }
+        WL.push(temp);
+        WL.push(temp1);
+    }
+    const WH = [];
+    for (let i = 0; i < WHL[0].length; i++) {
+        const temp = [];
+        const temp1 = [];
+        for (let j = 0; j < WHL.length; j++) {
+            temp.push(Number(WHL[i][j]) + Number(WHH[i][j]));
+
+            temp1.push(Number(WHL[i][j]) - Number(WHH[i][j]));
+        }
+        WH.push(temp);
+        WH.push(temp1);
+    }
+
+    const W = [];
+    for (let i = 0; i < WL.length; i++) {
+        const temp = [];
+        for (let j = 0; j < WL[0].length; j++) {
+            temp.push(Number(WL[i][j]) + Number(WH[i][j]));
+            temp.push(Number(WL[i][j]) - Number(WH[i][j]));
+        }
+        W.push(temp);
+    }
+    return W;
+}
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>

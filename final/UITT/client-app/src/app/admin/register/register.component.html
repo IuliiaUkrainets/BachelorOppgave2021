@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-5 mt-5">
+            <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+                <h2 class="text-center form--header">Registrer ny bruker</h2>
+                <hr>
+                <app-text-input
+                    [formControl]="registerForm.controls['username']"
+                    [label]="'Username'" >
+                </app-text-input>
+                <app-text-input
+                    [formControl]="registerForm.controls['password']"
+                    [label]="'Password'"
+                >
+                </app-text-input>
+                <div class="form-group text-right">
+                    <button class="btn-success form-group--button mr-2 " type="submit">Registrer</button>
+                    <button (click)="cancel()" class="btn-secondary form-group--button mr-2" type="button">Avbryt</button>
+                </div>
+                <!-- /.form-group text-center -->
+            </form>
+        </div>
+        <!-- /.col-4 -->
+    </div>
+    <!-- /.row justify-content-center -->
+</div>
+<!-- /.container -->

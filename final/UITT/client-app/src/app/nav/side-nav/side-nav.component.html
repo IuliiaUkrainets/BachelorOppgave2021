@@ -1,0 +1,49 @@
+<nav class="sidebar">
+    <div class="logo sidebar__logo">
+        <img src="../../../assets/img/logo/logo-light.svg" alt="Logo: Universitetet i Tromdø" class="logo__image">
+    </div>
+    <!-- /.logo -->
+    <ul class="sidebar-nav">
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active" [routerLinkActiveOptions]="{exact:
+true}">
+            <a routerLink="/" class="sidebar-nav__link">
+                <svg class="sidebar-nav__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-home"></use>
+                </svg>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+            <a routerLink="/patients" class="sidebar-nav__link">
+                <svg class="sidebar-nav__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-users"></use>
+                </svg>
+                <span>Pasienter</span>
+            </a>
+        </li>
+        <li class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+            <a routerLink="/images" class="sidebar-nav__link">
+                <svg class="sidebar-nav__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-images"></use>
+                </svg>
+                <span>Bilder</span>
+            </a>
+        </li>
+        <li *appHasRole="['Admin']" class="sidebar-nav__item" routerLinkActive="sidebar-nav__item--active">
+            <a routerLink="/admin"  class="sidebar-nav__link">
+                <svg class="sidebar-nav__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-user-tie"></use>
+                </svg>
+                <span>Admin</span>
+            </a>
+        </li>
+<!--        <li *appHasRole="['Admin']" class="sidebar-nav__item" routerLinkActive="sidebar-nav__item&#45;&#45;active">-->
+<!--            <a routerLink="/errors"  class="sidebar-nav__link">-->
+<!--                <svg class="sidebar-nav__icon">-->
+<!--                    <use xlink:href="assets/img/sprite.svg#icon-cog"></use>-->
+<!--                </svg>-->
+<!--                <span>Errors</span>-->
+<!--            </a>-->
+<!--        </li>-->
+    </ul>
+</nav>

@@ -1,0 +1,121 @@
+<div class="container mt-3">
+    <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadImageMeta()" autocomplete="off">
+
+
+        <!--        <div class="form-group px-2">-->
+<!--            <label style="font-size: 1.4rem;">Last name: </label>-->
+<!--            <input-->
+<!--                style="width: 20rem"-->
+<!--                type="text"-->
+<!--                class="form-control ml-1"-->
+<!--                name="lastName"-->
+<!--                [(ngModel)]="imageParams.lastName"-->
+<!--            >-->
+<!--        </div>-->
+
+
+
+<!--        <div class="search nav__search">-->
+<!--            <input-->
+<!--                type="text"-->
+<!--                class="search__input input"-->
+<!--                placeholder="Last Name..."-->
+<!--                name="lastName"-->
+<!--                [(ngModel)]="imageParams.lastName"-->
+<!--            >-->
+<!--            <button type="submit" class="search__button">-->
+<!--                <svg class="search__icon">-->
+<!--                    <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>-->
+<!--                </svg>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div class="search nav__search">-->
+<!--            <input-->
+<!--                type="text"-->
+<!--                class="search__input input"-->
+<!--                placeholder="Ssn..."-->
+<!--                name="lastName"-->
+<!--                [(ngModel)]="imageParams.ssn"-->
+<!--            >-->
+<!--            <button type="submit" class="search__button">-->
+<!--                <svg class="search__icon">-->
+<!--                    <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>-->
+<!--                </svg>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div class="form-group px-2">-->
+<!--            <label style="font-size: 1.4rem;">Fødselsnummer: </label>-->
+<!--            <input-->
+<!--                style="width: 20rem"-->
+<!--                type="text"-->
+<!--                class="form-control ml-1"-->
+<!--                name="lastName"-->
+<!--                [(ngModel)]="imageParams.ssn"-->
+<!--            >-->
+<!--        </div>-->
+<!--        <button class="btn-success form-group&#45;&#45;button mr-2" type="submit">Søk</button>-->
+<!--        <button (click)="resetFilters()" class="btn-secondary form-group&#45;&#45;button mr-2" type="submit">Nullstill</button>-->
+    </form>
+</div>
+<!--<div class="text-center mt-3">-->
+<!--    <h2>{{ pagination?.totalItems ? pagination?.totalItems + ' funnet' : ''  }} </h2>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.text-center mt-3 &ndash;&gt;-->
+
+
+<div class="container image-list-container mt-5">
+<div class="row">
+    <div *ngFor="let image of imagesMeta" class="col-lg-4 col-xl-4">
+        <div class="thumb">
+            <a routerLink="/image/{{ image.url }}/{{image.patient.id}}" class="thumb__link">
+                <app-single-image [imageUrl] ="image.url"></app-single-image>
+                <!-- /.thumb__image -->
+                <div class="thumb__meta">
+                    <ul class="thumb__meta-list">
+                        <li class="thumb__meta-list-item">Navn:
+                            {{ image.patient.firstName}} {{ image.patient.lastName}}
+                        </li>
+                        <li class="thumb__meta-list-item">Fødselsnummer:
+                            {{ image.patient.ssn }}
+                        </li>
+                        <li class="thumb__meta-list-item">Kjønn:
+                            {{ image.patient.gender }}
+                        </li>
+                        <li class="thumb__meta-list-item">Tatt: {{ image.taken | date: 'dd MMMM, yyyy' }}</li>
+                    </ul>
+                </div>
+                <!-- /.thumb-meta -->
+            </a>
+        </div>
+        <!-- /.thumb -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+    <div style="font-size: 1.8rem; display: flex; justify-content: space-between;"  *ngIf="pagination">
+
+        <pagination
+            [boundaryLinks]="true"
+            [totalItems]="pagination.totalItems"
+            [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)"
+            previousText="&lsaquo;"
+            nextText="&rsaquo;"
+            firstText="&laquo;"
+            lastText="&raquo;"
+        ></pagination>
+        <button (click)="resetFilters()" class="btn-secondary form-group&#45;&#45;button mr-2" type="submit">
+            <svg class="image__icon">
+                <use xlink:href="/assets/img/sprite.svg#icon-reload-alt"></use>
+            </svg>
+            Reload
+        </button>
+
+    </div>
+    <!-- /.d-flex justify-content-center -->
+
+</div>
+<!-- /.container -->
+
+

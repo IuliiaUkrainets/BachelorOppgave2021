@@ -1,0 +1,32 @@
+<header class="header">
+    <div class="header-wrapper">
+        <form #form="ngForm" class="search nav__search">
+            <input autocomplete="off" #searchField [(ngModel)]="search" name="search" type="text" class="search__input input" placeholder="Søk...">
+            <button (click)="updateSearch()"  class="search__button">
+                <svg class="search__icon">
+                    <use xlink:href="assets/img/sprite.svg#icon-magnifying-glass"></use>
+                </svg>
+            </button>
+        </form>
+        <div class="dropdown header--dropdown" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+            <span href="#"  class="user header__user" dropdownToggle>
+                <img class="user__avatar" src="{{ user.photoUrl || 'assets/img/user.png'}}" alt="{{ user.username }}">
+                    <span style="min-width: 6rem" class="user__name">{{user.username}}</span>
+                    <svg class="dropdown__icon">
+                        <use xlink:href="assets/img/sprite.svg#icon-arrow_drop_down"></use>
+                    </svg>
+            </span>
+            <div class="dropdown-menu header--dropdown-menu" *dropdownMenu>
+                <a routerLink="/user/edit" class="dropdown-item">Rediger profil</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Logg ut</a>
+            </div>
+            <!-- /.dropdown-menu -->
+        </div>
+        <!-- /.dropdown -->
+        <label for="menu" class="menu-icon">
+            <i class="fa fa-bars"></i>
+        </label>
+    </div>
+    <!-- /.header-wrapper -->
+</header>
