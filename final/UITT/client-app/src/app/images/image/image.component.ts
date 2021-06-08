@@ -189,6 +189,7 @@ export class ImageComponent implements OnInit {
             .subscribe((response) => {
                 this.medicalImage.imageString =
                     'http://localhost:5030/getImage/' + response.image;
+                this.medicalImage.id = '0';
                 this.bbox.nativeElement.style = '';
             });
         event.preventDefault();
